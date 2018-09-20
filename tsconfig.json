@@ -21,6 +21,9 @@
       ],
       "@aurora-ngx/schematics": [
         "libs/schematics/src/index.ts"
+      ],
+      "@aurora-ngx/form": [
+        "libs/form/src/index.ts"
       ]
     }
   },

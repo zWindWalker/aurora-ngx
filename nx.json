@@ -13,6 +13,15 @@
     },
     "schematics": {
       "tags": []
+    },
+    "form": {
+      "tags": []
+    },
+    "demo": {
+      "tags": []
+    },
+    "demo-e2e": {
+      "tags": []
     }
   }
 }

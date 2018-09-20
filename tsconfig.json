@@ -16,6 +16,12 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "@aurora-ngx/ui": [
+        "libs/ui/src/index.ts"
+      ],
+      "@aurora-ngx/schematics": [
+        "libs/schematics/src/index.ts"
+      ]
     }
   },
   "exclude": [

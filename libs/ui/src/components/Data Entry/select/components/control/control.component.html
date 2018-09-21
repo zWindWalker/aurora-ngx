@@ -1,7 +1,11 @@
 <div id="value">
-    <p>Please select</p>
+    <p *ngIf="!selected_option">Please select</p>
+    <p *ngIf="selected_option">{{selected_option.label}}</p>
 </div>
 
-<div id="icon">
-
+<div id="icon" [@rotate]="{
+        value: show_menu ? 'animated' : 'default',
+         params: { deg: 90 }
+    }">
+    <i class="fas fa-angle-right"></i>
 </div>

@@ -1,3 +1,11 @@
-<control></control>
+<control
+        [selected_option]="selected_option"
+        [show_menu]="show_menu"
+        (click)="onToggleMenu()"
+></control>
 
-<menu></menu>
+<menu
+        [options]="options"
+        (onSelectOption)="onSelectOption($event)"
+        *ngIf="show_menu"
+></menu>

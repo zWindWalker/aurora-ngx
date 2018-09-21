@@ -1,26 +1,39 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-    selector: 'menu',
-    templateUrl: './menu.component.html',
-    styleUrls: ['./menu.component.scss']
+  selector: 'menu',
+  template: `
+      <ng-container *ngFor="let option of options; let i = index">
+          <select-option
+                  [data]="option"
+                  (click)="this.onSelectOption.emit(i)"
+          ></select-option>
+      </ng-container>
+  `,
+  styles: [`
+      :host {
+          background-color: white;
+          border-radius: 5px;
+          box-sizing: border-box;
+          border: 1px solid rgb(196, 202, 212);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          overflow: hidden;
+          padding: 0 10px;
+      }
+  `]
 })
 export class MenuComponent implements OnInit {
-    options = [
-        {
-            value: '1',
-            label: '1'
-        },
-        {
-            value: '2',
-            label: '2'
-        }
-    ]
+  @Input() options = [];
+  @Output() onSelectOption = new EventEmitter<any>();
 
-    constructor() {
-    }
+  constructor() {
+  }
 
-    ngOnInit() {
-    }
+  ngOnInit() {
+  }
 
 }

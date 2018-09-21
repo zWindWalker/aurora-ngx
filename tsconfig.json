@@ -24,6 +24,9 @@
       ],
       "@aurora-ngx/form": [
         "libs/form/src/index.ts"
+      ],
+      "@aurora-ngx/icons": [
+        "libs/icons/src/index.ts"
       ]
     }
   },

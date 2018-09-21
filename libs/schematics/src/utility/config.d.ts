@@ -25,7 +25,7 @@ export interface AppConfig {
    */
   outDir?: string;
   /**
-   * List of application assets.
+   * List of application icons.
    */
   assets?: (
     | string

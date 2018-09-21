@@ -197,6 +197,10 @@
   dependencies:
     tslib "^1.9.0"
 
+"@fortawesome/fontawesome-free@^5.3.1":
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.3.1.tgz#5466b8f31c1f493a96754c1426c25796d0633dd9"
+
 "@ngrx/effects@6.0.1":
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-6.0.1.tgz#b4c0a7918b8c9a4dbc2a663ea7562bea5db21257"
@@ -4526,6 +4530,10 @@ neo-async@^2.5.0:
 netmask@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/netmask/-/netmask-1.0.6.tgz#20297e89d86f6f6400f250d9f4f6b4c1945fcd35"
+
+ng-inline-svg@^8.0.2:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/ng-inline-svg/-/ng-inline-svg-8.0.2.tgz#a085978059219037dd915b6d9f5caa1b6b5e4d45"
 
 ng-packagr@^3.0.0:
   version "3.0.6"

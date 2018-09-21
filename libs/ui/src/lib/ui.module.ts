@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SelectModule } from '../components/Data Entry/select/select.module';
+import { DataEntryModule } from '../components/Data Entry/data-entry.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
     CommonModule,
-    SelectModule
+    BrowserAnimationsModule,
+
+    DataEntryModule
   ],
   exports: [
-    SelectModule
+    DataEntryModule
   ]
 })
-export class UiModule {
+export class AuroraUiModule {
 }

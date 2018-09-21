@@ -121,11 +121,11 @@ function addAppToWorkspaceFile(options, workspace) {
                         core_1.join(core_1.normalize(projectRoot), 'src', 'assets'),
                     ],
                     styles: [
-                        "src/assets/scss/global.scss"
+                        "src/icons/scss/global.scss"
                     ],
                     stylePreprocessorOptions: {
                         "includePaths": [
-                            "./src/assets/scss"
+                            "./src/icons/scss"
                         ]
                     },
                     scripts: [],

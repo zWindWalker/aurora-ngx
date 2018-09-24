@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SelectModule } from './select/select.module';
+import { SwitchComponent } from './switch/switch.component';
 
 
 
@@ -9,8 +10,10 @@ import { SelectModule } from './select/select.module';
     SelectModule
   ],
   exports: [
-    SelectModule
-  ]
+    SelectModule,
+    SwitchComponent
+  ],
+  declarations: [SwitchComponent]
 })
 export class DataEntryModule {
 }

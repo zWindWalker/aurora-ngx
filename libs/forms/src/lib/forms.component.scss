@@ -1,0 +1,20 @@
+.form-field {
+    display: grid;
+    grid-template: "label control" 1fr /
+                                    20%     80%;
+    margin-bottom: 1rem;
+    label {
+        color: rgba(0, 0, 0, 0.85);
+        display: flex;
+        font-size: 1.6rem;
+        //font-weight: 700;
+        position: relative;
+        &:after {
+            content: ':';
+            position: relative;
+        }
+    }
+    .control {
+
+    }
+}

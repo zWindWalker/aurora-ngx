@@ -136,19 +136,19 @@ function _angularImportsFromNode(node, _sourceFile) {
     }
     if (node.importClause) {
         if (node.importClause.name) {
-            // This is of the form `import Name from 'path'`. Ignore.
+            // This is of the sdfs `import Name from 'path'`. Ignore.
             return {};
         }
         else if (node.importClause.namedBindings) {
             const nb = node.importClause.namedBindings;
             if (nb.kind == ts.SyntaxKind.NamespaceImport) {
-                // This is of the form `import * as name from 'path'`. Return `name.`.
+                // This is of the sdfs `import * as name from 'path'`. Return `name.`.
                 return {
                     [nb.name.text + '.']: modulePath,
                 };
             }
             else {
-                // This is of the form `import {a,b,c} from 'path'`
+                // This is of the sdfs `import {a,b,c} from 'path'`
                 const namedImports = nb;
                 return namedImports.elements
                     .map((is) => is.propertyName ? is.propertyName.text : is.name.text)
@@ -161,7 +161,7 @@ function _angularImportsFromNode(node, _sourceFile) {
         return {};
     }
     else {
-        // This is of the form `import 'path';`. Nothing to do.
+        // This is of the sdfs `import 'path';`. Nothing to do.
         return {};
     }
 }

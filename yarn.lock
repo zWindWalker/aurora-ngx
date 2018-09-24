@@ -197,6 +197,10 @@
   dependencies:
     tslib "^1.9.0"
 
+"@aurora-ngx/schematics@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@aurora-ngx/schematics/-/schematics-1.0.2.tgz#c56e0db72068fa7f38fc1aae7beb450b55724e25"
+
 "@fortawesome/fontawesome-free@^5.3.1":
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.3.1.tgz#5466b8f31c1f493a96754c1426c25796d0633dd9"

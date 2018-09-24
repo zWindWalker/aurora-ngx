@@ -5,6 +5,7 @@ import { NxModule } from '@nrwl/nx';
 import { AuroraUiModule } from '@aurora-ngx/ui';
 import { HttpClientModule } from '@angular/common/http';
 import { InlineSVGModule } from 'ng-inline-svg';
+import { AuroraFormsModule } from '@aurora-ngx/forms';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { InlineSVGModule } from 'ng-inline-svg';
     BrowserModule,
     NxModule.forRoot(),
     AuroraUiModule,
+    AuroraFormsModule,
     HttpClientModule,
     InlineSVGModule.forRoot()
   ],

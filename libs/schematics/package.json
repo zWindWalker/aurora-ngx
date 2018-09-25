@@ -1,6 +1,6 @@
 {
   "name": "@aurora-ngx/schematics",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Schematics specific to Angular",
   "peerDependencies": {
     "@angular-devkit/core": "0.7.2",

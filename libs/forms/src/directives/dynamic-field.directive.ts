@@ -2,10 +2,12 @@ import { ComponentFactoryResolver, Directive, Input, OnInit, ViewContainerRef } 
 import { FormInputComponent } from '../components/form-input/form-input.component';
 import { FormGroup } from '@angular/forms';
 import { FormSelectComponent } from '../components/form-select/form-select.component';
+import { FormButtonComponent } from '../components/form-button/form-button.component';
 
 const components = {
   input: FormInputComponent,
-  select: FormSelectComponent
+  select: FormSelectComponent,
+  submit: FormButtonComponent
 };
 
 @Directive({

@@ -2,7 +2,8 @@
     <label [for]="config.name"> {{config?.label}}</label>
     <div class="control">
         <aurora-select
-               [formControlName]="config.name"
+                [formControlName]="config.name"
+                [options]="config.options"
         ></aurora-select>
     </div>
 </div>

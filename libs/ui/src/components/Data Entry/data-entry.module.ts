@@ -2,18 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SelectModule } from './select/select.module';
 import { SwitchComponent } from './switch/switch.component';
-
+import { InputComponent } from './input/input.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   imports: [
-    SelectModule
+    SelectModule,
+    ReactiveFormsModule,
   ],
   exports: [
     SelectModule,
-    SwitchComponent
+    SwitchComponent,
+    InputComponent
   ],
-  declarations: [SwitchComponent]
+  declarations: [SwitchComponent, InputComponent]
 })
 export class DataEntryModule {
 }

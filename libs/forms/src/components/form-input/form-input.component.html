@@ -1,7 +1,10 @@
 <div class="form-field" [formGroup]="group">
     <label [for]="config.name">{{config?.label}}</label>
     <div class="control">
-        <input [name]="config.name" type="text" [formControlName]="config.name">
+        <aurora-input [name]="config.name" type="text" [formControlName]="config.name">
+        </aurora-input>
+
+        <!--<input [name]="config.name" type="text" [formControlName]="config.name">-->
     </div>
 </div>
 

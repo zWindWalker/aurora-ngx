@@ -7,7 +7,7 @@
       "root": "libs/ui",
       "sourceRoot": "libs/ui/src",
       "projectType": "library",
-      "prefix": "",
+      "prefix": "aurora",
       "architect": {
         "build": {
           "builder": "@angular-devkit/blibs/uild-ng-packagr:build",

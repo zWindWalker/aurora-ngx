@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: '<%= selector %>',
+  selector: '<%= dasherize(name) %>',
   templateUrl: './<%= dasherize(name) %>.component.html',
   styleUrls: ['./<%= dasherize(name) %>.component.scss']
 })

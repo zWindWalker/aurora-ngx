@@ -1,13 +1,13 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'aurora-forms',
+  selector: 'aurora-form',
   template: `
       <form
               [formGroup]="form"
-              (submit)="onSubmit($event)"
+              (ngSubmit)="submitted.emit(form.value)"
       >
           <ng-container
                   *ngFor="let field of config"
@@ -23,6 +23,7 @@ import * as _ from 'lodash';
 export class AuroraFormComponent implements OnInit {
 
   @Input() config: any[] = [];
+  @Output() submitted = new EventEmitter<any>();
 
   form: FormGroup;
 

@@ -1,6 +1,6 @@
 .form-field {
     display: grid;
-    grid-template: "label control" 1fr /
+    grid-template: "label control" 40px /
                                     20%     80%;
     margin-bottom: 1rem;
     label {
@@ -9,12 +9,13 @@
         font-size: 1.6rem;
         //font-weight: 700;
         position: relative;
+        grid-area: label;
         &:after {
             content: ':';
             position: relative;
         }
     }
     .control {
-
+        grid-area: control;
     }
 }

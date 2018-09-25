@@ -11,15 +11,39 @@ export class AppComponent {
   config = [
     {
       type: 'input',
-      name: 'input',
-      label: 'Input'
+      name: 'username',
+      label: 'Username'
+    },
+    {
+      type: 'input',
+      input_type: 'password',
+      name: 'password',
+      label: 'Password'
     },
     {
       type: 'select',
-      name: 'select',
-      label: 'Select'
-
+      name: 'gender',
+      label: 'Gender',
+      options: [
+        {
+          label: 'Male',
+          value: 'male'
+        },
+        {
+          label: 'Female',
+          value: 'female'
+        }
+      ]
+    },
+    {
+      type: 'submit',
+      label: 'Submit'
     }
-  ]
+  ];
+
+
+  onSubmit = e => {
+    console.log(e)
+  }
 
 }

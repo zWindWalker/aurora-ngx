@@ -1,15 +1,27 @@
 import { Component, ElementRef, HostListener, Input, OnInit } from '@angular/core';
 import * as _ from 'lodash';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 
 @Component({
   selector: 'aurora-select',
   templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss']
+  styleUrls: ['./select.component.scss'],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: SelectComponent,
+    multi: true
+  }]
 })
-export class SelectComponent implements OnInit {
+
+export class SelectComponent implements OnInit, ControlValueAccessor {
+
+  ///-----------------------------------------------  Variables   -----------------------------------------------///
   show_menu: Boolean = false;
   selected_option: any = null;
+  onChange;
+  onTouched;
+  disabled;
 
   @Input() options: any = [
     {
@@ -32,14 +44,43 @@ export class SelectComponent implements OnInit {
     }
   ];
 
-  @Input() disabled: Boolean = true;
+
+  ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
 
   constructor(private eRef: ElementRef) {
   }
 
   ngOnInit() {
-    this.parseSelectedOption();
+
   }
+
+  ///-----------------------------------------------  ControlValueAccessor Interface   -----------------------------------------------///
+
+  // Allows Angular to update the model .
+  // Update the model and changes needed for the view here.
+  writeValue(value: Object): void {
+    // this.stars = this.stars.map((_, i) => rating > i);
+    // this.onChange(this.value);
+  }
+
+  // Allows Angular to register a function to call when the model  changes.
+  // Save the function as a property to call later here.
+  registerOnChange(fn: (rating: number) => void): void {
+    this.onChange = fn;
+  }
+
+  // Allows Angular to register a function to call when the input has been touched.
+  // Save the function as a property to call later here.
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  // Allows Angular to disable the input.
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
+  ///-----------------------------------------------  Host   -----------------------------------------------///
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
@@ -48,26 +89,24 @@ export class SelectComponent implements OnInit {
     }
   }
 
+
+  ///-----------------------------------------------  General Function   -----------------------------------------------///
+
+
   onToggleMenu = () => {
     this.show_menu = !this.show_menu;
   };
 
-  parseSelectedOption = () => {
-    _.map(this.options, item => {
-      if (item.selected) this.selected_option = item;
-    });
-
-
-  };
 
   onSelectOption = index => {
     this.options = _.map(this.options, (item, i) => {
       item.selected = (index === i);
       return item;
     });
-
-    this.parseSelectedOption();
     this.show_menu = false;
+    this.selected_option = _.find(this.options, ['selected', true]);
+    this.onChange(this.selected_option.value);
+
   };
 
 }

@@ -6,12 +6,14 @@ import { DynamicFieldDirective } from '../directives/dynamic-field.directive';
 import { FormInputComponent } from '../components/form-input/form-input.component';
 import { FormSelectComponent } from '../components/form-select/form-select.component';
 import { AuroraUiModule } from '@aurora-ngx/ui';
+import { FormButtonComponent } from '../components/form-button/form-button.component';
 
 @NgModule({
   declarations: [
     AuroraFormComponent,
     FormInputComponent,
     FormSelectComponent,
+    FormButtonComponent,
 
     DynamicFieldDirective
   ],
@@ -24,6 +26,7 @@ import { AuroraUiModule } from '@aurora-ngx/ui';
   entryComponents: [
     FormInputComponent,
     FormSelectComponent,
+    FormButtonComponent
   ]
 })
 export class AuroraFormsModule {

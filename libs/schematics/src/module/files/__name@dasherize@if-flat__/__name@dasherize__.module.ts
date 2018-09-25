@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';<% if (commonModule) { %>
 import { CommonModule } from '@angular/common';<% } %><% if (routing) { %>import {NovaFilterComponent} from './containers/nova-filter.component';
 import { <%= classify(name) %>RoutingModule } from './<%= dasherize(name) %>-routing.module';<% } %>
 
-import {<%= classify(name) %>Component} from './containers/<%= selector %>.component';
+import {<%= classify(name) %>Component} from './containers/<%= dasherize(name) %>.component';
 
 
 @NgModule({

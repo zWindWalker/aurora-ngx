@@ -1,5 +1,6 @@
 <input
-        [type]="type"
+        [type]="type || 'text'"
         [name]="name"
         (change)="onChange($event.target.value)"
+        tabindex="0"
 >

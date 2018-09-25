@@ -11,10 +11,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     multi: true
   }]
 })
+
 export class InputComponent implements OnInit, ControlValueAccessor {
 
   ///-----------------------------------------------  Variables   -----------------------------------------------///
-  @Input() type = 'text';
+  @Input() type: String;
   @Input() name = '';
   onChange;
   onTouched;

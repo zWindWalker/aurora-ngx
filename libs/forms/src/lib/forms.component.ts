@@ -37,7 +37,9 @@ export class AuroraFormComponent implements OnInit {
   createGroup = () => {
     const group = this.fb.group({});
 
-    _.each(this.config, control => group.addControl(control.name, this.fb.control(null)));
+    _.each(this.config, control => {
+      control.type !== 'submit' && group.addControl(control.name, this.fb.control(null));
+    });
 
     return group;
   };

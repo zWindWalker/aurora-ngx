@@ -17,6 +17,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   ///-----------------------------------------------  Variables   -----------------------------------------------///
   @Input() type: String;
   @Input() name = '';
+  value: String = '';
   onChange;
   onTouched;
   disabled;
@@ -32,9 +33,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   // Allows Angular to update the model .
   // Update the model and changes needed for the view here.
-  writeValue(rating: number): void {
-    // this.stars = this.stars.map((_, i) => rating > i);
-    // this.onChange(this.value);
+  writeValue(value: String): void {
+    this.value = value;
   }
 
   // Allows Angular to register a function to call when the model  changes.

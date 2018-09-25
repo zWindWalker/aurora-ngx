@@ -1,11 +1,11 @@
 <control
-        [selected_option]="selected_option"
+        [label]="selected_option.label"
         [show_menu]="show_menu"
         (click)="onToggleMenu()"
 ></control>
 
 <menu
         [options]="options"
-        (onSelectOption)="onSelectOption($event)"
+        (onSelectOption)="onChange($event)"
         *ngIf="show_menu"
 ></menu>

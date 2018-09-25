@@ -9,7 +9,7 @@ import rotate from '../../animations/rotate.animation';
 })
 export class ControlComponent implements OnInit {
   @Input() show_menu = false;
-  @Input() selected_option = null;
+  @Input() label = null;
 
   constructor(private eRef: ElementRef) {
   }

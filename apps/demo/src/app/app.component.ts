@@ -12,18 +12,21 @@ export class AppComponent {
     {
       type: 'input',
       name: 'username',
-      label: 'Username'
+      label: 'Username',
+      value: 'wind walker'
     },
     {
       type: 'input',
       input_type: 'password',
       name: 'password',
-      label: 'Password'
+      label: 'Password',
+      value: '123456'
     },
     {
       type: 'select',
       name: 'gender',
       label: 'Gender',
+      value: 'male',
       options: [
         {
           label: 'Male',
@@ -43,7 +46,7 @@ export class AppComponent {
 
 
   onSubmit = e => {
-    console.log(e)
-  }
+    console.log(e);
+  };
 
 }

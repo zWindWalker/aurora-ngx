@@ -19,30 +19,11 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   ///-----------------------------------------------  Variables   -----------------------------------------------///
   show_menu: Boolean = false;
   selected_option: any = null;
-  onChange;
+  propagateChange;
   onTouched;
   disabled;
 
-  @Input() options: any = [
-    {
-      value: '1',
-      label: '1'
-    },
-    {
-      value: '2',
-      label: '2',
-      selected: true
-    },
-    {
-      value: '3',
-      label: '3',
-      disabled: true
-    },
-    {
-      value: '4',
-      label: '4'
-    }
-  ];
+  @Input() options: any = [];
 
 
   ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
@@ -58,15 +39,14 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
 
   // Allows Angular to update the model .
   // Update the model and changes needed for the view here.
-  writeValue(value: Object): void {
-    // this.stars = this.stars.map((_, i) => rating > i);
-    // this.onChange(this.value);
+  writeValue(value: any): void {
+    this.selected_option = _.find(this.options, ['value', value.toString()]);
   }
 
   // Allows Angular to register a function to call when the model  changes.
   // Save the function as a property to call later here.
-  registerOnChange(fn: (rating: number) => void): void {
-    this.onChange = fn;
+  registerOnChange(fn: (value: any) => void): void {
+    this.propagateChange = fn;
   }
 
   // Allows Angular to register a function to call when the input has been touched.
@@ -98,14 +78,18 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   };
 
 
-  onSelectOption = index => {
-    this.options = _.map(this.options, (item, i) => {
-      item.selected = (index === i);
+  onChange = option => {
+
+    this.options = _.map(this.options, item => {
+      if (_.isEqual(item, option)) {
+        item.selected = _.isEqual(item, option);
+        this.selected_option = item;
+      }
       return item;
     });
     this.show_menu = false;
-    this.selected_option = _.find(this.options, ['selected', true]);
-    this.onChange(this.selected_option.value);
+
+    this.propagateChange(this.selected_option.value);
 
   };
 

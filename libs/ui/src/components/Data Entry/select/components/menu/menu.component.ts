@@ -3,10 +3,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'menu',
   template: `
-      <ng-container *ngFor="let option of options; let i = index">
+      <ng-container *ngFor="let option of options">
           <select-option
                   [data]="option"
-                  (click)="this.onSelectOption.emit(i)"
+                  (click)="this.onSelectOption.emit(option)"
           ></select-option>
       </ng-container>
   `,

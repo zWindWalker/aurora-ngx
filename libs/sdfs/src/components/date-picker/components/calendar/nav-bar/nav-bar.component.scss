@@ -1,0 +1,19 @@
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 10px;
+    .title {
+        color: black;
+        font-size: 2em;
+    }
+    svg {
+        border: 1px solid rgb(228, 231, 231);
+        border-radius: 6px;
+        cursor: pointer;
+        color: rgb(130, 136, 138);
+        padding: 3px 7px;
+        height: 3em;
+        width: 3em;
+    }
+}

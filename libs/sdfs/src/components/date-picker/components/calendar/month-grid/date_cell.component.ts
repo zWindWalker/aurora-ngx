@@ -3,7 +3,7 @@ import DateUtils from '../../../utils/DateUtils';
 import DatePickerService from '../../../containers/date-picker.service';
 
 @Component({
-  selector: 'date-cell',
+  selector: 'date_cell',
   template: `
       {{day?.getDate()}}
   `,

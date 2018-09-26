@@ -17,11 +17,9 @@ import DatePickerService from './containers/date-picker.service';
     ControlComponent,
     CalendarComponent,
     NavBarComponent,
-
-    DateCellComponent,
     MonthGridComponent,
     WeekDaysComponent,
-
+    DateCellComponent
   ],
   imports: [CommonModule],
   exports: [

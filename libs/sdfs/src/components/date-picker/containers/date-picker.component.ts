@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, ElementRef, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import DatePickerService from './date-picker.service';
 
@@ -12,14 +12,15 @@ import DatePickerService from './date-picker.service';
     multi: true
   }]
 })
-export class DatePickerComponent implements AfterViewChecked, ControlValueAccessor {
+export class DatePickerComponent implements OnInit, ControlValueAccessor {
 
   ///-----------------------------------------------  Variables   -----------------------------------------------///
 
   show_calendar: Boolean = false;
   onTouched;
   disabled;
-  propagateChange;
+  propagateChange = (value: any) => {
+  };
 
 
   @HostListener('document:click', ['$event'])
@@ -35,7 +36,7 @@ export class DatePickerComponent implements AfterViewChecked, ControlValueAccess
   constructor(private eRef: ElementRef, private dpSvs: DatePickerService) {
   }
 
-  ngAfterViewChecked() {
+  ngOnInit() {
     this.dpSvs.change_selected_date.subscribe(selected_date => this.propagateChange(selected_date));
   }
 

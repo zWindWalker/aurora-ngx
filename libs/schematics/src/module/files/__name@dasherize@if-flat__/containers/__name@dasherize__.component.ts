@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  Input } from '@angular/core';
 
 @Component({
   selector: '<%= dasherize(name) %>',
@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class <%= classify(name) %>Component implements OnInit {
 
-  constructor() { }
+  ///-----------------------------------------------  Variables   -----------------------------------------------///
+
+
+
+  ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
+
+  constructor() {
+  }
 
   ngOnInit() {
+
   }
+
+
+
+  ///-----------------------------------------------  General Functions   -----------------------------------------------///
 
 }

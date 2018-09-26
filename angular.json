@@ -3,46 +3,6 @@
   "version": 1,
   "newProjectRoot": "",
   "projects": {
-    "ui": {
-      "root": "libs/ui",
-      "sourceRoot": "libs/ui/src",
-      "projectType": "library",
-      "prefix": "aurora",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/blibs/uild-ng-packagr:build",
-          "options": {
-            "tsConfig": "libs/ui/tsconfig.lib.json",
-            "project": "libs/ui/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "libs/ui/ng-package.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/blibs/uild-angular:karma",
-          "options": {
-            "main": "libs/ui/src/test.ts",
-            "tsConfig": "libs/ui/tsconfig.spec.json",
-            "karmaConfig": "libs/ui/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/blibs/uild-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/ui/tsconfig.lib.json",
-              "libs/ui/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "schematics": {
       "root": "libs/schematics",
       "sourceRoot": "libs/schematics/src",
@@ -87,7 +47,7 @@
       "root": "apps/demo/",
       "sourceRoot": "apps/demo/src",
       "projectType": "application",
-      "prefix": "aurora-ngx",
+      "prefix": "",
       "schematics": {},
       "architect": {
         "build": {
@@ -207,6 +167,86 @@
             "tsConfig": [
               "libs/forms/tsconfig.lib.json",
               "libs/forms/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ui": {
+      "root": "libs/ui",
+      "sourceRoot": "libs/ui/src",
+      "projectType": "library",
+      "prefix": "aurora-ngx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/ui/tsconfig.lib.json",
+            "project": "libs/ui/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/ui/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/ui/src/test.ts",
+            "tsConfig": "libs/ui/tsconfig.spec.json",
+            "karmaConfig": "libs/ui/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ui/tsconfig.lib.json",
+              "libs/ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "animations": {
+      "root": "libs/animations",
+      "sourceRoot": "libs/animations/src",
+      "projectType": "library",
+      "prefix": "aurora-ngx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/animations/tsconfig.lib.json",
+            "project": "libs/animations/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/animations/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/animations/src/test.ts",
+            "tsConfig": "libs/animations/tsconfig.spec.json",
+            "karmaConfig": "libs/animations/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/animations/tsconfig.lib.json",
+              "libs/animations/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

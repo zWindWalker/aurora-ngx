@@ -39,6 +39,11 @@ export class AppComponent {
       ]
     },
     {
+      type: 'datepicker',
+      name: 'birthday',
+      label: 'Birthday',
+    },
+    {
       type: 'submit',
       label: 'Submit'
     }

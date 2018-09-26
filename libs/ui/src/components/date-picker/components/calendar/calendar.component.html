@@ -1,0 +1,11 @@
+<nav-bar
+        [currentMonth]="currentMonth"
+        (nextMonth)="_showNextMonth()"
+        (prevMonth)="_showPreviousMonth()"
+></nav-bar>
+
+<week-days></week-days>
+
+<month-grid
+        [currentMonth]="currentMonth"
+></month-grid>

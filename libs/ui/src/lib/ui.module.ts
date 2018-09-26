@@ -1,17 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataEntryModule } from '../components/Data Entry/data-entry.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InputComponent } from '../components/input/input.component';
+import { SwitchComponent } from '../components/switch/switch.component';
+import { SelectModule } from '../components/select/select.module';
+import { DatePickerModule } from '../components/date-picker/date-picker.module';
+
 
 @NgModule({
+  declarations: [
+    SwitchComponent, InputComponent
+  ],
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
 
-    DataEntryModule
+    SelectModule,
+    DatePickerModule
   ],
   exports: [
-    DataEntryModule
+    SwitchComponent,
+    InputComponent,
+
+    SelectModule,
+    DatePickerModule
   ]
 })
 export class AuroraUiModule {

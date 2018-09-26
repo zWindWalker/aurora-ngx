@@ -8,9 +8,6 @@
     "nx.json": "*"
   },
   "projects": {
-    "ui": {
-      "tags": []
-    },
     "schematics": {
       "tags": []
     },
@@ -20,10 +17,10 @@
     "demo": {
       "tags": []
     },
-    "demo-e2e": {
+    "ui": {
       "tags": []
     },
-    "icons": {
+    "animations": {
       "tags": []
     }
   }

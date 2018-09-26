@@ -72,7 +72,7 @@ function migrateConfiguration(oldConfig, logger) {
         const configPath = core_1.normalize('angular.json');
         context.logger.info(`Updating configuration`);
         const config = {
-            '$schema': './node_modules/@angular/cli/lib/config/schema.json',
+            '$schema': './node_modules/@angular/cli/raw_animations/config/schema.json',
             version: 1,
             newProjectRoot: 'projects',
             projects: extractProjectsConfig(oldConfig, host, logger),

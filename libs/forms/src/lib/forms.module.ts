@@ -7,6 +7,7 @@ import { FormInputComponent } from '../components/form-input/form-input.componen
 import { FormSelectComponent } from '../components/form-select/form-select.component';
 import { AuroraUiModule } from '@aurora-ngx/ui';
 import { FormButtonComponent } from '../components/form-button/form-button.component';
+import { FormDatepickerComponent } from '../components/form-datepicker/form-datepicker.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { FormButtonComponent } from '../components/form-button/form-button.compo
     FormInputComponent,
     FormSelectComponent,
     FormButtonComponent,
+    FormDatepickerComponent,
 
     DynamicFieldDirective
   ],
@@ -26,7 +28,8 @@ import { FormButtonComponent } from '../components/form-button/form-button.compo
   entryComponents: [
     FormInputComponent,
     FormSelectComponent,
-    FormButtonComponent
+    FormButtonComponent,
+    FormDatepickerComponent
   ]
 })
 export class AuroraFormsModule {

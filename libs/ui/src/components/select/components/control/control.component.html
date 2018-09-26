@@ -3,7 +3,7 @@
     <p *ngIf="label">{{label}}</p>
 </div>
 
-<div id="icon" [@rotate]="{
+<div id="icon" [@rotate_trigger]="{
         value: show_menu ? 'animated' : 'default',
          params: { deg: 90 }
     }">

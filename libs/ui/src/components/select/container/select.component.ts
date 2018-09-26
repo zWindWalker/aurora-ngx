@@ -35,6 +35,30 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
 
   }
 
+  ///-----------------------------------------------  General Functions   -----------------------------------------------///
+
+
+  onToggleMenu = () => {
+    this.show_menu = !this.show_menu;
+  };
+
+
+  onChange = option => {
+
+    this.options = _.map(this.options, item => {
+      if (_.isEqual(item, option)) {
+        item.selected = _.isEqual(item, option);
+        this.selected_option = item;
+      }
+      return item;
+    });
+    this.show_menu = false;
+
+    this.propagateChange(this.selected_option.value);
+
+  };
+
+
   ///-----------------------------------------------  ControlValueAccessor Interface   -----------------------------------------------///
 
   // Allows Angular to update the model .
@@ -69,28 +93,5 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-
-  ///-----------------------------------------------  General Function   -----------------------------------------------///
-
-
-  onToggleMenu = () => {
-    this.show_menu = !this.show_menu;
-  };
-
-
-  onChange = option => {
-
-    this.options = _.map(this.options, item => {
-      if (_.isEqual(item, option)) {
-        item.selected = _.isEqual(item, option);
-        this.selected_option = item;
-      }
-      return item;
-    });
-    this.show_menu = false;
-
-    this.propagateChange(this.selected_option.value);
-
-  };
 
 }

@@ -197,9 +197,9 @@
   dependencies:
     tslib "^1.9.0"
 
-"@aurora-ngx/animations@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@aurora-ngx/animations/-/animations-0.0.1.tgz#09e8c41960b065f1956ad03eb278162cb8eb58a2"
+"@aurora-ngx/animations@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@aurora-ngx/animations/-/animations-0.0.6.tgz#9bf312644370e344b877daa70ba36958ada04abe"
   dependencies:
     tslib "^1.9.0"
 

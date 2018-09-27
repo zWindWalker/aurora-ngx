@@ -6,6 +6,8 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "target": "es5",
     "typeRoots": [
       "node_modules/@types"
@@ -27,10 +29,10 @@
       ],
       "@aurora-ngx/ui": [
         "libs/ui/src/index.ts"
-      ],
-      "@aurora-ngx/animations": [
-        "libs/animations/src/index.ts"
       ]
+//      "@aurora-ngx/animations": [
+//        "libs/animations/src/index.ts"
+//      ]
     }
   },
   "exclude": [

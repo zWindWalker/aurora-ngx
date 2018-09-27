@@ -1,5 +1,5 @@
-export * from './lib/triggers/rotate.trigger';
+export * from './lib/triggers';
 
 
-export * from './lib/raw_animations/rotate.animation';
+export * from './lib/raw_animations';
 

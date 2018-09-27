@@ -1,8 +1,10 @@
-<aurora-form
-        [config]="config"
-        (submitted)="onSubmit($event)"
-></aurora-form>
+<div class="container">
+    <p class="test"
+       [@rubber_band]="animated"
+    >
+        Animated
+    </p>
 
-<aurora-datepicker>
+    <button (click)="startAnimated()">Animate it</button>
 
-</aurora-datepicker>
+</div>

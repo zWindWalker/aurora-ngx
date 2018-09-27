@@ -23,6 +23,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
           width: 100%;
           overflow: hidden;
           padding: 0 10px;
+          position: relative;
       }
   `]
 })

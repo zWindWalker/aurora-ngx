@@ -8,7 +8,7 @@ import { NavBarComponent } from './components/calendar/nav-bar/nav-bar.component
 import { MonthGridComponent } from './components/calendar/month-grid/month-grid.component';
 import { WeekDaysComponent } from './components/calendar/week-days/week-days.component';
 import { DateCellComponent } from './components/calendar/month-grid/date_cell.component';
-import DatePickerService from './containers/date-picker.service';
+import { DatePickerService } from './containers/date-picker.service';
 
 
 @NgModule({
@@ -18,10 +18,10 @@ import DatePickerService from './containers/date-picker.service';
     CalendarComponent,
     NavBarComponent,
 
-    DateCellComponent,
+
     MonthGridComponent,
     WeekDaysComponent,
-
+    DateCellComponent,
   ],
   imports: [CommonModule],
   exports: [

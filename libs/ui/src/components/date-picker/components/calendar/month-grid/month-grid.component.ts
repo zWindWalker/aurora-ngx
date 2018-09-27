@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import Helpers from '../../../utils/Helpers';
 
 @Component({
@@ -6,16 +6,12 @@ import Helpers from '../../../utils/Helpers';
   templateUrl: './month-grid.component.html',
   styleUrls: ['./month-grid.component.scss']
 })
-export class MonthGridComponent implements OnInit, OnChanges {
+export class MonthGridComponent implements OnChanges {
   day_in_month;
   @Input() currentMonth;
 
 
   constructor() {
-  }
-
-  ngOnInit() {
-
   }
 
   ngOnChanges() {

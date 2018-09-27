@@ -3,27 +3,26 @@ import { CommonModule } from '@angular/common';
 import { InputComponent } from '../components/input/input.component';
 import { SwitchComponent } from '../components/switch/switch.component';
 import { SelectModule } from '../components/select/select.module';
-import { DatePickerModule } from '../components/date-picker/date-picker.module';
+
 import { ReactiveFormsModule } from '@angular/forms';
+import { DatePickerModule } from '../components/date-picker/date-picker.module';
 
 
 @NgModule({
   declarations: [
-    // SwitchComponent, InputComponent
+    SwitchComponent, InputComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
 
-    // SelectModule,
-    // DatePickerModule
+    SelectModule, DatePickerModule
   ],
   exports: [
-    // SwitchComponent,
-    // InputComponent,
-    //
-    // SelectModule,
-    // DatePickerModule
+    SwitchComponent,
+    InputComponent,
+
+    SelectModule, DatePickerModule
   ]
 })
 export class AuroraUiModule {

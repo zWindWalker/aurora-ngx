@@ -1,6 +1,6 @@
 import { AfterViewChecked, Component, ElementRef, HostListener } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import DatePickerService from './date-picker.service';
+import { DatePickerService } from './date-picker.service';
 
 @Component({
   selector: 'aurora-datepicker',

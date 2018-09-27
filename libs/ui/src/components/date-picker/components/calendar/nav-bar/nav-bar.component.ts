@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import moment = require('moment');
+import moment from 'moment';
 
 @Component({
   selector: 'nav-bar',

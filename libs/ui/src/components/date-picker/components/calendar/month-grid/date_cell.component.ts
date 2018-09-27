@@ -1,6 +1,6 @@
 import { Component, HostBinding, HostListener, Input, OnInit } from '@angular/core';
 import DateUtils from '../../../utils/DateUtils';
-import DatePickerService from '../../../containers/date-picker.service';
+import { DatePickerService } from '../../../containers/date-picker.service';
 
 @Component({
   selector: 'date-cell',
@@ -20,10 +20,11 @@ export class DateCellComponent implements OnInit {
   @HostBinding('class.past_day') past_day: Boolean;
   @HostBinding('class.is_selected') is_selected: Boolean;
 
-  @HostListener('click', ['$event.target'])
+  @HostListener('click')
   onClick() {
-    !this.past_day && this.dpSvs.change_selected_date.next(this.day);
-
+    if (!this.past_day) {
+      this.dpSvs.change_selected_date.next(this.day);
+    }
   }
 
   constructor(private dpSvs: DatePickerService) {

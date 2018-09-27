@@ -1,25 +1,51 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { bounce_trigger, flash_trigger, pulse_trigger, rubber_band_trigger } from '@aurora-ngx/animations';
 
 @Component({
   selector: 'aurora-ngx-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [
-    bounce_trigger,
-    flash_trigger,
-    pulse_trigger,
-    rubber_band_trigger
-  ],
   encapsulation: ViewEncapsulation.None
 
 })
 export class AppComponent {
-  animated = 'default';
+  config = [
+    {
+      type: 'input',
+      name: 'username',
+      label: 'Username',
+      value: 'wind walker'
+    },
+    {
+      type: 'input',
+      input_type: 'password',
+      name: 'password',
+      label: 'Password',
+      value: '123456'
+    },
+    // {
+    //   type: 'select',
+    //   name: 'gender',
+    //   label: 'Gender',
+    //   value: 'male',
+    //   options: [
+    //     {
+    //       label: 'Male',
+    //       value: 'male'
+    //     },
+    //     {
+    //       label: 'Female',
+    //       value: 'female'
+    //     }
+    //   ]
+    // },
+    // {
+    //   type: 'datepicker',
+    //   name: 'birthday',
+    //   label: 'Birthday'
+    // },
+  ];
 
-
-  startAnimated = () => {
-    this.animated = (this.animated === 'default') ? 'animated' : 'default';
+  onSubmit = () => {
   };
 
 }

@@ -7,8 +7,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./form-input.component.scss']
 })
 export class FormInputComponent implements OnInit {
-  @Input() config: any = null
-  @Input() group: FormGroup;
+
 
   constructor() {
   }

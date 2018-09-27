@@ -7,11 +7,9 @@
     //margin: 0 auto;
 }
 
-p {
-    font-size: 12rem;
-    padding: 2rem 0;
-}
-
-button {
-    font-size: 2rem;
+aurora-form {
+    width: 60%;
+    label {
+        color: red;
+    }
 }

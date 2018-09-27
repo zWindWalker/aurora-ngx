@@ -1,20 +1,25 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
-
+// (ngSubmit)="submitted.emit(form.value)"
 @Component({
   selector: 'aurora-form',
   template: `
       <form
               [formGroup]="form"
-              (ngSubmit)="submitted.emit(form.value)"
+              (ngSubmit)="onSubmit($event)"
       >
-          <ng-container
-                  *ngFor="let field of config"
-                  dynamicField
-                  [config]="field"
-                  [group]="form"
-          ></ng-container>
+          <form-field *ngFor="let field of config" [config]="field" [group]="form">
+              <!--<ng-container-->
+              <!---->
+              <!--&gt;</ng-container>-->
+          </form-field>
+
+
+          <button type="submit">
+              Submit
+          </button>
+
       </form>
   `,
   styleUrls: ['./forms.component.scss'],

@@ -5,9 +5,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFieldDirective } from '../directives/dynamic-field.directive';
 import { FormInputComponent } from '../components/form-input/form-input.component';
 import { FormSelectComponent } from '../components/form-select/form-select.component';
-import { AuroraUiModule } from '@aurora-ngx/ui';
 import { FormButtonComponent } from '../components/form-button/form-button.component';
 import { FormDatepickerComponent } from '../components/form-datepicker/form-datepicker.component';
+import { FormFieldComponent } from '../components/form-field/form-field.component';
+import { FormLabelComponent } from '../components/form-label/form-label.component';
+import { FormControlComponent } from '../components/form-control/form-control.component';
+import { AuroraUiModule } from '@aurora-ngx/ui';
 
 @NgModule({
   declarations: [
@@ -17,20 +20,20 @@ import { FormDatepickerComponent } from '../components/form-datepicker/form-date
     FormButtonComponent,
     FormDatepickerComponent,
 
+
+    FormFieldComponent,
+    FormLabelComponent,
+    FormControlComponent,
+
     DynamicFieldDirective
   ],
   imports: [
+
     CommonModule,
     ReactiveFormsModule,
     AuroraUiModule
   ],
-  exports: [AuroraFormComponent],
-  entryComponents: [
-    FormInputComponent,
-    FormSelectComponent,
-    FormButtonComponent,
-    FormDatepickerComponent
-  ]
+  exports: [AuroraFormComponent]
 })
 export class AuroraFormsModule {
 }

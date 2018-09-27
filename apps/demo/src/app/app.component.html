@@ -1,10 +1,18 @@
-<div class="container">
-    <p class="test"
-       [@rubber_band]="animated"
-    >
-        Animated
-    </p>
 
-    <button (click)="startAnimated()">Animate it</button>
+<div class="container">
+
+    <aurora-form
+            [config]="config"
+            (submitted)="onSubmit($event)"
+    ></aurora-form>
+
+
+    <!--<p class="test"-->
+    <!--[@rubber_band]="animated"-->
+    <!--&gt;-->
+    <!--Animated-->
+    <!--</p>-->
+
+    <!--<button (click)="startAnimated()">Animate it</button>-->
 
 </div>

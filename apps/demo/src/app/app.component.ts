@@ -49,6 +49,12 @@ export class AppComponent {
       name: 'birthday',
       label: 'Birthday'
     },
+    {
+      type: 'checkbox',
+      name: 'agree',
+      value: false,
+      checkbox_label: 'I have read the agreement'
+    }
   ];
 
   onSubmit = () => {

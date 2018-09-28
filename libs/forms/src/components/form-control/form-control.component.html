@@ -20,5 +20,11 @@
                     [formControlName]="config.name"
             ></aurora-datepicker>
         </ng-container>
+        <ng-container *ngSwitchCase="'checkbox'">
+            <aurora-checkbox
+                    [label]="config.checkbox_label"
+                    [formControlName]="config.name"
+            ></aurora-checkbox>
+        </ng-container>
     </ng-container>
 </div>

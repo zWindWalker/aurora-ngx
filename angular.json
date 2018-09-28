@@ -179,7 +179,7 @@
       "root": "libs/ui",
       "sourceRoot": "libs/ui/src",
       "projectType": "library",
-      "prefix": "aurora-ngx",
+      "prefix": "aurora",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

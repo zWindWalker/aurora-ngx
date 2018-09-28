@@ -1,0 +1,12 @@
+label {
+    color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    font-size: 1.6rem;
+    //font-weight: 700;
+    position: relative;
+    grid-area: label;
+    &:after {
+        content: ':';
+        position: relative;
+    }
+}

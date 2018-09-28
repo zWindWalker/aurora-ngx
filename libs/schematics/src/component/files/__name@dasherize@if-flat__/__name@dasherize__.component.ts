@@ -1,4 +1,26 @@
-import { Component, OnInit<% if(!!viewEncapsulation) { %>, ViewEncapsulation<% }%><% if(changeDetection !== 'Default') { %>, ChangeDetectionStrategy<% }%> } from '@angular/core';
+import {
+  Component, OnInit
+  import
+
+{
+  ElementRef, HostListener;
+}
+from;
+'@angular/core';
+
+< %
+if (!!viewEncapsulation) { %>,
+  ViewEncapsulation < %
+}
+%>
+< %
+if (changeDetection !== 'Default') { %>,
+  ChangeDetectionStrategy < %
+}
+%>
+}
+from;
+'@angular/core';
 
 @Component({
   selector: '<%= selector %>',<% if(inlineTemplate) { %>
@@ -14,10 +36,19 @@ import { Component, OnInit<% if(!!viewEncapsulation) { %>, ViewEncapsulation<% }
   changeDetection: ChangeDetectionStrategy.<%= changeDetection %><% } %>
 })
 export class <%= classify(name) %>Component implements OnInit {
+  ///-----------------------------------------------  Variables   -----------------------------------------------///
+
+
+  ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
 
   constructor() { }
 
   ngOnInit() {
   }
+
+  ///-----------------------------------------------  General Functions   -----------------------------------------------///
+
+
+
 
 }

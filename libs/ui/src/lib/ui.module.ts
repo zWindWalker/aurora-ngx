@@ -6,11 +6,12 @@ import { SelectModule } from '../components/select/select.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DatePickerModule } from '../components/date-picker/date-picker.module';
 import { InputComponent } from '../components/input/input.component';
+import { CheckboxComponent } from '../components/checkbox/checkbox.component';
 
 
 @NgModule({
   declarations: [
-    SwitchComponent, InputComponent
+    SwitchComponent, InputComponent, CheckboxComponent
   ],
   imports: [
     CommonModule,
@@ -19,8 +20,7 @@ import { InputComponent } from '../components/input/input.component';
     SelectModule, DatePickerModule
   ],
   exports: [
-    SwitchComponent,
-    InputComponent,
+    SwitchComponent, InputComponent, CheckboxComponent,
 
     SelectModule, DatePickerModule
   ]

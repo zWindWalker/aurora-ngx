@@ -8,7 +8,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class FormFieldComponent implements OnInit {
   @Input() config: any = null;
-  @Input() group: FormGroup;
+  @Input() form: FormGroup;
 
   constructor() {
   }

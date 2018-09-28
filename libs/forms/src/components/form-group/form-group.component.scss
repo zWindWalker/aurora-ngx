@@ -1,7 +1,7 @@
 :host {
     display: grid;
-    grid-template: "label control" 40px /
-                                    20%     80%;
+    grid-template: "label control" 1fr /
+                                    30%     70%;
     margin-bottom: 1rem;
 
     form-label {

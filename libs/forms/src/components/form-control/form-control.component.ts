@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'form-control',
@@ -8,14 +9,16 @@ import { FormGroup } from '@angular/forms';
 })
 export class FormControlComponent implements OnInit {
   @Input() config: any = null;
-  @Input() group: FormGroup;
-
+  @Input() control: AbstractControl;
+  @Input() change: Subject<any>;
+  @Input() blur: Subject<any>;
 
   constructor() {
   }
 
 
   ngOnInit() {
+    // console.log(this.form)
   }
 
 }

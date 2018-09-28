@@ -1,57 +1,29 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Subject } from 'rxjs';
+
 
 @Component({
   selector: 'aurora-input',
   templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: InputComponent,
-    multi: true
-  }]
+  styleUrls: ['./input.component.scss']
 })
 
-export class InputComponent implements OnInit, ControlValueAccessor {
+export class InputComponent implements OnInit {
 
   ///-----------------------------------------------  Variables   -----------------------------------------------///
   @Input() type: String;
   @Input() name = '';
-  value: String = '';
-  onChange;
-  onTouched;
-  disabled;
+  @Input() value: any = '';
+  @Input() change: Subject<any>;
+  @Input() blur: Subject<any>;
+  @Input() invalid: Boolean = false;
 
   ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
   constructor() {
   }
 
   ngOnInit() {
-  }
 
-  ///-----------------------------------------------  ControlValueAccessor Interface   -----------------------------------------------///
-
-  // Allows Angular to update the model .
-  // Update the model and changes needed for the view here.
-  writeValue(value: String): void {
-    this.value = value;
-  }
-
-  // Allows Angular to register a function to call when the model  changes.
-  // Save the function as a property to call later here.
-  registerOnChange(fn: (rating: number) => void): void {
-    this.onChange = fn;
-  }
-
-  // Allows Angular to register a function to call when the input has been touched.
-  // Save the function as a property to call later here.
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  // Allows Angular to disable the input.
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
   }
 
 }

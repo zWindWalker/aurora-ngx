@@ -1,26 +1,4 @@
-import {
-  Component, OnInit
-  import
-
-{
-  ElementRef, HostListener;
-}
-from;
-'@angular/core';
-
-< %
-if (!!viewEncapsulation) { %>,
-  ViewEncapsulation < %
-}
-%>
-< %
-if (changeDetection !== 'Default') { %>,
-  ChangeDetectionStrategy < %
-}
-%>
-}
-from;
-'@angular/core';
+import { Component, OnInit<% if(!!viewEncapsulation) { %>, ViewEncapsulation<% }%><% if(changeDetection !== 'Default') { %>, ChangeDetectionStrategy<% }%> } from '@angular/core';
 
 @Component({
   selector: '<%= selector %>',<% if(inlineTemplate) { %>
@@ -39,16 +17,15 @@ export class <%= classify(name) %>Component implements OnInit {
   ///-----------------------------------------------  Variables   -----------------------------------------------///
 
 
-  ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
 
+
+  ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
   constructor() { }
 
   ngOnInit() {
   }
 
-  ///-----------------------------------------------  General Functions   -----------------------------------------------///
 
-
-
+  ///-----------------------------------------------  Main Functions   -----------------------------------------------///
 
 }

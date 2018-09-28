@@ -1,6 +1,14 @@
 <form-label [label]="config.label"></form-label>
 
-<form-control [config]="config" [form]="form"></form-control>
+<form-control
+        [config]="config"
+        [control]="control"
+        [change]="change"
+        [blur]="blur"
+></form-control>
 
-
+<form-feedback
+        [control]="control"
+        [name]="config.name"
+></form-feedback>
 

@@ -1,7 +1,15 @@
 <input
         [type]="type || 'text'"
         [name]="name"
-        (change)="onChange($event.target.value)"
         [value]="value"
+        [class.invalid]="invalid"
         tabindex="0"
+
+        (change)="change.next($event.target.value)"
+        (blur)="blur.next()"
 >
+
+
+<!--[value]="control?.value"-->
+
+

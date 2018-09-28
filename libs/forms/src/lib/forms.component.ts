@@ -10,8 +10,12 @@ import * as _ from 'lodash';
               [formGroup]="form"
               (ngSubmit)="onSubmit($event)"
       >
-          <form-field *ngFor="let field of config" [config]="field" [group]="form">
-          </form-field>
+          <form-group *ngFor="let field of config"
+                      [config]="field"
+                      [form]="form"
+                      [formControlName]="field.name"
+          >
+          </form-group>
 
           <ng-content></ng-content>
 
@@ -42,6 +46,8 @@ export class AuroraFormComponent implements OnInit {
     });
 
     return group;
+
+
   };
 
   onSubmit = e => {

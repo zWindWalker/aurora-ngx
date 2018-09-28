@@ -1,10 +1,13 @@
-<div [formGroup]="group">
+
     <ng-container [ngSwitch]="config.type">
         <ng-container *ngSwitchCase="'input'">
             <aurora-input
                     [name]="config.name"
                     [type]="config.input_type"
-                    [formControlName]="config.name"
+                    [value]="control.value"
+                    [change]="change"
+                    [blur]="blur"
+                    [invalid]="control.invalid && (control.touched || control.dirty)"
             >
             </aurora-input>
         </ng-container>
@@ -27,4 +30,3 @@
             ></aurora-checkbox>
         </ng-container>
     </ng-container>
-</div>

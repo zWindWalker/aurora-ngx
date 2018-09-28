@@ -20,10 +20,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
           flex-direction: column;
           align-items: center;
           justify-content: space-between;
-          width: 100%;
           overflow: hidden;
           padding: 0 10px;
-          position: relative;
+          position: absolute;
+          top: 100%;
+          z-index: 9999;
+          width: 100%;
       }
   `]
 })

@@ -17,32 +17,38 @@ export class AppComponent {
     },
     {
       type: 'input',
+      input_type: 'email',
+      name: 'email',
+      label: 'Email',
+    },
+    {
+      type: 'input',
       input_type: 'password',
       name: 'password',
       label: 'Password',
       value: '123456'
     },
-    // {
-    //   type: 'select',
-    //   name: 'gender',
-    //   label: 'Gender',
-    //   value: 'male',
-    //   options: [
-    //     {
-    //       label: 'Male',
-    //       value: 'male'
-    //     },
-    //     {
-    //       label: 'Female',
-    //       value: 'female'
-    //     }
-    //   ]
-    // },
-    // {
-    //   type: 'datepicker',
-    //   name: 'birthday',
-    //   label: 'Birthday'
-    // },
+    {
+      type: 'select',
+      name: 'gender',
+      label: 'Gender',
+      value: 'male',
+      options: [
+        {
+          label: 'Male',
+          value: 'male'
+        },
+        {
+          label: 'Female',
+          value: 'female'
+        }
+      ]
+    },
+    {
+      type: 'datepicker',
+      name: 'birthday',
+      label: 'Birthday'
+    },
   ];
 
   onSubmit = () => {

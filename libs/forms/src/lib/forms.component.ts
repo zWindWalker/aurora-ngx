@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
+
 // (ngSubmit)="submitted.emit(form.value)"
 @Component({
   selector: 'aurora-form',
@@ -10,15 +11,9 @@ import * as _ from 'lodash';
               (ngSubmit)="onSubmit($event)"
       >
           <form-field *ngFor="let field of config" [config]="field" [group]="form">
-              <!--<ng-container-->
-              <!---->
-              <!--&gt;</ng-container>-->
           </form-field>
 
-
-          <button type="submit">
-              Submit
-          </button>
+          <ng-content></ng-content>
 
       </form>
   `,

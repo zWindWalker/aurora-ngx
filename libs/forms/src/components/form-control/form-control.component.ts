@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'form-control',
@@ -12,7 +11,7 @@ export class FormControlComponent implements OnInit {
   @Input() group: FormGroup;
 
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor() {
   }
 
 

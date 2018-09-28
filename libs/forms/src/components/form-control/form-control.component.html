@@ -1,22 +1,4 @@
-<div class="control" [formGroup]="group">
-    <!--<aurora-input-->
-    <!--[name]="config.name"-->
-    <!--[type]="config.input_type"-->
-    <!--[formControlName]="config.name"-->
-    <!--&gt;-->
-    <!--</aurora-input>-->
-
-    <!--<ng-container-->
-    <!--dynamicField-->
-    <!--[name]="config.name"-->
-    <!--[type]="config.type"-->
-    <!--[input_type]="config.input_type"-->
-    <!--[control]="config.name"-->
-    <!--&gt;-->
-
-    <!--</ng-container>-->
-    <!--<aurora-input></aurora-input>-->
-
+<div [formGroup]="group">
     <ng-container [ngSwitch]="config.type">
         <ng-container *ngSwitchCase="'input'">
             <aurora-input
@@ -26,38 +8,17 @@
             >
             </aurora-input>
         </ng-container>
-        <ng-container *ngSwitchCase="'input'">
-            <aurora-input
-                    [name]="config.name"
-                    [type]="config.input_type"
+        <ng-container *ngSwitchCase="'select'">
+            <aurora-select
                     [formControlName]="config.name"
+                    [options]="config.options"
             >
-            </aurora-input>
+            </aurora-select>
         </ng-container>
-        <ng-container *ngSwitchCase="'input'">
-            <aurora-input
-                    [name]="config.name"
-                    [type]="config.input_type"
+        <ng-container *ngSwitchCase="'datepicker'">
+            <aurora-datepicker
                     [formControlName]="config.name"
-            >
-            </aurora-input>
+            ></aurora-datepicker>
         </ng-container>
-        <ng-container *ngSwitchCase="'input'">
-            <aurora-input
-                    [name]="config.name"
-                    [type]="config.input_type"
-                    [formControlName]="config.name"
-            >
-            </aurora-input>
-        </ng-container>
-        <ng-container *ngSwitchCase="'input'">
-            <aurora-input
-                    [name]="config.name"
-                    [type]="config.input_type"
-                    [formControlName]="config.name"
-            >
-            </aurora-input>
-        </ng-container>
-
     </ng-container>
 </div>

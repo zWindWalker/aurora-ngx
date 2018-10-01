@@ -1,53 +1,28 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'aurora-checkbox',
   templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.scss'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: CheckboxComponent,
-    multi: true
-  }]
+  styleUrls: ['./checkbox.component.scss']
 })
-export class CheckboxComponent implements OnInit, ControlValueAccessor {
-
-  checked: Boolean = false;
-  propagateChange;
-  onTouched;
-  disabled;
+export class AuroraCheckboxComponent implements OnInit {
 
   @Input() label: any = '';
+  @Input() value: Boolean = false;
+  @Output() change = new EventEmitter();
+  @Output() blur = new EventEmitter();
+  @Input() invalid: Boolean = false;
+
 
   @HostListener('click')
   onClick = () => {
-    this.checked = !this.checked;
-    this.propagateChange(this.checked);
+    this.value = !this.value;
+    this.change.emit(this.value);
   };
 
   constructor() {
   }
 
   ngOnInit() {
-  }
-
-
-  ///-----------------------------------------------  ControlValueAccessor Interface   -----------------------------------------------///
-
-  writeValue(value: any): void {
-    this.checked = value;
-  }
-
-  registerOnChange(fn: (value: any) => void): void {
-    this.propagateChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
   }
 }

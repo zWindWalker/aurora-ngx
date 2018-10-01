@@ -63,8 +63,13 @@
               "apps/demo/src/assets"
             ],
             "styles": [
-              "apps/demo/src/styles.css"
+              "apps/demo/src/assets/scss/global.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "apps/demo/src/assets/scss"
+              ]
+            },
             "scripts": []
           },
           "configurations": {

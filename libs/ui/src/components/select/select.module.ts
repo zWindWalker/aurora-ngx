@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SelectComponent } from './container/select.component';
+import { AuroraSelectComponent } from './container/select.component';
 import { ControlComponent } from './components/control/control.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { OptionComponent } from './components/menu/option/option.component';
@@ -9,7 +9,7 @@ import { OptionComponent } from './components/menu/option/option.component';
 
 @NgModule({
   declarations: [
-    SelectComponent,
+    AuroraSelectComponent,
     ControlComponent,
     MenuComponent,
     OptionComponent
@@ -18,7 +18,7 @@ import { OptionComponent } from './components/menu/option/option.component';
     CommonModule
   ],
   exports: [
-    SelectComponent
+    AuroraSelectComponent
   ]
 })
 export class SelectModule {

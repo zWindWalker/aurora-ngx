@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 
@@ -10,9 +10,9 @@ import * as _ from 'lodash';
               [formGroup]="form"
               (ngSubmit)="onSubmit($event)"
       >
-          <form-group *ngFor="let field of config"
+          <form-group
+                  *ngFor="let field of config"
                       [config]="field"
-                      [form]="form"
                       [formControlName]="field.name"
           >
           </form-group>
@@ -20,9 +20,7 @@ import * as _ from 'lodash';
           <ng-content></ng-content>
 
       </form>
-  `,
-  styleUrls: ['./forms.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  `
 })
 export class AuroraFormComponent implements OnInit {
 

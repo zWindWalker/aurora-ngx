@@ -5,12 +5,18 @@ import lodash from 'lodash';
 @Component({
   selector: 'form-feedback',
   template: `
-      <ng-container *ngIf="control.invalid && (control.dirty || control.touched)">
-          <p [hidden]="!control.hasError('required')">{{_.startCase(name)}} is required</p>
+      <!--<ng-container *ngIf="control.invalid && (control.dirty || control.touched)">-->
+      <!--<p [hidden]="!control.hasError('required')">{{_.startCase(name)}} is required</p>-->
+      <!---->
+
+      <!--</ng-container>-->
+      <ng-container>
+          <p>{{_.startCase(name)}} is required</p>
       </ng-container>
   `,
   styles: [`
-      :host {
+      :host {       grid-area: feedback;
+            width: 100%;
           color: #f5222d;
           font-size: 1.2em;
       }
@@ -30,7 +36,7 @@ export class FormFeedbackComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.control);
+    // console.log(this.control);
     // this.error_list = _.
     //   _.map(this.control.errors, (err, key) => {
     //

@@ -1,29 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 
 @Component({
   selector: 'aurora-input',
   templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss']
+  styleUrls: ['./input.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class InputComponent implements OnInit {
+export class AuroraInputComponent {
 
-  ///-----------------------------------------------  Variables   -----------------------------------------------///
   @Input() type: String;
   @Input() name = '';
   @Input() value: any = '';
-  @Input() change: Subject<any>;
-  @Input() blur: Subject<any>;
+  @Output() change = new EventEmitter();
+  @Output() blur = new EventEmitter();
   @Input() invalid: Boolean = false;
-
-  ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
-  constructor() {
-  }
-
-  ngOnInit() {
-
-  }
 
 }

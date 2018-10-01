@@ -4,12 +4,10 @@
         [value]="value"
         [class.invalid]="invalid"
         tabindex="0"
-
-        (change)="change.next($event.target.value)"
-        (blur)="blur.next()"
+        (change)=" $event.stopPropagation(); change.emit($event.target.value);"
+        (blur)="blur.emit()"
 >
 
 
-<!--[value]="control?.value"-->
 
 

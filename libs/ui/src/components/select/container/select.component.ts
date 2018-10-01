@@ -1,29 +1,23 @@
-import { Component, ElementRef, HostListener, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import * as _ from 'lodash';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 
 @Component({
   selector: 'aurora-select',
   templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: SelectComponent,
-    multi: true
-  }]
+  styleUrls: ['./select.component.scss']
 })
 
-export class SelectComponent implements OnInit, ControlValueAccessor {
+export class AuroraSelectComponent implements OnInit {
 
   ///-----------------------------------------------  Variables   -----------------------------------------------///
   show_menu: Boolean = false;
   selected_option: any = null;
-  propagateChange;
-  onTouched;
-  disabled;
-
   @Input() options: any = [];
+  @Input() value = null;
+  @Output() change = new EventEmitter();
+  @Output() blur = new EventEmitter();
+  @Input() invalid: Boolean = false;
 
 
   ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
@@ -32,7 +26,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-
+    this.selected_option = _.find(this.options, ['value', this.value.toString()]);
   }
 
   ///-----------------------------------------------  General Functions   -----------------------------------------------///
@@ -54,35 +48,9 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     });
     this.show_menu = false;
 
-    this.propagateChange(this.selected_option.value);
+    this.change.emit(this.selected_option.value);
 
   };
-
-
-  ///-----------------------------------------------  ControlValueAccessor Interface   -----------------------------------------------///
-
-  // Allows Angular to update the model .
-  // Update the model and changes needed for the view here.
-  writeValue(value: any): void {
-    this.selected_option = _.find(this.options, ['value', value.toString()]);
-  }
-
-  // Allows Angular to register a function to call when the model  changes.
-  // Save the function as a property to call later here.
-  registerOnChange(fn: (value: any) => void): void {
-    this.propagateChange = fn;
-  }
-
-  // Allows Angular to register a function to call when the input has been touched.
-  // Save the function as a property to call later here.
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  // Allows Angular to disable the input.
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-  }
 
   ///-----------------------------------------------  Host   -----------------------------------------------///
 

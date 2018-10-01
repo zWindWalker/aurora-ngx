@@ -1,25 +1,22 @@
-import { AfterViewChecked, Component, ElementRef, HostListener } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AfterViewChecked, Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { DatePickerService } from './date-picker.service';
+import moment from 'moment';
 
 @Component({
   selector: 'aurora-datepicker',
   templateUrl: './date-picker.component.html',
-  styleUrls: ['./date-picker.component.scss'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: DatePickerComponent,
-    multi: true
-  }]
+  styleUrls: ['./date-picker.component.scss']
 })
-export class DatePickerComponent implements AfterViewChecked, ControlValueAccessor {
+export class AuroraDatePickerComponent implements AfterViewChecked {
 
   ///-----------------------------------------------  Variables   -----------------------------------------------///
 
   show_calendar: Boolean = false;
-  onTouched;
-  disabled;
-  propagateChange;
+  @Input() options: any = [];
+  @Input() value = null;
+  @Output() change = new EventEmitter();
+  @Output() blur = new EventEmitter();
+  @Input() invalid: Boolean = false;
 
 
   @HostListener('document:click', ['$event'])
@@ -36,7 +33,7 @@ export class DatePickerComponent implements AfterViewChecked, ControlValueAccess
   }
 
   ngAfterViewChecked() {
-    this.dpSvs.change_selected_date.subscribe(selected_date => this.propagateChange(selected_date));
+    this.dpSvs.change_selected_date.subscribe(selected_date => this.change.emit(moment(selected_date).toISOString()));
   }
 
   ///-----------------------------------------------  General Functions   -----------------------------------------------///
@@ -44,31 +41,5 @@ export class DatePickerComponent implements AfterViewChecked, ControlValueAccess
   onToggleCalendar = () => {
     this.show_calendar = !this.show_calendar;
   };
-
-
-  ///-----------------------------------------------  ControlValueAccessor Interface   -----------------------------------------------///
-
-  // Allows Angular to update the model .
-  // Update the model and changes needed for the view here.
-  writeValue(value: any): void {
-    // this.selected_option = _.find(this.options, ['value', value.toString()]);
-  }
-
-  // Allows Angular to register a function to call when the model  changes.
-  // Save the function as a property to call later here.
-  registerOnChange(fn: (value: any) => void): void {
-    this.propagateChange = fn;
-  }
-
-  // Allows Angular to register a function to call when the input has been touched.
-  // Save the function as a property to call later here.
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  // Allows Angular to disable the input.
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-  }
 
 }

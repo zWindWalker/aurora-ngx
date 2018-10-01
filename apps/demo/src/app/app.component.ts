@@ -14,51 +14,56 @@ export class AppComponent {
       name: 'username',
       label: 'Username'
     },
-    // {
-    //   type: 'input',
-    //   input_type: 'email',
-    //   name: 'email',
-    //   label: 'Email',
-    // },
-    // {
-    //   type: 'input',
-    //   input_type: 'password',
-    //   name: 'password',
-    //   label: 'Password'
-    // },
-    // {
-    //   type: 'input',
-    //   input_type: 'password',
-    //   name: 'confirm_password',
-    //   label: 'Confirm password'
-    // },
-    // {
-    //   type: 'select',
-    //   name: 'gender',
-    //   label: 'Gender',
-    //   value: 'male',
-    //   options: [
-    //     {
-    //       label: 'Male',
-    //       value: 'male'
-    //     },
-    //     {
-    //       label: 'Female',
-    //       value: 'female'
-    //     }
-    //   ]
-    // },
-    // {
-    //   type: 'datepicker',
-    //   name: 'birthday',
-    //   label: 'Birthday'
-    // },
-    // {
-    //   type: 'checkbox',
-    //   name: 'agree',
-    //   value: false,
-    //   checkbox_label: 'I have read the agreement'
-    // }
+    {
+      type: 'input',
+      input_type: 'email',
+      name: 'email',
+      label: 'Email'
+    },
+    {
+      type: 'input',
+      input_type: 'password',
+      name: 'password',
+      label: 'Password'
+    },
+    {
+      type: 'input',
+      input_type: 'password',
+      name: 'confirm_password',
+      label: 'Confirm password'
+    },
+    {
+      type: 'select',
+      name: 'gender',
+      label: 'Gender',
+      value: 'male',
+      options: [
+        {
+          label: 'Male',
+          value: 'male'
+        },
+        {
+          label: 'Female',
+          value: 'female'
+        }
+      ]
+    },
+    {
+      type: 'datepicker',
+      name: 'birthday',
+      label: 'Birthday'
+    },
+    {
+      type: 'checkbox',
+      name: 'agreement',
+      value: false,
+      checkbox_label: 'I have read the agreement'
+    },
+    {
+      type: 'textarea',
+      name: 'description',
+      label: 'Description'
+    }
   ];
 
   onSubmit = () => {

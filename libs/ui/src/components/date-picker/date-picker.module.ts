@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DatePickerComponent } from './containers/date-picker.component';
+import { AuroraDatePickerComponent } from './containers/date-picker.component';
 import { ControlComponent } from './components/control/control.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { NavBarComponent } from './components/calendar/nav-bar/nav-bar.component';
@@ -13,7 +13,7 @@ import { DatePickerService } from './containers/date-picker.service';
 
 @NgModule({
   declarations: [
-    DatePickerComponent,
+    AuroraDatePickerComponent,
     ControlComponent,
     CalendarComponent,
     NavBarComponent,
@@ -25,7 +25,7 @@ import { DatePickerService } from './containers/date-picker.service';
   ],
   imports: [CommonModule],
   exports: [
-    DatePickerComponent
+    AuroraDatePickerComponent
   ],
   providers: [DatePickerService]
 })

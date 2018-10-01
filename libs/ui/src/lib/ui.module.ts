@@ -5,13 +5,14 @@ import { SelectModule } from '../components/select/select.module';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { DatePickerModule } from '../components/date-picker/date-picker.module';
-import { InputComponent } from '../components/input/input.component';
-import { CheckboxComponent } from '../components/checkbox/checkbox.component';
+import { AuroraInputComponent } from '../components/input/input.component';
+import { AuroraCheckboxComponent } from '../components/checkbox/checkbox.component';
+import { AuroraTextareaComponent } from '../components/textarea/textarea.component';
 
 
 @NgModule({
   declarations: [
-    SwitchComponent, InputComponent, CheckboxComponent
+    SwitchComponent, AuroraInputComponent, AuroraCheckboxComponent, AuroraTextareaComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +21,7 @@ import { CheckboxComponent } from '../components/checkbox/checkbox.component';
     SelectModule, DatePickerModule
   ],
   exports: [
-    SwitchComponent, InputComponent, CheckboxComponent,
+    SwitchComponent, AuroraInputComponent, AuroraCheckboxComponent, AuroraTextareaComponent,
 
     SelectModule, DatePickerModule
   ]

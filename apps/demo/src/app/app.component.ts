@@ -25,7 +25,8 @@ export class AppComponent {
       type: 'input',
       input_type: 'password',
       name: 'password',
-      label: 'Password'
+      label: 'Password',
+      validators: ['required']
     },
     {
       type: 'input',
@@ -84,7 +85,8 @@ export class AppComponent {
     }
   ];
 
-  onSubmit = () => {
+  onSubmit = e => {
+    console.log(e);
   };
 
 }

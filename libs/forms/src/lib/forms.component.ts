@@ -8,7 +8,7 @@ import * as _ from 'lodash';
   template: `
       <form
               [formGroup]="form"
-              (ngSubmit)="onSubmit($event)"
+              (ngSubmit)="$event.stopPropagation(); submit.emit(form.value)"
       >
           <form-group
                   *ngFor="let field of config"
@@ -25,7 +25,7 @@ import * as _ from 'lodash';
 export class AuroraFormComponent implements OnInit {
 
   @Input() config: any[] = [];
-  @Output() submitted = new EventEmitter<any>();
+  @Output() submit = new EventEmitter<any>();
 
   form: FormGroup;
 
@@ -46,10 +46,6 @@ export class AuroraFormComponent implements OnInit {
     return group;
 
 
-  };
-
-  onSubmit = e => {
-    console.log(this.form.value);
   };
 
 }

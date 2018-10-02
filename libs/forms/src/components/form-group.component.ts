@@ -35,21 +35,25 @@ import { confirm_password_validator } from '../utils/validators';
                    "label   field" 
                    ".              feedback";
           grid-template-columns: 30% 70%;
-          grid-template-rows: 5rem 3rem;
+          grid-template-rows: 80% 20%;
           margin-bottom: 1rem;
-
-          form-label {
-              grid-area: label;
-          }
-
-          form-field {
-              grid-area: field;
-          }
-          form-feedback {
-              grid-area: feedback;
-          }
-
+          
+          height: auto;
+          min-height: 6rem;
       }
+
+      form-label {
+          grid-area: label;
+      }
+
+      form-field {
+          grid-area: field;
+      }
+
+      form-feedback {
+          grid-area: feedback;
+      }
+
   `],
 
   changeDetection: ChangeDetectionStrategy.OnPush,

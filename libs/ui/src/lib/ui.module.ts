@@ -8,6 +8,7 @@ import { DatePickerModule } from '../components/date-picker/date-picker.module';
 import { AuroraInputComponent } from '../components/input/input.component';
 import { AuroraCheckboxComponent } from '../components/checkbox/checkbox.component';
 import { AuroraTextareaComponent } from '../components/textarea/textarea.component';
+import { UploadModule } from '../components/upload/upload.module';
 
 
 @NgModule({
@@ -18,12 +19,12 @@ import { AuroraTextareaComponent } from '../components/textarea/textarea.compone
     CommonModule,
     ReactiveFormsModule,
 
-    SelectModule, DatePickerModule
+    SelectModule, DatePickerModule, UploadModule
   ],
   exports: [
     SwitchComponent, AuroraInputComponent, AuroraCheckboxComponent, AuroraTextareaComponent,
 
-    SelectModule, DatePickerModule
+    SelectModule, DatePickerModule, UploadModule
   ]
 })
 export class AuroraUiModule {

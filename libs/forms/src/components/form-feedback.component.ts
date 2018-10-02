@@ -14,11 +14,18 @@ import lodash from 'lodash';
           <p>{{_.startCase(name)}} is required</p>
       </ng-container>
   `,
+  //language=SCSS
   styles: [`
-      :host {       grid-area: feedback;
-            width: 100%;
+      :host {
+          display: flex;
+          justify-content: flex-start;
+          width: 100%;
+      }
+
+      p {
           color: #f5222d;
-          font-size: 1.2em;
+          font-size: 1.2rem;
+          margin-top: 0.5rem;
       }
   `]
 })

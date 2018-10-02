@@ -1,0 +1,7 @@
+<p>Click or drag file to this area to upload</p>
+
+<input
+        type="file"
+        [multiple]="config?.multiple"
+        (change)="$event.stopPropagation();change.emit($event.target.files)"
+>

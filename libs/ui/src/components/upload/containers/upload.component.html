@@ -1,0 +1,26 @@
+<ng-container *ngIf="config?.drop; else click">
+    <drop
+            (change)="onFileChanged($event)"
+            [config]="config"
+    ></drop>
+</ng-container>
+
+<ng-template #click>
+    <click
+            (change)="onFileChanged($event)"
+            [config]="config"
+    ></click>
+
+</ng-template>
+
+
+<ng-container
+        *ngIf="file_list"
+>
+    <ng-container *ngFor="let file of file_list">
+        <file
+                [data]="file"
+        ></file>
+    </ng-container>
+
+</ng-container>

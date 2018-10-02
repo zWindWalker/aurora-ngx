@@ -14,7 +14,8 @@ import {
   AuroraDatePickerComponent,
   AuroraInputComponent,
   AuroraSelectComponent,
-  AuroraTextareaComponent
+  AuroraTextareaComponent,
+  AuroraUploadComponent
 } from '@aurora-ngx/ui';
 import { AbstractControl } from '@angular/forms';
 
@@ -35,7 +36,8 @@ export class DynamicFieldDirective implements OnInit, OnDestroy, OnChanges {
     textarea: AuroraTextareaComponent,
     select: AuroraSelectComponent,
     datepicker: AuroraDatePickerComponent,
-    checkbox: AuroraCheckboxComponent
+    checkbox: AuroraCheckboxComponent,
+    upload: AuroraUploadComponent
   };
 
   constructor(
@@ -50,8 +52,14 @@ export class DynamicFieldDirective implements OnInit, OnDestroy, OnChanges {
 
     this.componentRef = this.container.createComponent(factory);
 
-    this.componentRef.instance.change.subscribe(event => this.change.emit(event));
-    this.componentRef.instance.blur.subscribe(event => this.blur.emit(event));
+
+    if (this.componentRef.instance.change) {
+      this.componentRef.instance.change.subscribe(event => this.change.emit(event));
+    }
+
+    if (this.componentRef.instance.blur) {
+      this.componentRef.instance.blur.subscribe(event => this.blur.emit(event));
+    }
 
     this.componentRef.instance.type = this.config.input_type;
     this.componentRef.instance.name = this.config.name;
@@ -59,7 +67,7 @@ export class DynamicFieldDirective implements OnInit, OnDestroy, OnChanges {
     this.componentRef.instance.value = this.control.value;
     this.componentRef.instance.label = this.config.checkbox_label;
     this.componentRef.instance.invalid = this.invalid;
-
+    this.componentRef.instance.config = this.config.config;
   }
 
   ngOnChanges() {

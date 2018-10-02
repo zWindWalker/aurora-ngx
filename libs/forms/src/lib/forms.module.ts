@@ -10,7 +10,8 @@ import {
   AuroraInputComponent,
   AuroraSelectComponent,
   AuroraTextareaComponent,
-  AuroraUiModule
+  AuroraUiModule,
+  AuroraUploadComponent
 } from '@aurora-ngx/ui';
 
 import { DynamicFieldDirective } from '../directives/dynamic-field.directive';
@@ -43,7 +44,8 @@ import { FormFeedbackComponent } from '../components/form-feedback.component';
     AuroraTextareaComponent,
     AuroraSelectComponent,
     AuroraCheckboxComponent,
-    AuroraDatePickerComponent
+    AuroraDatePickerComponent,
+    AuroraUploadComponent
   ]
 })
 export class AuroraFormsModule {

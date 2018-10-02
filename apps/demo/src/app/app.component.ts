@@ -63,6 +63,21 @@ export class AppComponent {
       type: 'textarea',
       name: 'description',
       label: 'Description'
+    },
+
+    {
+      type: 'upload',
+      name: 'upload',
+      label: 'Upload'
+    },
+    {
+      type: 'upload',
+      config: {
+        drop: true,
+        multiple: true
+      },
+      name: 'dragger',
+      label: 'Dragger'
     }
   ];
 

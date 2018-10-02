@@ -21,7 +21,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
       textarea {
           width: 100%;
           max-width: 100%;
-          height: 12rem;
           overflow-y: scroll;
       }
   `]

@@ -1,13 +1,6 @@
 import { ChangeDetectionStrategy, Component, Host, Input, OnInit, Optional, SkipSelf } from '@angular/core';
-import {
-  AbstractControl,
-  ControlContainer,
-  ControlValueAccessor,
-  FormGroup,
-  NG_VALUE_ACCESSOR,
-  Validators
-} from '@angular/forms';
-import { confirm_password_validator } from '../utils/validators';
+import { AbstractControl, ControlContainer, ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { get_validators } from '../utils/validators';
 
 @Component({
   selector: 'form-group',
@@ -25,6 +18,7 @@ import { confirm_password_validator } from '../utils/validators';
       <form-feedback
               [control]="control"
               [name]="config.name"
+              [feedback]="config?.feedback"
       ></form-feedback>
   `,
   //language=SCSS
@@ -88,7 +82,7 @@ export class FormGroupComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     this.control = this.controlContainer.control.get(this.formControlName);
-    this.control.setValidators([Validators.required, confirm_password_validator]);
+    this.control.setValidators(get_validators(this.config.validators));
   }
 
 

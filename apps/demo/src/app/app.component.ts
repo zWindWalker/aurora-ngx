@@ -12,7 +12,8 @@ export class AppComponent {
     {
       type: 'input',
       name: 'username',
-      label: 'Username'
+      label: 'Username',
+      validators: ['required']
     },
     {
       type: 'input',
@@ -30,7 +31,9 @@ export class AppComponent {
       type: 'input',
       input_type: 'password',
       name: 'confirm_password',
-      label: 'Confirm password'
+      label: 'Confirm password',
+      validators: ['required', 'confirm_password']
+
     },
     {
       type: 'select',

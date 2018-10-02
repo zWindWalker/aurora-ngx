@@ -1,17 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import lodash from 'lodash';
+import _ from 'lodash';
 
 @Component({
   selector: 'form-feedback',
   template: `
-      <!--<ng-container *ngIf="control.invalid && (control.dirty || control.touched)">-->
-      <!--<p [hidden]="!control.hasError('required')">{{_.startCase(name)}} is required</p>-->
-      <!---->
+      <ng-container *ngIf="control.invalid && (control.dirty || control.touched)">
+          <ng-container *ngFor="let err of error_list">
+              <p>{{err}}</p>
+          </ng-container>
 
-      <!--</ng-container>-->
-      <ng-container>
-          <p>{{_.startCase(name)}} is required</p>
       </ng-container>
   `,
   //language=SCSS
@@ -29,12 +27,11 @@ import lodash from 'lodash';
       }
   `]
 })
-export class FormFeedbackComponent implements OnInit {
+export class FormFeedbackComponent implements OnInit, OnChanges {
   ///-----------------------------------------------  Variables   -----------------------------------------------///
   @Input() control: AbstractControl;
   @Input() name = '';
-  _ = lodash;
-
+  @Input() feedback;
 
   error_list = [];
 
@@ -43,17 +40,38 @@ export class FormFeedbackComponent implements OnInit {
   }
 
   ngOnInit() {
-    // console.log(this.control);
-    // this.error_list = _.
-    //   _.map(this.control.errors, (err, key) => {
-    //
-    // })
-    // console.log(this.control.hasError('required'))
-    // this.control.statusChanges.subscribe(result => {
-    //   console.log(this.control.hasError('required'))
-    // });
+
+
+    this.control.statusChanges.subscribe(status => {
+      this.error_list = _.map(this.control.errors, (value, key) => this.generate_feedback(key));
+    });
+    this.error_list = _.map(this.control.errors, (value, key) => this.generate_feedback(key));
   }
 
+
+  generate_feedback = validator => {
+
+    const feedback = {
+      ...this.feedback
+    };
+
+    switch (validator) {
+      case 'required':
+        if (this.name === 'confirm_password') {
+          return feedback.required || `You need to confirm password`;
+        }
+        return feedback.required || `${_.startCase(this.name)}  is required`;
+      case 'confirm_password':
+        return feedback.confirm_password || `Password not match`;
+      case 'agreement':
+        return feedback.agreement || `You must agree to the terms and conditions before continuing!`;
+
+    }
+  };
+
+  ngOnChanges(changes): void {
+
+  }
 
   ///-----------------------------------------------  Main Functions   -----------------------------------------------///
 

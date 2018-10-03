@@ -19,6 +19,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
       }
 
       textarea {
+          font-size: 1.5rem;
+          padding: 1rem;
           width: 100%;
           max-width: 100%;
           overflow-y: scroll;

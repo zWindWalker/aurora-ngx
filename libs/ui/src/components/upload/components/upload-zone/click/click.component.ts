@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class ClickComponent implements OnInit {
   ///-----------------------------------------------  Variables   -----------------------------------------------///
   @Output() change = new EventEmitter();
-  @Input() config;
+  @Input() properties;
 
   ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
   constructor() {

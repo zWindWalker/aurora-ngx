@@ -9,7 +9,7 @@ export class DropComponent implements OnInit {
   ///-----------------------------------------------  Variables   -----------------------------------------------///
 
   @Output() change = new EventEmitter();
-  @Input() config;
+  @Input() properties;
 
   @HostBinding('class.drop_hover') drop_hover: Boolean = false;
 

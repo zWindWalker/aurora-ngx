@@ -1,11 +1,13 @@
 import { AfterViewChecked, Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { DatePickerService } from './date-picker.service';
 import moment from 'moment';
+import { toggle_trigger } from '../../../animations/toggle.animation';
 
 @Component({
   selector: 'aurora-datepicker',
   templateUrl: './date-picker.component.html',
-  styleUrls: ['./date-picker.component.scss']
+  styleUrls: ['./date-picker.component.scss'],
+  animations: [toggle_trigger]
 })
 export class AuroraDatePickerComponent implements AfterViewChecked {
 

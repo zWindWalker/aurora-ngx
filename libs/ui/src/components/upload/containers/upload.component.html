@@ -1,14 +1,14 @@
-<ng-container *ngIf="config?.drop; else click">
+<ng-container *ngIf="properties?.drop; else click">
     <drop
             (change)="onFileChanged($event)"
-            [config]="config"
+            [properties]="properties"
     ></drop>
 </ng-container>
 
 <ng-template #click>
     <click
             (change)="onFileChanged($event)"
-            [config]="config"
+            [properties]="properties"
     ></click>
 
 </ng-template>

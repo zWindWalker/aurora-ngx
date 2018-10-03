@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import _ from 'lodash';
 
 @Component({
@@ -9,8 +9,9 @@ import _ from 'lodash';
 export class AuroraUploadComponent implements OnInit {
   ///-----------------------------------------------  Variables   -----------------------------------------------///
   file_list = [];
-
-  @Input() config;
+  @Output() change = new EventEmitter();
+  @Input() invalid: Boolean = false;
+  @Input() properties;
 
   ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
   constructor() {
@@ -23,6 +24,8 @@ export class AuroraUploadComponent implements OnInit {
   ///-----------------------------------------------  Main Functions   -----------------------------------------------///
   onFileChanged(file_list) {
     this.file_list = this.file_list.concat(_.map(file_list));
+
+    this.change.emit(this.file_list);
   }
 
 };

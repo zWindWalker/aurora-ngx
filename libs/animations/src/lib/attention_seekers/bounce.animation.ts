@@ -17,7 +17,6 @@ const base = {
 };
 
 export const bounce: AnimationReferenceMetadata = animation(
-  [
     animate(
       '{{ timing }}ms {{ delay }}ms',
       keyframes([
@@ -49,7 +48,7 @@ export const bounce: AnimationReferenceMetadata = animation(
         })
       ])
     )
-  ],
+  ,
   { params: { timing: 1000, delay: 0 } }
 );
 

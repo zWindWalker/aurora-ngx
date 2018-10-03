@@ -1,11 +1,13 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import * as _ from 'lodash';
+import { toggle_trigger } from '../../../animations/toggle.animation';
 
 
 @Component({
   selector: 'aurora-select',
   templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss']
+  styleUrls: ['./select.component.scss'],
+  animations: [toggle_trigger]
 })
 
 export class AuroraSelectComponent implements OnInit {

@@ -2,7 +2,6 @@ import { Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core
 import { rotate_trigger } from '@aurora-ngx/animations';
 
 
-
 @Component({
   selector: 'control',
   templateUrl: './control.component.html',

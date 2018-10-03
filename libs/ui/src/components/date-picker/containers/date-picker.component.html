@@ -4,5 +4,5 @@
 ></control>
 
 <calendar
-        *ngIf="show_calendar"
+        [@toggle]="show_calendar ? 'in' : 'out'"
 ></calendar>

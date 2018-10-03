@@ -2,6 +2,6 @@
 <p>Click to upload</p>
 <input
         type="file"
-        [multiple]="config?.multiple"
+        [multiple]="properties?.multiple"
         (change)="$event.stopPropagation();change.emit($event.target.files)"
 >

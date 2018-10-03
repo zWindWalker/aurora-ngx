@@ -64,7 +64,7 @@ export class FormGroupComponent implements OnInit, ControlValueAccessor {
   @Input() config: any = null;
   @Input() formControlName: string;
 
-  protected control: AbstractControl;
+  control: AbstractControl;
 
   disabled;
   onChange = (value: any) => {
@@ -82,7 +82,7 @@ export class FormGroupComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     this.control = this.controlContainer.control.get(this.formControlName);
-    this.control.setValidators(get_validators(this.config.validators));
+    this.control.setValidators(get_validators(this.config));
   }
 
 

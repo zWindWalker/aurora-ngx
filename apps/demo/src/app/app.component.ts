@@ -1,4 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { AuroraForm } from '@aurora-ngx/forms';
+
 
 @Component({
   selector: 'aurora-ngx-root',
@@ -8,7 +10,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 
 })
 export class AppComponent {
-  config = [
+  config: AuroraForm[] = [
     {
       type: 'input',
       name: 'username',
@@ -76,7 +78,7 @@ export class AppComponent {
     },
     {
       type: 'upload',
-      config: {
+      properties: {
         drop: true,
         multiple: true
       },

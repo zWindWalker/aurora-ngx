@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 // (ngSubmit)="submitted.emit(form.value)"
 @Component({
@@ -8,7 +8,7 @@ import * as _ from 'lodash';
   template: `
       <form
               [formGroup]="form"
-              (ngSubmit)="$event.stopPropagation(); submit.emit(form.value)"
+              (ngSubmit)="onSubmit($event)"
       >
           <form-group
                   *ngFor="let field of config"
@@ -25,6 +25,7 @@ import * as _ from 'lodash';
 export class AuroraFormComponent implements OnInit {
 
   @Input() config: any[] = [];
+  @Input() media_type: String;
   @Output() submit = new EventEmitter<any>();
 
   form: FormGroup;
@@ -46,6 +47,39 @@ export class AuroraFormComponent implements OnInit {
     return group;
 
 
+  };
+
+  convertToFormData = () => {
+    const data = this.form.value;
+    const form = new FormData();
+
+    _.each(data, (value, key) => {
+      if (_.isArray(value)) {
+        _.each(value, file => form.append(`${key}[]`, file, file.name));
+      }
+      else form.append(key, value);
+
+    });
+
+    return form;
+  };
+
+  formattedFormData = () => {
+    switch (this.media_type) {
+      case 'json':
+        return JSON.stringify(this.form.value);
+      case 'form-data':
+        return this.convertToFormData();
+      default:
+        return this.form.value;
+    }
+
+
+  };
+
+  onSubmit = e => {
+    e.stopPropagation();
+    this.submit.emit(this.formattedFormData());
   };
 
 }

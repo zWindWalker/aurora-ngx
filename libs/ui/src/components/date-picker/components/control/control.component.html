@@ -1,9 +1,9 @@
 <div id="value">
-    <p *ngIf="!formatted_date">Please select</p>
-    <p *ngIf="formatted_date">{{formatted_date}}</p>
+    <span *ngIf="!formatted_date">Please select</span>
+    <span *ngIf="formatted_date">{{formatted_date}}</span>
 </div>
 
-<div id="icon" [@rotate_trigger]="{
+<div id="icon" [@rotate]="{
     value: show_calendar ? 'animated' : 'default',
     params: { deg: 90 }
 }">

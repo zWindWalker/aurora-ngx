@@ -43,6 +43,7 @@ export class FormFeedbackComponent implements OnInit, OnChanges {
 
 
     this.control.statusChanges.subscribe(status => {
+      console.log(this.control.errors);
       this.error_list = _.map(this.control.errors, (value, key) => this.generate_feedback(key));
     });
     this.error_list = _.map(this.control.errors, (value, key) => this.generate_feedback(key));
@@ -65,7 +66,8 @@ export class FormFeedbackComponent implements OnInit, OnChanges {
         return feedback.confirm_password || `Password not match`;
       case 'agreement':
         return feedback.agreement || `You must agree to the terms and conditions before continuing!`;
-
+      case 'email' :
+        return feedback.email || `Invalid email address. Valid e-mail can contain only latin letters, numbers, '@' and '.'`;
     }
   };
 

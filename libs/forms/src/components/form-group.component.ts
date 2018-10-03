@@ -10,7 +10,7 @@ import { get_validators } from '../utils/validators';
       <form-field
               [config]="config"
               [control]="control"
-              [invalid]="control.invalid && (control.touched || control.dirty)"
+              [invalid]="submitted"
               (change)="onChange($event)"
               (blur)="onTouched()"
       ></form-field>
@@ -19,6 +19,7 @@ import { get_validators } from '../utils/validators';
               [control]="control"
               [name]="config.name"
               [feedback]="config?.feedback"
+              [submitted]="submitted"
       ></form-feedback>
   `,
   //language=SCSS
@@ -63,9 +64,9 @@ export class FormGroupComponent implements OnInit, ControlValueAccessor {
   @Input() form: FormGroup;
   @Input() config: any = null;
   @Input() formControlName: string;
+  @Input() submitted: Boolean;
 
   control: AbstractControl;
-
   disabled;
   onChange = (value: any) => {
   };
@@ -83,6 +84,7 @@ export class FormGroupComponent implements OnInit, ControlValueAccessor {
   ngOnInit() {
     this.control = this.controlContainer.control.get(this.formControlName);
     this.control.setValidators(get_validators(this.config));
+    console.log(this.controlContainer)
   }
 
 
@@ -102,5 +104,6 @@ export class FormGroupComponent implements OnInit, ControlValueAccessor {
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
+
 
 }

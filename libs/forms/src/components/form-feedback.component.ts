@@ -5,7 +5,7 @@ import _ from 'lodash';
 @Component({
   selector: 'form-feedback',
   template: `
-      <ng-container *ngIf="control.invalid && (control.dirty || control.touched)">
+      <ng-container *ngIf="control.invalid && (control.dirty || control.touched || submitted)">
           <ng-container *ngFor="let err of error_list">
               <p>{{err}}</p>
           </ng-container>
@@ -32,6 +32,7 @@ export class FormFeedbackComponent implements OnInit, OnChanges {
   @Input() control: AbstractControl;
   @Input() name = '';
   @Input() feedback;
+  @Input() submitted: Boolean;
 
   error_list = [];
 
@@ -41,9 +42,8 @@ export class FormFeedbackComponent implements OnInit, OnChanges {
 
   ngOnInit() {
 
-
     this.control.statusChanges.subscribe(status => {
-      console.log(this.control.errors);
+
       this.error_list = _.map(this.control.errors, (value, key) => this.generate_feedback(key));
     });
     this.error_list = _.map(this.control.errors, (value, key) => this.generate_feedback(key));

@@ -9,14 +9,21 @@ const generate_validators = validator => {
       return confirm_password_validator;
     case 'agreement':
       return agreement_validator;
+    case 'email':
+      return Validators.email;
   }
 };
 
-export const get_validators = validators => {
-  if (!validators || validators.length < 0) {
-    return [];
+export const get_validators = config => {
+  const { name, validators } = config;
+
+  if (name === 'confirm_password' || name === 'email') {
+    const a = (name === 'confirm_password') ? ['required', 'confirm_password'] : ['required', 'email'];
+    const tmp = (!validators || validators.length < 0) ? a : validators.concat(a);
+    return _.map(tmp, validator => generate_validators(validator));
+  } else {
+    return (!validators || validators.length < 0) ? [] : _.map(validators, validator => generate_validators(validator));
   }
-  return _.map(validators, validator => generate_validators(validator));
 
 
 };

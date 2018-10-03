@@ -7,5 +7,5 @@
 <menu
         [options]="options"
         (onSelectOption)="onChange($event)"
-        *ngIf="show_menu"
+        [@toggle]="show_menu ? 'in' : 'out'"
 ></menu>

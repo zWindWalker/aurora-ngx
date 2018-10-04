@@ -15,7 +15,7 @@ import { AbstractControl } from '@angular/forms';
   template: `
       <ng-container
               dynamic-field
-              [invalid]="invalid"
+              [invalid]="control.invalid && (control.dirty || control.touched || submitted)"
               [config]="config"
               [control]="control"
               [change]="change"
@@ -36,7 +36,7 @@ export class FormFieldComponent implements OnInit, OnChanges {
   ///-----------------------------------------------  Variables   -----------------------------------------------///
   @Input() config: any = null;
   @Input() control: AbstractControl;
-  @Input() invalid;
+  @Input() submitted: Boolean
   @Output() change = new EventEmitter();
   @Output() blur = new EventEmitter();
 

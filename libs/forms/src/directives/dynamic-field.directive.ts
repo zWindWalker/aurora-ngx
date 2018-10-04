@@ -47,6 +47,21 @@ export class DynamicFieldDirective implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnInit(): void {
+    this.createComponent();
+  }
+
+  ngOnChanges() {
+    if (this.componentRef) {
+      this.componentRef.destroy();
+      this.createComponent();
+    }
+  }
+
+  ngOnDestroy() {
+    this.componentRef.destroy();
+  }
+
+  createComponent = () => {
     const component = this.components[this.config.type];
     const factory = this.resolver.resolveComponentFactory<any>(component);
 
@@ -68,17 +83,7 @@ export class DynamicFieldDirective implements OnInit, OnDestroy, OnChanges {
     this.componentRef.instance.label = this.config.checkbox_label;
     this.componentRef.instance.invalid = this.invalid;
     this.componentRef.instance.properties = this.config.properties;
-  }
-
-  ngOnChanges() {
-    if (this.componentRef) {
-      this.componentRef.instance.invalid = this.invalid;
-    }
-  }
-
-  ngOnDestroy() {
-    this.componentRef.destroy();
-  }
+  };
 
 
 }

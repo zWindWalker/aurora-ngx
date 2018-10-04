@@ -15,6 +15,6 @@ export class AuroraInputComponent {
   @Input() value: any = '';
   @Output() change = new EventEmitter();
   @Output() blur = new EventEmitter();
-  @Input() invalid: Boolean = false;
+  @Input() invalid;
 
 }

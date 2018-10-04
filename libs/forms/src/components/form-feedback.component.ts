@@ -32,7 +32,7 @@ export class FormFeedbackComponent implements OnInit, OnChanges {
   @Input() control: AbstractControl;
   @Input() name = '';
   @Input() feedback;
-  @Input() submitted: Boolean;
+  @Input() submitted: Boolean = false;
 
   error_list = [];
 

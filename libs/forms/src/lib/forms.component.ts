@@ -1,12 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import _ from 'lodash';
 
@@ -22,7 +14,7 @@ import _ from 'lodash';
                   *ngFor="let field of config"
                   [config]="field"
                   [formControlName]="field.name"
-                  [submitted]="submitted"
+                  [submit]="submit"
           >
           </form-group>
 
@@ -34,17 +26,13 @@ import _ from 'lodash';
 })
 export class AuroraFormComponent implements OnInit {
   form: FormGroup;
-  submitted: Boolean = false;
 
   @Input() config: any[] = [];
   @Input() media_type: String;
   @Output() submit = new EventEmitter<any>();
 
 
-  constructor(
-    private fb: FormBuilder,
-    private cd: ChangeDetectorRef
-  ) {
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
@@ -93,8 +81,6 @@ export class AuroraFormComponent implements OnInit {
 
   onSubmit = e => {
     e.stopPropagation();
-
-    this.submitted = true;
     this.submit.emit(this.formattedFormData());
   };
 

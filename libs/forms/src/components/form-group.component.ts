@@ -1,5 +1,21 @@
-import { ChangeDetectionStrategy, Component, Host, Input, OnInit, Optional, SkipSelf } from '@angular/core';
-import { AbstractControl, ControlContainer, ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Host,
+  Input,
+  OnInit,
+  Optional,
+  SkipSelf
+} from '@angular/core';
+import {
+  AbstractControl,
+  ControlContainer,
+  ControlValueAccessor,
+  FormGroupDirective,
+  NG_VALUE_ACCESSOR
+} from '@angular/forms';
 import { get_validators } from '../utils/validators';
 
 @Component({
@@ -10,7 +26,7 @@ import { get_validators } from '../utils/validators';
       <form-field
               [config]="config"
               [control]="control"
-              [invalid]="submitted"
+              [submitted]="submitted"
               (change)="onChange($event)"
               (blur)="onTouched()"
       ></form-field>
@@ -60,12 +76,10 @@ import { get_validators } from '../utils/validators';
 })
 export class FormGroupComponent implements OnInit, ControlValueAccessor {
 ///-----------------------------------------------  Variables   -----------------------------------------------///
-
-  @Input() form: FormGroup;
   @Input() config: any = null;
   @Input() formControlName: string;
-  @Input() submitted: Boolean;
-
+  @Input() submit: EventEmitter<any>;
+  submitted: Boolean = false;
   control: AbstractControl;
   disabled;
   onChange = (value: any) => {
@@ -77,14 +91,21 @@ export class FormGroupComponent implements OnInit, ControlValueAccessor {
   ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
   constructor(
     @Optional() @Host() @SkipSelf()
-    private controlContainer: ControlContainer
+    private formGroupDirective: FormGroupDirective,
+    private controlContainer: ControlContainer,
+    private cd: ChangeDetectorRef
   ) {
   }
 
   ngOnInit() {
+
     this.control = this.controlContainer.control.get(this.formControlName);
     this.control.setValidators(get_validators(this.config));
-    console.log(this.controlContainer)
+
+    this.submit.subscribe(data => {
+      this.submitted = this.formGroupDirective.submitted;
+      this.cd.markForCheck();
+    });
   }
 
 
@@ -104,6 +125,4 @@ export class FormGroupComponent implements OnInit, ControlValueAccessor {
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
-
-
 }

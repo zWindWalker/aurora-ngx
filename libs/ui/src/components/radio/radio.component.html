@@ -1,0 +1,10 @@
+<ng-container *ngFor="let option of options">
+    <div class="radio_container">
+        <div
+                class="radio_button"
+                (click)="value = option.value"
+                [class.active]="option.value === value"
+        ></div>
+        <label>{{option.label}}</label>
+    </div>
+</ng-container>

@@ -13,6 +13,7 @@ export class AuroraButtonComponent implements OnInit {
 
   @Input() type: String = '';
 
+
   @HostBinding('class.primary') primary_style: Boolean;
   @HostBinding('class.danger') danger_style: Boolean;
 
@@ -27,6 +28,8 @@ export class AuroraButtonComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
     switch (this.type) {
       case 'primary':
         this.primary_style = true;

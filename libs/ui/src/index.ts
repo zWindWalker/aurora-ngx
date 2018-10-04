@@ -14,3 +14,7 @@ export { AuroraCheckboxComponent } from './components/checkbox/checkbox.componen
 export { AuroraUploadComponent } from './components/upload/containers/upload.component';
 
 export { AuroraModalComponent } from './components/modal/modal.component';
+
+export { AuroraRadioComponent } from './components/radio/radio.component';
+
+export { AuroraCarouselComponent } from './components/carousel/containers/carousel.component';

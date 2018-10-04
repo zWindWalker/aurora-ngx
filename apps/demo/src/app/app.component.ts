@@ -60,6 +60,26 @@ export class AppComponent {
       label: 'Birthday'
     },
     {
+      type: 'radio',
+      name: 'color',
+      value: 'red',
+      label: 'Color',
+      options: [
+        {
+          label: 'Red',
+          value: 'red'
+        },
+        {
+          label: 'Yellow',
+          value: 'yellow'
+        },
+        {
+          label: 'Blue',
+          value: 'blue'
+        }
+      ]
+    },
+    {
       type: 'checkbox',
       name: 'agreement',
       value: false,

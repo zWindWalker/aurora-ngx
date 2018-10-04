@@ -15,12 +15,7 @@
     "lib": [
       "dom",
       "es2015"
-    ],
-    "paths": {
-//      "@aurora-ngx/animations": [
-//        "libs/animations/src/index.ts"
-//      ]
-    }
+    ]
   },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,

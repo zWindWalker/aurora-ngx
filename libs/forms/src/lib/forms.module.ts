@@ -8,6 +8,7 @@ import {
   AuroraCheckboxComponent,
   AuroraDatePickerComponent,
   AuroraInputComponent,
+  AuroraRadioComponent,
   AuroraSelectComponent,
   AuroraTextareaComponent,
   AuroraUiModule,
@@ -45,7 +46,8 @@ import { FormFeedbackComponent } from '../components/form-feedback.component';
     AuroraSelectComponent,
     AuroraCheckboxComponent,
     AuroraDatePickerComponent,
-    AuroraUploadComponent
+    AuroraUploadComponent,
+    AuroraRadioComponent
   ]
 })
 export class AuroraFormsModule {

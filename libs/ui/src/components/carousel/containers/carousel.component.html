@@ -1,0 +1,14 @@
+<div class="arrow-left" (click)="previousSlide()">
+    <i class="fas fa-chevron-left"></i>
+</div>
+
+<ng-container
+        carousel
+        [index]="index"
+        [data]="data"
+>
+</ng-container>
+
+<div class="arrow-right" (click)="nextSlide()">
+    <i class="fas fa-chevron-right"></i>
+</div>

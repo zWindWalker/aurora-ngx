@@ -13,6 +13,7 @@ import {
   AuroraCheckboxComponent,
   AuroraDatePickerComponent,
   AuroraInputComponent,
+  AuroraRadioComponent,
   AuroraSelectComponent,
   AuroraTextareaComponent,
   AuroraUploadComponent
@@ -37,7 +38,8 @@ export class DynamicFieldDirective implements OnInit, OnDestroy, OnChanges {
     select: AuroraSelectComponent,
     datepicker: AuroraDatePickerComponent,
     checkbox: AuroraCheckboxComponent,
-    upload: AuroraUploadComponent
+    upload: AuroraUploadComponent,
+    radio: AuroraRadioComponent
   };
 
   constructor(

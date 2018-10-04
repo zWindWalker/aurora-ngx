@@ -1,0 +1,26 @@
+:host {
+    display: flex;
+    position: relative;
+    height: 300px;
+    width: 700px;
+}
+
+.arrow-left, .arrow-right {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 2.5rem;
+    position: absolute;
+    height: 100%;
+    z-index: 2;
+}
+
+.arrow-left {
+    grid-area: arrow_left;
+    left: 0;
+}
+
+.arrow-right {
+    grid-area: arrow-right;
+    right: 0;
+}

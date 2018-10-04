@@ -1,0 +1,61 @@
+:host {
+    background-color: #fff;
+    border: 1px solid #d9d9d9;
+    color: rgba(0, 0, 0, 0.65);
+    border-radius: .4rem;
+    box-shadow: 0 .2rem 0 rgba(0, 0, 0, 0.015);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 400;
+    outline: none;
+    padding: 0 1.5rem;
+    position: relative;
+    text-align: center;
+    touch-action: manipulation;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+    user-select: none;
+    white-space: nowrap;
+
+    height: 3.2rem;
+    &:hover {
+        border-color: #40a9ff;
+        color: #40a9ff;
+    }
+    &:active {
+        border-color: #096dd9;
+        color: #096dd9;
+    }
+
+    &.primary {
+        background-color: #1890ff;
+        border-color: #1890ff;
+        box-shadow: 0 .2rem 0 rgba(0, 0, 0, 0.015);
+        color: #fff;
+
+        &:hover {
+            background-color: #40a9ff;
+            border-color: #40a9ff;
+        }
+        &:active {
+            background-color: #096dd9;
+            border-color: #096dd9;
+        }
+    }
+}
+
+.click_animation_node {
+    display: block;
+    position: absolute;
+    border-radius: inherit;
+    border: .6rem solid #1890ff;
+    animation: fadeEffect 2s cubic-bezier(0.08, 0.82, 0.17, 1), waveEffect 0.4s cubic-bezier(0.08, 0.82, 0.17, 1);
+    animation-fill-mode: forwards;
+    opacity: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+}

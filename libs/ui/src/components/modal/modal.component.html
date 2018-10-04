@@ -13,7 +13,15 @@
         <ng-content></ng-content>
     </div>
     <div class="footer">
-        <aurora-button>Cancel</aurora-button>
-        <aurora-button type="primary">OK</aurora-button>
+        <aurora-button
+                (click)="onCancel.emit()"
+        >
+            Cancel
+        </aurora-button>
+        <aurora-button
+                type="primary"
+                (click)="onOk.emit()"
+        >OK
+        </aurora-button>
     </div>
 </div>

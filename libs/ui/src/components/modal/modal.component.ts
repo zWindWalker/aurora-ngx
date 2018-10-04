@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+
 
 @Component({
   selector: 'aurora-modal',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class AuroraModalComponent implements OnInit {
   ///-----------------------------------------------  Variables   -----------------------------------------------///
 
+  @Output() onCancel = new EventEmitter();
+  @Output() onOk = new EventEmitter();
 
   ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
   constructor() {

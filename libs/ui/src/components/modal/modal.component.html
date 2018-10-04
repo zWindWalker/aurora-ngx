@@ -1,27 +1,27 @@
-<div class="mask"></div>
+<div class="mask" *ngIf="visible">
+    <div class="content">
+        <div class="header">
+            <div class="title">Basic Modal</div>
 
-<div class="content">
-    <div class="header">
-        <div class="title">Basic Modal</div>
+            <div class=" close_icon" (click)="onClose()">
+                <i class="fas fa-times"></i>
+            </div>
 
-        <div class=" close_icon">
-            <i class="fas fa-times"></i>
         </div>
-
+        <div class="body">
+            <ng-content></ng-content>
+        </div>
+        <div class="footer">
+            <aurora-button
+                    (click)="onClose(); onCancel.emit()"
+            >
+                Cancel
+            </aurora-button>
+            <aurora-button
+                    type="primary"
+                    (click)="onClose(); onOk.emit()"
+            >OK
+            </aurora-button>
+        </div>
     </div>
-    <div class="body">
-        <ng-content></ng-content>
     </div>
-    <div class="footer">
-        <aurora-button
-                (click)="onCancel.emit()"
-        >
-            Cancel
-        </aurora-button>
-        <aurora-button
-                type="primary"
-                (click)="onOk.emit()"
-        >OK
-        </aurora-button>
-    </div>
-</div>

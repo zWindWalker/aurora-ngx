@@ -1,7 +1,10 @@
 
 <div class="container">
-    <aurora-modal></aurora-modal>
-    <aurora-button>
+    <aurora-modal
+            [visible]="visible"
+            (close)="visible = false"
+    ></aurora-modal>
+    <aurora-button (click)="onClick()">
         This is a button
     </aurora-button>
 

@@ -87,8 +87,10 @@ export class AppComponent {
     }
   ];
 
-  onSubmit = e => {
-    console.log(e);
+  visible: Boolean = false;
+
+  onClick = e => {
+    this.visible = true;
   };
 
 }

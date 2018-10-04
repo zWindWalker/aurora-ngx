@@ -1,17 +1,24 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 
 
 @Component({
   selector: 'aurora-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuroraModalComponent implements OnInit {
   ///-----------------------------------------------  Variables   -----------------------------------------------///
 
+  @Input() visible: Boolean = false;
   @Output() onCancel = new EventEmitter();
   @Output() onOk = new EventEmitter();
+  @Output() close = new EventEmitter();
 
+  @HostListener('document:keydown.escape', ['$event'])
+  onKeydownHandler(event: KeyboardEvent) {
+    this.onClose();
+  }
   ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
   constructor() {
   }
@@ -21,5 +28,9 @@ export class AuroraModalComponent implements OnInit {
 
 
   ///-----------------------------------------------  Main Functions   -----------------------------------------------///
+
+  onClose = () => {
+    this.close.emit();
+  };
 
 }

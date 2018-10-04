@@ -17,9 +17,9 @@
       "es2015"
     ],
     "paths": {
-      "@aurora-ngx/animations": [
-        "libs/animations/src/index.ts"
-      ]
+//      "@aurora-ngx/animations": [
+//        "libs/animations/src/index.ts"
+//      ]
     }
   },
   "angularCompilerOptions": {

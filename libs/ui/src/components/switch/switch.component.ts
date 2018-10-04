@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { click } from './click.animations';
+import { click } from '../../animations/click.animations';
+
 
 @Component({
   selector: 'aurora-switch',
@@ -7,9 +8,8 @@ import { click } from './click.animations';
   styleUrls: ['./switch.component.scss'],
   animations: [click]
 })
-export class SwitchComponent implements OnInit {
+export class AuroraSwitchComponent implements OnInit {
   active: Boolean = false;
-  animated: Boolean = false;
 
   constructor() {
   }
@@ -19,8 +19,6 @@ export class SwitchComponent implements OnInit {
 
   onToggle = () => {
     this.active = !this.active;
-    this.animated = true;
-    setTimeout(() => this.animated = false, 100);
   };
 
 }

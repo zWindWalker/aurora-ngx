@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SwitchComponent } from '../components/switch/switch.component';
+import { AuroraSwitchComponent } from '../components/switch/switch.component';
 import { SelectModule } from '../components/select/select.module';
 
 import { ReactiveFormsModule } from '@angular/forms';
@@ -9,11 +9,13 @@ import { AuroraInputComponent } from '../components/input/input.component';
 import { AuroraCheckboxComponent } from '../components/checkbox/checkbox.component';
 import { AuroraTextareaComponent } from '../components/textarea/textarea.component';
 import { UploadModule } from '../components/upload/upload.module';
+import { AuroraButtonComponent } from '../components/button/button.component';
+import { AuroraModalComponent } from '../components/modal/modal.component';
 
 
 @NgModule({
   declarations: [
-    SwitchComponent, AuroraInputComponent, AuroraCheckboxComponent, AuroraTextareaComponent
+    AuroraSwitchComponent, AuroraInputComponent, AuroraCheckboxComponent, AuroraTextareaComponent, AuroraButtonComponent, AuroraModalComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,7 @@ import { UploadModule } from '../components/upload/upload.module';
     SelectModule, DatePickerModule, UploadModule
   ],
   exports: [
-    SwitchComponent, AuroraInputComponent, AuroraCheckboxComponent, AuroraTextareaComponent,
+    AuroraSwitchComponent, AuroraInputComponent, AuroraCheckboxComponent, AuroraTextareaComponent, AuroraButtonComponent, AuroraModalComponent,
 
     SelectModule, DatePickerModule, UploadModule
   ]

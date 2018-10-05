@@ -1,14 +1,17 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
-  EventEmitter,
-  Input,
   OnChanges,
   OnInit,
-  Output,
   SimpleChanges
 } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
+import { FormService } from '../form.service';
+import { Subject } from 'rxjs';
+import { AuroraForm } from '../form.model';
+
 
 @Component({
   selector: 'form-field',
@@ -18,10 +21,11 @@ import { AbstractControl } from '@angular/forms';
               [invalid]="control.invalid && (control.dirty || control.touched || submitted)"
               [config]="config"
               [control]="control"
-              [change]="change"
-              [blur]="blur"
-      ></ng-container>
-
+              (change)="onChanged($event)"
+              (blur)="onTouched()"
+              *ngIf="!!name"
+      >
+      </ng-container>
   `,
   styles: [`
       :host {
@@ -32,26 +36,54 @@ import { AbstractControl } from '@angular/forms';
   `],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormFieldComponent implements OnInit, OnChanges {
+export class FormFieldComponent implements OnInit, AfterViewInit, OnChanges {
   ///-----------------------------------------------  Variables   -----------------------------------------------///
-  @Input() config: any = null;
-  @Input() control: AbstractControl;
-  @Input() submitted: Boolean
-  @Output() change = new EventEmitter();
-  @Output() blur = new EventEmitter();
 
+  control: AbstractControl;
+  name;
+  submitted: Boolean = false;
+  config: AuroraForm;
+  nameChanged = new Subject();
 
   ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
-  constructor() {
+  constructor(
+    private formSvs: FormService,
+    private cd: ChangeDetectorRef
+  ) {
   }
 
   ngOnInit() {
+    this.nameChanged.subscribe(() => {
+      this.control = this.formSvs._getControl(this.name);
+      this.config = this.formSvs._getControlConfig(this.name);
+      this.submitted = this.formSvs._getSubmittedStatus();
+    });
+  }
+
+  ngAfterViewInit(): void {
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
 
   }
 
+
   ///-----------------------------------------------  Main Functions   -----------------------------------------------///
+
+
+  setName = name => {
+    this.name = name;
+    this.nameChanged.next();
+    this.cd.markForCheck();
+  };
+
+  onChanged = e => {
+    this.formSvs._setValue(this.name, e);
+  };
+
+  onTouched = () => {
+    this.formSvs._onTouched(this.name);
+  };
 
 }

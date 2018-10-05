@@ -1,42 +1,37 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  EventEmitter,
+  ContentChildren,
   Host,
   Input,
   OnInit,
   Optional,
-  SkipSelf
+  QueryList,
+  SkipSelf, ViewChild, ViewChildren
 } from '@angular/core';
-import {
-  AbstractControl,
-  ControlContainer,
-  ControlValueAccessor,
-  FormGroupDirective,
-  NG_VALUE_ACCESSOR
-} from '@angular/forms';
-import { get_validators } from '../utils/validators';
+import { FormGroupDirective } from '@angular/forms';
+import { FormFieldComponent } from './form-field.component';
+import _ from 'lodash';
+import { AuroraForm } from '@aurora-ngx/forms';
+import { FormLabelComponent } from './form-label.component';
 
 @Component({
   selector: 'form-group',
   template: `
-      <form-label [label]="config.label"></form-label>
+    
+      <form-label></form-label>
 
-      <form-field
-              [config]="config"
-              [control]="control"
-              [submitted]="submitted"
-              (change)="onChange($event)"
-              (blur)="onTouched()"
-      ></form-field>
-
-      <form-feedback
-              [control]="control"
-              [name]="config.name"
-              [feedback]="config?.feedback"
-              [submitted]="submitted"
-      ></form-feedback>
+      <form-field></form-field>
+    
+      <!--<form-feedback></form-feedback>-->
+      <!--<form-feedback-->
+      <!--[control]="control"-->
+      <!--[name]="config.name"-->
+      <!--[feedback]="config?.feedback"-->
+      <!--[submitted]="submitted"-->
+      <!--&gt;</form-feedback>-->
   `,
   //language=SCSS
   styles: [`
@@ -67,62 +62,51 @@ import { get_validators } from '../utils/validators';
 
   `],
 
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: FormGroupComponent,
-    multi: true
-  }]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormGroupComponent implements OnInit, ControlValueAccessor {
+export class FormGroupComponent implements OnInit, AfterViewInit {
 ///-----------------------------------------------  Variables   -----------------------------------------------///
-  @Input() config: any = null;
-  @Input() formControlName: string;
-  @Input() submit: EventEmitter<any>;
-  submitted: Boolean = false;
-  control: AbstractControl;
-  disabled;
-  onChange = (value: any) => {
-  };
-  onTouched = () => {
-  };
+//   @Input() config: any = null;
+//   @Input() formControlName: string;
+//   @Input() submit: EventEmitter<any>;
+//   submitted: Boolean = false;
+//   control: AbstractControl;
+
+  @Input() name = '';
+  config: AuroraForm;
+  @ContentChildren('all') contentChildren: QueryList<any>;
+  @ViewChild(FormFieldComponent) formFieldCom: QueryList<FormFieldComponent>;
+  @ViewChild(FormLabelComponent) formLabelCom: QueryList<FormLabelComponent>;
+
 
 
   ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
   constructor(
     @Optional() @Host() @SkipSelf()
     private formGroupDirective: FormGroupDirective,
-    private controlContainer: ControlContainer,
+
     private cd: ChangeDetectorRef
   ) {
   }
 
   ngOnInit() {
 
-    this.control = this.controlContainer.control.get(this.formControlName);
-    this.control.setValidators(get_validators(this.config));
-
-    this.submit.subscribe(data => {
-      this.submitted = this.formGroupDirective.submitted;
-      this.cd.markForCheck();
-    });
+    // this.control = this.controlContainer.control.get(this.formControlName);
+    // this.control.setValidators(get_validators(this.config));
+    //
+    // this.submit.subscribe(data => {
+    //   this.submitted = this.formGroupDirective.submitted;
+    //   this.cd.markForCheck();
+    // });
   }
 
+  ngAfterViewInit(): void {
 
-  ///-----------------------------------------------  ControlValueAccessor Interface   -----------------------------------------------///
+    // console.log(this.viewChildren.toArray())
 
-  writeValue(value: String): void {
+    // _.each(this.contentChildren.toArray(), (field: FormFieldComponent) => {
+    //   field.setName(this.name);
+    // });
   }
 
-  registerOnChange(fn: (rating: number) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-  }
 }

@@ -1,7 +1,7 @@
 <aurora-modal
         [visible]="visible"
         (close)="close.emit()"
-        (onOk)="open_quiz.emit()"
+        (onOk)="close.emit();open_quiz.emit()"
 >
     <aurora-form
             [config]="config"

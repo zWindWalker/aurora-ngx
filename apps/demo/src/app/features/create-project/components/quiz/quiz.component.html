@@ -1,8 +1,15 @@
 <aurora-modal
         [visible]="visible"
-        (close)="close.emit()"
+        (close)="resetQuiz(); close.emit()"
+        (onOk)="nextQuiz()"
+        (onCancel)="previousQuiz()"
 >
 
+    <ng-container
+            quiz_directive
+            [data]="data"
+            [index]="index"
+    >
+    </ng-container>
 
-    sdfasdf
 </aurora-modal>

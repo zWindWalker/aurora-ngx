@@ -15,6 +15,7 @@ export class AppComponent {
       type: 'input',
       name: 'username',
       label: 'Username',
+      value: 'saldkfjskla',
       validators: ['required']
     },
     {
@@ -107,10 +108,8 @@ export class AppComponent {
     }
   ];
 
-  visible: Boolean = false;
-
-  onClick = e => {
-    this.visible = true;
-  };
+  onSubmit = e => {
+    console.log(e)
+  }
 
 }

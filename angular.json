@@ -377,8 +377,13 @@
               "apps/form-demo/src/assets"
             ],
             "styles": [
-              "apps/form-demo/src/styles.css"
+              "apps/form-demo/src/assets/scss/global.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "apps/form-demo/src/assets/scss"
+              ]
+            },
             "scripts": []
           },
           "configurations": {

@@ -1,3 +1,3 @@
-export * from './lib/forms.module';
+export * from './form.module';
 
-export * from './models/form.model';
+export * from './form.model';

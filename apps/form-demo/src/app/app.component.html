@@ -1,27 +1,21 @@
 
 <div class="container">
-    <!--<aurora-modal-->
-    <!--[visible]="visible"-->
-    <!--(close)="visible = false"-->
-    <!--&gt;</aurora-modal>-->
-    <!--<aurora-button (click)="onClick()">-->
-    <!--This is a button-->
-    <!--</aurora-button>-->
+    <aurora-form
+            [config]="config"
+            (submit)="onSubmit($event)"
+    >
+        <form-group name="username">
 
+        </form-group>
+        <form-group name="email">
 
-    <!--<aurora-form-->
-            <!--[config]="config"-->
-            <!--(submit)="onSubmit($event)"-->
-    <!--&gt;-->
+        </form-group>
+        <aurora-button
+                type="primary"
+                submit_form
+        >
+            Submit
+        </aurora-button>
 
-        <!--<aurora-button-->
-                <!--type="primary"-->
-        <!--&gt;-->
-            <!--Submit-->
-        <!--</aurora-button>-->
-
-    <!--</aurora-form>-->
-
-    <aurora-carousel></aurora-carousel>
-
+    </aurora-form>
 </div>

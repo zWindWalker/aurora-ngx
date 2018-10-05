@@ -7,6 +7,7 @@ import {
   OnChanges,
   OnDestroy,
   OnInit,
+  Output,
   ViewContainerRef
 } from '@angular/core';
 import {
@@ -19,16 +20,17 @@ import {
   AuroraUploadComponent
 } from '@aurora-ngx/ui';
 import { AbstractControl } from '@angular/forms';
+import { AuroraForm } from '../form.model';
 
 @Directive({
   selector: '[dynamic-field]'
 })
 export class DynamicFieldDirective implements OnInit, OnDestroy, OnChanges {
-  @Input() config;
+  @Input() config: AuroraForm;
   @Input() invalid;
   @Input() control: AbstractControl;
-  @Input() change: EventEmitter<any>;
-  @Input() blur: EventEmitter<any>;
+  @Output() change = new EventEmitter();
+  @Output() blur = new EventEmitter();
 
   componentRef: ComponentRef<any>;
 
@@ -75,7 +77,7 @@ export class DynamicFieldDirective implements OnInit, OnDestroy, OnChanges {
     }
 
     if (this.componentRef.instance.blur) {
-      this.componentRef.instance.blur.subscribe(event => this.blur.emit(event));
+      this.componentRef.instance.blur.subscribe(() => this.blur.emit());
     }
 
     this.componentRef.instance.type = this.config.input_type;

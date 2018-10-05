@@ -25,6 +25,12 @@
     },
     "animate-demo": {
       "tags": []
+    },
+    "form-demo": {
+      "tags": []
+    },
+    "ui-demo": {
+      "tags": []
     }
   }
 }

@@ -1,0 +1,21 @@
+<div class="container">
+    <aurora-button
+            (click)="user_info_visible = true"
+    >
+        Create New Project
+    </aurora-button>
+</div>
+
+<quiz
+        [visible]="quiz_visible"
+        (close)="quiz_visible = false"
+>
+
+</quiz>
+
+<user-info
+        [visible]="user_info_visible"
+        (close)="user_info_visible = false"
+        (open_quiz)="quiz_visible = true"
+></user-info>
+

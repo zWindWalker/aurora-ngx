@@ -356,6 +356,190 @@
           }
         }
       }
+    },
+    "form-demo": {
+      "root": "apps/form-demo/",
+      "sourceRoot": "apps/form-demo/src",
+      "projectType": "application",
+      "prefix": "aurora-ngx",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/form-demo",
+            "index": "apps/form-demo/src/index.html",
+            "main": "apps/form-demo/src/main.ts",
+            "polyfills": "apps/form-demo/src/polyfills.ts",
+            "tsConfig": "apps/form-demo/tsconfig.app.json",
+            "assets": [
+              "apps/form-demo/src/favicon.ico",
+              "apps/form-demo/src/assets"
+            ],
+            "styles": [
+              "apps/form-demo/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/form-demo/src/environments/environment.ts",
+                  "with": "apps/form-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "form-demo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "form-demo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "form-demo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/form-demo/src/test.ts",
+            "polyfills": "apps/form-demo/src/polyfills.ts",
+            "tsConfig": "apps/form-demo/tsconfig.spec.json",
+            "karmaConfig": "apps/form-demo/karma.conf.js",
+            "styles": [
+              "apps/form-demo/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "apps/form-demo/src/favicon.ico",
+              "apps/form-demo/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/form-demo/tsconfig.app.json",
+              "apps/form-demo/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ui-demo": {
+      "root": "apps/ui-demo/",
+      "sourceRoot": "apps/ui-demo/src",
+      "projectType": "application",
+      "prefix": "aurora-ngx",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/ui-demo",
+            "index": "apps/ui-demo/src/index.html",
+            "main": "apps/ui-demo/src/main.ts",
+            "polyfills": "apps/ui-demo/src/polyfills.ts",
+            "tsConfig": "apps/ui-demo/tsconfig.app.json",
+            "assets": [
+              "apps/ui-demo/src/favicon.ico",
+              "apps/ui-demo/src/assets"
+            ],
+            "styles": [
+              "apps/ui-demo/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ui-demo/src/environments/environment.ts",
+                  "with": "apps/ui-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ui-demo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ui-demo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ui-demo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/ui-demo/src/test.ts",
+            "polyfills": "apps/ui-demo/src/polyfills.ts",
+            "tsConfig": "apps/ui-demo/tsconfig.spec.json",
+            "karmaConfig": "apps/ui-demo/karma.conf.js",
+            "styles": [
+              "apps/ui-demo/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "apps/ui-demo/src/favicon.ico",
+              "apps/ui-demo/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/ui-demo/tsconfig.app.json",
+              "apps/ui-demo/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

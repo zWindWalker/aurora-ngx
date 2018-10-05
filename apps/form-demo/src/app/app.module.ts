@@ -4,8 +4,9 @@ import { AppComponent } from './app.component';
 import { NxModule } from '@nrwl/nx';
 import { HttpClientModule } from '@angular/common/http';
 import { InlineSVGModule } from 'ng-inline-svg';
+import { AuroraFormsModule } from '@aurora-ngx/forms';
+import { AuroraUiModule } from '@aurora-ngx/ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CreateProjectModule } from './features/create-project/create-project.module';
 
 
 @NgModule({
@@ -14,9 +15,10 @@ import { CreateProjectModule } from './features/create-project/create-project.mo
     BrowserModule,
     BrowserAnimationsModule,
     NxModule.forRoot(),
+    AuroraUiModule,
+    AuroraFormsModule,
     HttpClientModule,
-    InlineSVGModule.forRoot(),
-    CreateProjectModule
+    InlineSVGModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

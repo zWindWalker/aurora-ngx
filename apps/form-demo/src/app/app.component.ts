@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { AuroraForm } from '@aurora-ngx/forms';
+import { AuroraForm, AuroraFormTemplate } from '@aurora-ngx/forms';
 
 
 @Component({
@@ -108,6 +108,10 @@ export class AppComponent {
     }
   ];
 
+  template_config: AuroraFormTemplate = {
+    area_1: ['username', 'password', 'confirm_password'],
+    area_2: ['email']
+  }
   onSubmit = e => {
     console.log(e)
   }

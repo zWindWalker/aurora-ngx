@@ -2,7 +2,7 @@
     <div class="radio_container">
         <div
                 class="radio_button"
-                (click)="value = option.value"
+                (click)="onClick(option.value)"
                 [class.active]="option.value === value"
         ></div>
         <label>{{option.label}}</label>

@@ -1,7 +1,7 @@
 import { AfterViewInit, Injectable, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
 import _ from 'lodash';
-import { AuroraForm } from './form.model';
+import { AuroraForm, AuroraFormTemplate } from './form.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,7 @@ import { AuroraForm } from './form.model';
 export class FormService implements OnInit, AfterViewInit, OnChanges {
   private form: FormGroup = this.fb.group({});
   private form_config: AuroraForm[];
+  private form_template_config: AuroraFormTemplate;
   private formGrDir: FormGroupDirective;
   private media_type;
 
@@ -27,7 +28,12 @@ export class FormService implements OnInit, AfterViewInit, OnChanges {
     console.log(changes);
   }
 
-  _initializeForm = (config: AuroraForm[], formGrDir: FormGroupDirective, media_type) => {
+  _initializeForm = (
+    config: AuroraForm[],
+    template_config: AuroraFormTemplate,
+    formGrDir: FormGroupDirective,
+    media_type
+  ) => {
 
     _.each(config, control => {
       if (control.type !== 'submit') {
@@ -36,11 +42,13 @@ export class FormService implements OnInit, AfterViewInit, OnChanges {
     });
 
     this.form_config = config;
+    this.form_template_config = template_config;
     this.formGrDir = formGrDir;
     this.media_type = media_type;
 
     return this.form;
   };
+  ///-----------------------------------------------  Get   -----------------------------------------------///
 
   _getSubmittedStatus = () => {
     return this.formGrDir.submitted;
@@ -54,6 +62,16 @@ export class FormService implements OnInit, AfterViewInit, OnChanges {
     return _.find(this.form_config, ['name', control]);
   };
 
+  _getFormConfig = () => {
+    return {
+      config: this.form_config,
+      template_config: this.form_template_config
+    };
+
+  };
+
+  ///-----------------------------------------------  Set   -----------------------------------------------///
+
   _setValue = (control, value) => {
     this.form.get(control).setValue(value);
   };
@@ -64,7 +82,7 @@ export class FormService implements OnInit, AfterViewInit, OnChanges {
 
   _onTouched = control => {
     this.form.get(control).markAsTouched();
-    console.log(this.form.get(control))
+    console.log(this.form.get(control));
   };
 
 

@@ -1,9 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { FormService } from '../form.service';
+import { AbstractControl } from '@angular/forms';
+import { AuroraForm } from '@aurora-ngx/forms';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'form-label',
   template: `
-      <label [for]="label" *ngIf="label">{{label}}</label>
+      <label>{{config?.label}}</label>
   `,
   // language=SCSS
   styles: [`
@@ -14,7 +18,6 @@ import { Component, Input, OnInit } from '@angular/core';
 
       label {
           color: rgba(0, 0, 0, 0.85);
-          display: flex;
           font-size: 1.6rem;
           font-weight: 700;
           position: relative;
@@ -26,12 +29,28 @@ import { Component, Input, OnInit } from '@angular/core';
   `]
 })
 export class FormLabelComponent implements OnInit {
-  @Input() label: any = null;
+  name;
+  config: AuroraForm;
+  viewInit = new Subject();
 
-  constructor() {
+  constructor(
+    private formSvs: FormService,
+    private cd: ChangeDetectorRef
+  ) {
   }
 
   ngOnInit() {
+    this.viewInit.subscribe(() => {
+      this.config = this.formSvs._getControlConfig(this.name);
+    });
   }
+
+
+  initialize = (name) => {
+    this.name = name;
+    this.viewInit.next();
+    this.cd.markForCheck();
+  };
+
 
 }

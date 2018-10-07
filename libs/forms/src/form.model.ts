@@ -10,3 +10,7 @@ export interface AuroraForm {
   options?: Array<{ value: any, label: any }>,
   feedback?: Object
 }
+
+export interface AuroraFormTemplate {
+  [name: string]: Array<string>
+}

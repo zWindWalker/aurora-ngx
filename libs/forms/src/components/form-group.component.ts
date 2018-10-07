@@ -2,12 +2,12 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component,
+  Component, ComponentRef, ContentChild,
   ContentChildren,
-  Host,
+  Host, HostBinding,
   Input,
   OnInit,
-  Optional,
+  Optional, Query,
   QueryList,
   SkipSelf, ViewChild, ViewChildren
 } from '@angular/core';
@@ -20,11 +20,11 @@ import { FormLabelComponent } from './form-label.component';
 @Component({
   selector: 'form-group',
   template: `
-    
+
       <form-label></form-label>
 
       <form-field></form-field>
-    
+
       <!--<form-feedback></form-feedback>-->
       <!--<form-feedback-->
       <!--[control]="control"-->
@@ -33,17 +33,14 @@ import { FormLabelComponent } from './form-label.component';
       <!--[submitted]="submitted"-->
       <!--&gt;</form-feedback>-->
   `,
-  //language=SCSS
   styles: [`
       :host {
           display: grid;
-          grid-template-areas:
-                   "label   field" 
-                   ".              feedback";
+          grid-template-areas: "label   field" ". feedback";
           grid-template-columns: 30% 70%;
           grid-template-rows: 80% 20%;
           margin-bottom: 1rem;
-          
+
           height: auto;
           min-height: 6rem;
       }
@@ -59,7 +56,6 @@ import { FormLabelComponent } from './form-label.component';
       form-feedback {
           grid-area: feedback;
       }
-
   `],
 
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -73,24 +69,23 @@ export class FormGroupComponent implements OnInit, AfterViewInit {
 //   control: AbstractControl;
 
   @Input() name = '';
+
   config: AuroraForm;
-  @ContentChildren('all') contentChildren: QueryList<any>;
-  @ViewChild(FormFieldComponent) formFieldCom: QueryList<FormFieldComponent>;
-  @ViewChild(FormLabelComponent) formLabelCom: QueryList<FormLabelComponent>;
+  @ContentChild(FormFieldComponent) formFieldContent: FormFieldComponent;
+  @ContentChild(FormLabelComponent) formLabelContent: FormLabelComponent;
 
-
+  @ViewChild(FormFieldComponent) formFieldChild: FormFieldComponent;
+  @ViewChild(FormLabelComponent) formLabelChild: FormLabelComponent;
 
   ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
   constructor(
     @Optional() @Host() @SkipSelf()
     private formGroupDirective: FormGroupDirective,
-
     private cd: ChangeDetectorRef
   ) {
   }
 
   ngOnInit() {
-
     // this.control = this.controlContainer.control.get(this.formControlName);
     // this.control.setValidators(get_validators(this.config));
     //
@@ -101,12 +96,19 @@ export class FormGroupComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-
-    // console.log(this.viewChildren.toArray())
-
-    // _.each(this.contentChildren.toArray(), (field: FormFieldComponent) => {
-    //   field.setName(this.name);
-    // });
+    if (this.formFieldContent) {
+      this.formFieldContent.initialize(this.name);
+    }
+    if (this.formFieldChild) {
+      this.formFieldChild.initialize(this.name);
+    }
+    if (this.formLabelContent) {
+      this.formLabelContent.initialize(this.name);
+    }
+    if (this.formLabelChild) {
+      this.formLabelChild.initialize(this.name);
+    }
   }
+
 
 }

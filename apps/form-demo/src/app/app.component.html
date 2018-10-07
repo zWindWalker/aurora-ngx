@@ -1,15 +1,10 @@
-
 <div class="container">
     <aurora-form
             [config]="config"
+            [default_template]="true"
             (submit)="onSubmit($event)"
     >
-        <form-group name="username">
 
-        </form-group>
-        <form-group name="email">
-
-        </form-group>
         <aurora-button
                 type="primary"
                 submit_form

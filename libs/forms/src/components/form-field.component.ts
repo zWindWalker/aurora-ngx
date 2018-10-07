@@ -43,7 +43,7 @@ export class FormFieldComponent implements OnInit, AfterViewInit, OnChanges {
   name;
   submitted: Boolean = false;
   config: AuroraForm;
-  nameChanged = new Subject();
+  viewInit = new Subject();
 
   ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
   constructor(
@@ -53,7 +53,7 @@ export class FormFieldComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngOnInit() {
-    this.nameChanged.subscribe(() => {
+    this.viewInit.subscribe(() => {
       this.control = this.formSvs._getControl(this.name);
       this.config = this.formSvs._getControlConfig(this.name);
       this.submitted = this.formSvs._getSubmittedStatus();
@@ -72,9 +72,9 @@ export class FormFieldComponent implements OnInit, AfterViewInit, OnChanges {
   ///-----------------------------------------------  Main Functions   -----------------------------------------------///
 
 
-  setName = name => {
+  initialize = name => {
     this.name = name;
-    this.nameChanged.next();
+    this.viewInit.next();
     this.cd.markForCheck();
   };
 

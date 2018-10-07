@@ -4,12 +4,20 @@
         (onOk)="nextQuiz()"
         (onCancel)="previousQuiz()"
 >
+    <aurora-form
+            [config]="form_config"
 
-    <ng-container
-            quiz_directive
-            [data]="data"
-            [index]="index"
     >
-    </ng-container>
+
+        <ng-container *ngFor="let name of quiz_formatted_data; let i = index">
+            <form-group
+                    [name]="name"
+                    *ngIf="index === i"
+            >
+            </form-group>
+        </ng-container>
+
+    </aurora-form>
+
 
 </aurora-modal>

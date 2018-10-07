@@ -5,10 +5,13 @@ import {
   Input,
   OnChanges,
   OnDestroy,
-  OnInit,
+  OnInit, TemplateRef,
   ViewContainerRef
 } from '@angular/core';
-import { QuizItemComponent } from '../components/quiz/quiz-item.component';
+
+
+import _ from 'lodash'
+import { FormTemplateComponent } from '@aurora-ngx/forms';
 
 @Directive({
   selector: '[quiz_directive]'
@@ -41,12 +44,16 @@ export class QuizDirective implements OnInit, OnDestroy, OnChanges {
   }
 
   createComponent = () => {
-    const factory = this.resolver.resolveComponentFactory<any>(QuizItemComponent);
+    const factory = this.resolver.resolveComponentFactory<any>(FormTemplateComponent);
 
     this.componentRef = this.container.createComponent(factory);
 
-    this.componentRef.instance.question = this.data[this.index].question;
-    this.componentRef.instance.options = this.data[this.index].options;
+    this.componentRef.instance.name = this.data[this.index];
+   if(this.index !== 0) {
+     this.componentRef.instance.class = 'question'
+   }
+
+    console.log(this.data[this.index])
   };
 
 

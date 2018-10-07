@@ -21,13 +21,14 @@ import { FormFieldComponent } from './components/form-field.component';
 import { FormLabelComponent } from './components/form-label.component';
 import { FormFeedbackComponent } from './components/form-feedback.component';
 import { SubmitDirective } from './directives/submit.directive';
+import { FormTemplateComponent } from './components/form-template.component';
 
 @NgModule({
   declarations: [
     AuroraFormComponent,
     FormGroupComponent,
     FormLabelComponent,
-
+    FormTemplateComponent,
     FormFeedbackComponent,
     FormFieldComponent,
 
@@ -45,7 +46,7 @@ import { SubmitDirective } from './directives/submit.directive';
     FormFieldComponent,
     FormLabelComponent,
     FormFeedbackComponent,
-
+    FormTemplateComponent,
     SubmitDirective
   ],
   entryComponents: [

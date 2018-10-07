@@ -26,4 +26,9 @@ export class AuroraRadioComponent implements OnInit {
 
   ///-----------------------------------------------  Main Functions   -----------------------------------------------///
 
+  onClick = value => {
+    this.value = value;
+    this.change.emit(value)
+  }
+
 }

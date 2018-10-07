@@ -3,10 +3,9 @@ import { RouterModule } from '@angular/router';
 
 import { CreateProjectComponent } from './containers/create-project.component';
 import { SharedModule } from '../../shared/shared.module';
-import { UserInfoComponent } from './components/user-info/user-info.component';
 import { QuizComponent } from './components/quiz/quiz.component';
 import { QuizDirective } from './directives/quiz.directive';
-import { QuizItemComponent } from './components/quiz/quiz-item.component';
+import { FormTemplateComponent } from '@aurora-ngx/forms';
 
 
 @NgModule({
@@ -18,13 +17,12 @@ import { QuizItemComponent } from './components/quiz/quiz-item.component';
   ],
   declarations: [
     CreateProjectComponent,
-    UserInfoComponent,
     QuizComponent,
-    QuizDirective, QuizItemComponent
+    QuizDirective
   ],
   exports: [CreateProjectComponent],
   entryComponents: [
-    QuizItemComponent
+    FormTemplateComponent
   ]
 })
 export class CreateProjectModule {

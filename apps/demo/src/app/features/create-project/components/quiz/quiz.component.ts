@@ -1,4 +1,6 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AuroraForm, AuroraFormTemplate } from '@aurora-ngx/forms';
+import _ from 'lodash';
 
 @Component({
   selector: 'quiz',
@@ -9,6 +11,66 @@ export class QuizComponent implements OnInit {
   ///-----------------------------------------------  Variables   -----------------------------------------------///
   @Input() visible: Boolean;
   @Output() close = new EventEmitter();
+  form_config: AuroraForm[] = [
+    {
+      type: 'input',
+      name: 'name',
+      label: 'Name'
+    },
+    {
+      type: 'input',
+      input_type: 'email',
+      name: 'email',
+      label: 'E-mail'
+    },
+    {
+      type: 'input',
+      input_type: 'number',
+      name: 'mobile',
+      label: 'Mobile'
+    },
+    {
+      type: 'input',
+      name: 'property_name',
+      label: 'Property Name'
+    },
+    {
+      type: 'input',
+      name: 'city',
+      label: 'City'
+    },
+    {
+      type: 'input',
+      name: 'post_code',
+      label: 'Post code'
+    },
+    {
+      name: 'question_1',
+      type: 'radio',
+      label: 'What are you looking for',
+      options: [
+        { label: 'Kitchen', value: 'kitchen' },
+        { label: 'Full home interior', value: 'full_home_interior' }
+      ]
+    },
+    {
+      name: 'question_2',
+      type: 'radio',
+      label: 'Are you looking to design a new home or existing',
+      options: [
+        { label: 'New', value: 'new' },
+        { label: 'Existing', value: 'existing' }
+      ]
+    }
+  ];
+
+  user_info_template = ['name', 'email', 'mobile', 'property_name', 'city', 'city', 'post_code'];
+  quiz_template = _.compact(_.map(this.form_config, item => {
+    return (_.startsWith(item.name, 'question')) ? item.name : null;
+  }));
+
+  form_template_config: AuroraFormTemplate = {};
+  quiz_formatted_data
 
   index = 0;
   data = [
@@ -78,6 +140,15 @@ export class QuizComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.form_template_config.user_info = this.user_info_template;
+
+    _.each(this.quiz_template, item => {
+      this.form_template_config[item] = [item];
+    });
+
+    this.quiz_formatted_data = _.keys(this.form_template_config)
+    console.log(this.quiz_formatted_data)
   }
 
 

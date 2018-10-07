@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-project.component.scss']
 })
 export class CreateProjectComponent implements OnInit {
-  user_info_visible: Boolean = false;
   quiz_visible: Boolean = false;
 
   constructor() {

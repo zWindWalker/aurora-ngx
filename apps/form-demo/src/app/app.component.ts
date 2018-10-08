@@ -6,7 +6,6 @@ import { AuroraForm, AuroraFormTemplate } from '@aurora-ngx/forms';
   selector: 'aurora-ngx-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  encapsulation: ViewEncapsulation.None
 
 })
 export class AppComponent {

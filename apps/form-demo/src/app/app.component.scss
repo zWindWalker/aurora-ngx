@@ -1,4 +1,4 @@
-@import "global";
+
 
 .container {
     display: flex;
@@ -12,15 +12,6 @@
 aurora-form {
     width: 60%;
     form-group {
-
+        background-color: red;
     }
-}
-
-aurora-radio {
-    width: 20rem!important;
-    height: 20rem!important;
-}
-
-aurora-button {
-    width: 30rem;
 }

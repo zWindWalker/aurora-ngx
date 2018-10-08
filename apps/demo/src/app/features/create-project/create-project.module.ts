@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { CreateProjectComponent } from './containers/create-project.component';
 import { SharedModule } from '../../shared/shared.module';
 import { QuizComponent } from './components/quiz/quiz.component';
-import { QuizDirective } from './directives/quiz.directive';
 import { FormTemplateComponent } from '@aurora-ngx/forms';
 
 
@@ -17,13 +16,9 @@ import { FormTemplateComponent } from '@aurora-ngx/forms';
   ],
   declarations: [
     CreateProjectComponent,
-    QuizComponent,
-    QuizDirective
+    QuizComponent
   ],
-  exports: [CreateProjectComponent],
-  entryComponents: [
-    FormTemplateComponent
-  ]
+  exports: [CreateProjectComponent]
 })
 export class CreateProjectModule {
 }

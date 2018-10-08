@@ -55,6 +55,7 @@ export class FormFieldComponent implements OnInit, AfterViewInit, OnChanges, OnD
   }
 
   ngOnInit() {
+
     this.viewInit.pipe(untilDestroyed(this)).subscribe(() => {
       this.control = this.formSvs._getControl(this.name);
       this.config = this.formSvs._getControlConfig(this.name);

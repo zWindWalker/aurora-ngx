@@ -9,7 +9,8 @@ import {
   OnInit,
   Optional,
   SkipSelf,
-  ViewChild
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { FormGroupDirective } from '@angular/forms';
 import { FormFieldComponent } from './form-field.component';
@@ -26,14 +27,8 @@ import { FormFeedbackComponent } from './form-feedback.component';
       <form-field></form-field>
 
       <form-feedback></form-feedback>
-      <!--<form-feedback></form-feedback>-->
-      <!--<form-feedback-->
-      <!--[control]="control"-->
-      <!--[name]="config.name"-->
-      <!--[feedback]="config?.feedback"-->
-      <!--[submitted]="submitted"-->
-      <!--&gt;</form-feedback>-->
   `,
+
   styles: [`
       :host {
           display: grid;
@@ -58,17 +53,11 @@ import { FormFeedbackComponent } from './form-feedback.component';
           grid-area: feedback;
       }
   `],
-
+  encapsulation: ViewEncapsulation.ShadowDom,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormGroupComponent implements OnInit, AfterViewInit {
 ///-----------------------------------------------  Variables   -----------------------------------------------///
-//   @Input() config: any = null;
-//   @Input() formControlName: string;
-//   @Input() submit: EventEmitter<any>;
-//   submitted: Boolean = false;
-//   control: AbstractControl;
-
   @Input() name = '';
 
   config: AuroraForm;

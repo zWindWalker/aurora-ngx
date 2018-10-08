@@ -33,7 +33,7 @@ export class FormService implements OnInit, AfterViewInit, OnChanges, OnDestroy 
 
 
   ngOnDestroy(): void {
-    console.log("dsklfjkl")
+
   }
 
   _initializeForm = (

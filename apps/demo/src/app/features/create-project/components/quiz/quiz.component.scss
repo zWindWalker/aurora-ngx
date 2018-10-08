@@ -1,13 +1,9 @@
 aurora-form {
-    background-color: red;
-    form-template {
-        background-color: blue;
+    form-group.question {
 
-    }
-    form-group {
-        background-color: red;
-        //grid-template-areas: "label" "field";
-        //grid-template-columns: 1fr;
-        //grid-template-rows: 1fr;
+        grid-template-areas: "label" "field" "feedback";
+        grid-template-rows: 40% 40% 20%;
+        grid-template-columns: 1fr;
+
     }
 }

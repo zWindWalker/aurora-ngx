@@ -51,7 +51,9 @@ export class DynamicFieldDirective implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnInit(): void {
-    this.createComponent();
+    if(this.config.type) {
+      this.createComponent();
+    }
   }
 
   ngOnChanges() {

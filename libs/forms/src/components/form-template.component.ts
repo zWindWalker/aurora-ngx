@@ -18,7 +18,7 @@ import { AuroraForm } from '../form.model';
       <ng-container
               *ngFor="let group of data"
       >
-          <form-group [name]="group.name" [class]="class">
+          <form-group [name]="group.name" [class]="class" [id]="id">
           </form-group>
       </ng-container>
   `,
@@ -28,8 +28,9 @@ export class FormTemplateComponent implements OnInit, AfterViewChecked, OnChange
   ///-----------------------------------------------  Variables   -----------------------------------------------///
 
   data: AuroraForm[] = [];
-  @Input() name;
+  @Input() name = '';
   @Input() class
+  @Input() id
 
   ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
   constructor(
@@ -54,13 +55,12 @@ export class FormTemplateComponent implements OnInit, AfterViewChecked, OnChange
           this.data = _.concat(this.data, tmp)
         });
       }
-
-
     }
 
     else {
       const template = form.template_config[this.name];
       this.data = _.filter(form.config, item => template.includes(item.name));
+
     }
     this.cd.detectChanges();
   }

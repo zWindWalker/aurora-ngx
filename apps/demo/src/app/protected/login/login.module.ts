@@ -1,13 +1,13 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 
-import {LoginComponent} from './containers/login.component';
-import {RouterModule} from '@angular/router';
-import {SharedModule} from '../../shared/shared.module';
+import { LoginComponent } from './containers/login.component';
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
     imports: [
-        SharedModule,
+      SharedModule,
         RouterModule.forChild([{
             path: '', component: LoginComponent
         }])

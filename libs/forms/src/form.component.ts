@@ -6,18 +6,20 @@ import {
   ContentChildren,
   EventEmitter,
   Injectable,
-  Input, OnDestroy,
+  Input,
+  OnDestroy,
   OnInit,
   Output,
   QueryList,
-  ViewChild
+  ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
 import { FormService } from './form.service';
-import { FormGroupComponent } from './components/form-group.component';
+
 import { FormTemplateComponent } from './components/form-template.component';
 import { AuroraForm, AuroraFormTemplate } from './form.model';
 import { untilDestroyed } from './utils/take-until-destroy';
+import { FormGroupComponent } from './components/form-group.component';
 
 
 @Component({
@@ -31,6 +33,7 @@ import { untilDestroyed } from './utils/take-until-destroy';
     </ng-container>
       
   `,
+
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 

@@ -1,16 +1,16 @@
 import {
   AfterViewChecked,
-  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component, Input,
+  Component,
+  Input,
   OnChanges,
   OnInit,
   SimpleChanges
 } from '@angular/core';
 import { FormService } from '../form.service';
-import { AuroraForm } from '@aurora-ngx/forms';
 import _ from 'lodash';
+import { AuroraForm } from '../form.model';
 
 @Component({
   selector: 'form-template',

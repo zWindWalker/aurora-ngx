@@ -6,15 +6,15 @@
 >
     <aurora-form
             [config]="form_config"
-
+            [template_config]="form_template_config"
     >
 
         <ng-container *ngFor="let name of quiz_formatted_data; let i = index">
-            <form-group
+            <form-template
                     [name]="name"
                     *ngIf="index === i"
             >
-            </form-group>
+            </form-template>
         </ng-container>
 
     </aurora-form>

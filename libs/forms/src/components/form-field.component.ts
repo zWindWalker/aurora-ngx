@@ -4,6 +4,7 @@ import {
   ChangeDetectorRef,
   Component,
   OnChanges,
+  OnDestroy,
   OnInit,
   SimpleChanges
 } from '@angular/core';
@@ -11,6 +12,7 @@ import { AbstractControl } from '@angular/forms';
 import { FormService } from '../form.service';
 import { Subject } from 'rxjs';
 import { AuroraForm } from '../form.model';
+import { untilDestroyed } from '../utils/take-until-destroy';
 
 
 @Component({
@@ -36,7 +38,7 @@ import { AuroraForm } from '../form.model';
   `],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormFieldComponent implements OnInit, AfterViewInit, OnChanges {
+export class FormFieldComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
   ///-----------------------------------------------  Variables   -----------------------------------------------///
 
   control: AbstractControl;
@@ -53,11 +55,17 @@ export class FormFieldComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngOnInit() {
-    this.viewInit.subscribe(() => {
+    this.viewInit.pipe(untilDestroyed(this)).subscribe(() => {
       this.control = this.formSvs._getControl(this.name);
       this.config = this.formSvs._getControlConfig(this.name);
       this.submitted = this.formSvs._getSubmittedStatus();
     });
+
+    this.formSvs.state_change.pipe(untilDestroyed(this)).subscribe(() => {
+      this.submitted = this.formSvs._getSubmittedStatus();
+      this.cd.detectChanges();
+    });
+
   }
 
   ngAfterViewInit(): void {
@@ -67,6 +75,11 @@ export class FormFieldComponent implements OnInit, AfterViewInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
 
   }
+
+  ngOnDestroy(): void {
+    this.cd.detach();
+  }
+
 
 
   ///-----------------------------------------------  Main Functions   -----------------------------------------------///
@@ -85,5 +98,6 @@ export class FormFieldComponent implements OnInit, AfterViewInit, OnChanges {
   onTouched = () => {
     this.formSvs._onTouched(this.name);
   };
+
 
 }

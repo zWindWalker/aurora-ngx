@@ -1,12 +1,9 @@
 {
   "name": "@aurora-ngx/ui",
-  "version": "1.0.13",
-  "dependencies": {
-    "moment": "^2.22.2",
-    "@aurora-ngx/animations": "^0.0.6"
-  },
+  "version": "1.0.15",
   "peerDependencies": {
     "moment": "^2.22.2",
+    "@aurora-ngx/animations": "^1.0.2",
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
   }

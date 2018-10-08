@@ -1,20 +1,23 @@
 import {
   AfterViewChecked,
   AfterViewInit,
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
   Component,
   ContentChildren,
   EventEmitter,
-  Input,
+  Injectable,
+  Input, OnDestroy,
   OnInit,
-  Output, QueryList, TemplateRef, ViewChild,
-  ViewChildren, ViewContainerRef
+  Output,
+  QueryList,
+  ViewChild
 } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
 import { FormService } from './form.service';
 import { FormGroupComponent } from './components/form-group.component';
-import { AuroraForm, AuroraFormTemplate } from '@aurora-ngx/forms';
 import { FormTemplateComponent } from './components/form-template.component';
+import { AuroraForm, AuroraFormTemplate } from './form.model';
+import { untilDestroyed } from './utils/take-until-destroy';
 
 
 @Component({
@@ -30,7 +33,9 @@ import { FormTemplateComponent } from './components/form-template.component';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AuroraFormComponent implements OnInit, AfterViewChecked {
+
+@Injectable()
+export class AuroraFormComponent implements OnInit, AfterViewInit, AfterViewChecked, OnDestroy {
 
   form: FormGroup = this.fb.group({});
   @Input() default_template: Boolean = false;
@@ -51,16 +56,25 @@ export class AuroraFormComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     this.form = this.formSvs._initializeForm(this.config, this.template_config, this.formGrDir, this.media_type);
-    this.formGrDir.ngSubmit.subscribe(data => {
+
+    this.formGrDir.ngSubmit.pipe(untilDestroyed(this)).subscribe(data => {
       if (data instanceof Event) {
         data.stopPropagation();
-      } else {
+      } else if (this.form.valid) {
         this.submit.emit(data);
       }
     })
   }
 
+  ngAfterViewInit(): void {
+
+  }
+
   ngAfterViewChecked(): void {
+
+  }
+
+  ngOnDestroy(): void {
   }
 
 }

@@ -224,17 +224,17 @@
   dependencies:
     tslib "^1.9.0"
 
-"@aurora-ngx/animations@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@aurora-ngx/animations/-/animations-1.0.0.tgz#a99b1efba6b444effcaeaf918b13cbcecdf1e347"
-  integrity sha512-gt3+AreLf1J2j3+LtavBLPyQXpLW6a9rKHlDdi73WN9X73o7bmaKC99aJdAyhB0Kd/EljBlCeAAIh56EYU281A==
+"@aurora-ngx/animations@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@aurora-ngx/animations/-/animations-1.0.2.tgz#38a47179d281df9ea0af1bd7e19603ef422b0ac1"
+  integrity sha512-rFSDHP2+L5FsQWpi4KQf2E7rHmAd6rLVqVid88TuMWEo7CJhviuNkTwVHwgTjhUxLlOn0ecM4wW0V9YAksvcHA==
   dependencies:
     tslib "^1.9.0"
 
-"@aurora-ngx/forms@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@aurora-ngx/forms/-/forms-1.0.4.tgz#388047af6f9fa9854621911c6ee1245fe049be77"
-  integrity sha512-c4pKGtuuntSrclK1wgadfGT7Sgr7CgWzECYgIGiRz1Wag8KsxBAkTciGJzTZAA5okVPqzKBEjPng5MtjncHdNw==
+"@aurora-ngx/forms@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@aurora-ngx/forms/-/forms-1.0.6.tgz#481d237e3f36640263c88c96d59c0a38063f531c"
+  integrity sha512-XxrKiU76gQHGrQWyBSY2HcZnohGSrAitxmi9R3AVfHrCJkogHnD7bN2m40lipMeBOGI81ECV2zXUoz12AmHWzg==
   dependencies:
     tslib "^1.9.0"
 
@@ -243,10 +243,10 @@
   resolved "https://registry.yarnpkg.com/@aurora-ngx/schematics/-/schematics-1.0.9.tgz#6bb16c10234604a3780be1aaff26518ea7d04aa5"
   integrity sha512-v3UTt+Ysma0834eWsRIVLAphaLL2rTfxV93khGNxmHWP8fmHQu/gn+7oiZ+Ma7Ktl5F18LDRCP27mrK6tnZl2A==
 
-"@aurora-ngx/ui@^1.0.12":
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/@aurora-ngx/ui/-/ui-1.0.12.tgz#a9d4f443569cb479ea42b4e266028ef4762a795f"
-  integrity sha512-zXQKskQoK+VQ4hCH94cZyIzhlMXkAEOam2eJN/NSQfIbqfFluBLutNytc54gIdYRYt6pDanW75bjrDMgEjlMWg==
+"@aurora-ngx/ui@^1.0.13":
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/@aurora-ngx/ui/-/ui-1.0.13.tgz#17af90a5518a73c844fc525b69e7ae3aae48729e"
+  integrity sha512-Ha7vHuLtH41NhZb39aln5qqoZma4u1TLLnTd4CGxexN1C8IWOi/XJqTvD5DRBHdQAEtOBczCNXy5w9S0ZR22Cw==
   dependencies:
     "@aurora-ngx/animations" "^0.0.6"
     moment "^2.22.2"

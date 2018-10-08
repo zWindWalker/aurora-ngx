@@ -1,17 +1,20 @@
-import { AfterViewInit, Injectable, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Injectable, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
 import _ from 'lodash';
 import { AuroraForm, AuroraFormTemplate } from './form.model';
+import { Subject } from 'rxjs';
+import { get_validators } from './utils/validators';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class FormService implements OnInit, AfterViewInit, OnChanges {
+
+@Injectable()
+
+export class FormService implements OnInit, AfterViewInit, OnChanges, OnDestroy {
   private form: FormGroup = this.fb.group({});
   private form_config: AuroraForm[];
   private form_template_config: AuroraFormTemplate;
   private formGrDir: FormGroupDirective;
   private media_type;
+  public state_change = new Subject();
 
   constructor(private fb: FormBuilder) {
   }
@@ -25,7 +28,12 @@ export class FormService implements OnInit, AfterViewInit, OnChanges {
 
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
+
+  }
+
+
+  ngOnDestroy(): void {
+    console.log("dsklfjkl")
   }
 
   _initializeForm = (
@@ -37,7 +45,7 @@ export class FormService implements OnInit, AfterViewInit, OnChanges {
 
     _.each(config, control => {
       if (control.type !== 'submit') {
-        this.form.addControl(control.name, this.fb.control(control.value));
+        this.form.addControl(control.name, this.fb.control(control.value, get_validators(control)));
       }
     });
 
@@ -77,12 +85,13 @@ export class FormService implements OnInit, AfterViewInit, OnChanges {
   };
 
   _submit = () => {
-    this.formGrDir.ngSubmit.emit(this.formattedFormData());
+    this.formGrDir.onSubmit(this.formattedFormData());
+    this.state_change.next();
   };
 
   _onTouched = control => {
     this.form.get(control).markAsTouched();
-    console.log(this.form.get(control));
+    this.state_change.next();
   };
 
 
@@ -113,5 +122,6 @@ export class FormService implements OnInit, AfterViewInit, OnChanges {
 
 
   };
+
 
 }

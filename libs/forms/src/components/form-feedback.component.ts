@@ -1,11 +1,15 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import _ from 'lodash';
+import { AuroraForm } from '../form.model';
+import { Subject } from 'rxjs';
+import { FormService } from '../form.service';
+import { untilDestroyed } from '../utils/take-until-destroy';
 
 @Component({
   selector: 'form-feedback',
   template: `
-      <ng-container *ngIf="control.invalid && (control.dirty || control.touched || submitted)">
+      <ng-container *ngIf="control?.invalid && (control?.dirty || control?.touched || submitted)">
           <ng-container *ngFor="let err of error_list">
               <p>{{err}}</p>
           </ng-container>
@@ -27,47 +31,62 @@ import _ from 'lodash';
       }
   `]
 })
-export class FormFeedbackComponent implements OnInit, OnChanges {
+export class FormFeedbackComponent implements OnInit, OnChanges, OnDestroy {
   ///-----------------------------------------------  Variables   -----------------------------------------------///
-  @Input() control: AbstractControl;
-  @Input() name = '';
-  @Input() feedback;
-  @Input() submitted: Boolean = false;
-
+  control: AbstractControl;
+  submitted: Boolean = false;
+  name;
+  config: AuroraForm;
+  viewInit = new Subject();
   error_list = [];
 
   ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
-  constructor() {
+  constructor(
+    private formSvs: FormService,
+    private cd: ChangeDetectorRef
+  ) {
   }
 
   ngOnInit() {
 
-    this.control.statusChanges.subscribe(status => {
+    this.viewInit.subscribe(() => {
+      this.control = this.formSvs._getControl(this.name);
+      this.config = this.formSvs._getControlConfig(this.name);
+      this.submitted = this.formSvs._getSubmittedStatus();
 
       this.error_list = _.map(this.control.errors, (value, key) => this.generate_feedback(key));
+
+      this.control.statusChanges.subscribe(status => {
+        this.error_list = _.map(this.control.errors, (value, key) => this.generate_feedback(key));
+      });
     });
-    this.error_list = _.map(this.control.errors, (value, key) => this.generate_feedback(key));
+
+    this.formSvs.state_change.pipe(untilDestroyed(this)).subscribe(() => {
+      this.submitted = this.formSvs._getSubmittedStatus();
+      this.cd.detectChanges();
+    });
+
   }
 
 
   generate_feedback = validator => {
 
     const feedback = {
-      ...this.feedback
-    };
+      ...this.config.feedback
+    }
 
     switch (validator) {
       case 'required':
         if (this.name === 'confirm_password') {
-          return feedback.required || `You need to confirm password`;
+          return feedback['required'] || `You need to confirm password`;
         }
-        return feedback.required || `${_.startCase(this.name)}  is required`;
+        return feedback['required'] || `${_.startCase(this.name)}  is required`;
       case 'confirm_password':
-        return feedback.confirm_password || `Password not match`;
+        return feedback['confirm_password'] || `Password not match`;
       case 'agreement':
-        return feedback.agreement || `You must agree to the terms and conditions before continuing!`;
+        return feedback['agreement'] || `You must agree to the terms and conditions before continuing!`;
       case 'email' :
-        return feedback.email || `Invalid email address. Valid e-mail can contain only latin letters, numbers, '@' and '.'`;
+        return feedback['email'] || `Invalid email address. Valid e-mail can contain only latin letters, numbers, '@' and '.'`;
     }
   };
 
@@ -75,6 +94,19 @@ export class FormFeedbackComponent implements OnInit, OnChanges {
 
   }
 
+
+  ngOnDestroy(): void {
+  }
+
   ///-----------------------------------------------  Main Functions   -----------------------------------------------///
+
+
+  initialize = (name) => {
+    this.name = name;
+    this.viewInit.next();
+    this.cd.markForCheck();
+  };
+
+
 
 }

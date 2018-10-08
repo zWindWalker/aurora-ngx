@@ -1,8 +1,7 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormService } from '../form.service';
-import { AbstractControl } from '@angular/forms';
-import { AuroraForm } from '@aurora-ngx/forms';
 import { Subject } from 'rxjs';
+import { AuroraForm } from '../form.model';
 
 @Component({
   selector: 'form-label',

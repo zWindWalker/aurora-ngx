@@ -1,5 +1,5 @@
 export interface AuroraForm {
-  type: string,
+  type?: string,
   name: string,
   label?: string,
   value?: any,

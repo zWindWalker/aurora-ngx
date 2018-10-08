@@ -1,0 +1,12 @@
+:host {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    width: 100%;
+    a {
+        color: black;
+        font-size: 2rem;
+        &:hover {
+            color:  cornflowerblue;
+        }
+    }
+}

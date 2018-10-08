@@ -2,20 +2,20 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component, ComponentRef, ContentChild,
-  ContentChildren,
-  Host, HostBinding,
+  Component,
+  ContentChild,
+  Host,
   Input,
   OnInit,
-  Optional, Query,
-  QueryList,
-  SkipSelf, ViewChild, ViewChildren
+  Optional,
+  SkipSelf,
+  ViewChild
 } from '@angular/core';
 import { FormGroupDirective } from '@angular/forms';
 import { FormFieldComponent } from './form-field.component';
-import _ from 'lodash';
-import { AuroraForm } from '@aurora-ngx/forms';
 import { FormLabelComponent } from './form-label.component';
+import { AuroraForm } from '../form.model';
+import { FormFeedbackComponent } from './form-feedback.component';
 
 @Component({
   selector: 'form-group',
@@ -25,6 +25,7 @@ import { FormLabelComponent } from './form-label.component';
 
       <form-field></form-field>
 
+      <form-feedback></form-feedback>
       <!--<form-feedback></form-feedback>-->
       <!--<form-feedback-->
       <!--[control]="control"-->
@@ -73,9 +74,11 @@ export class FormGroupComponent implements OnInit, AfterViewInit {
   config: AuroraForm;
   @ContentChild(FormFieldComponent) formFieldContent: FormFieldComponent;
   @ContentChild(FormLabelComponent) formLabelContent: FormLabelComponent;
+  @ContentChild(FormFeedbackComponent) formFeedbackContent: FormFeedbackComponent;
 
   @ViewChild(FormFieldComponent) formFieldChild: FormFieldComponent;
   @ViewChild(FormLabelComponent) formLabelChild: FormLabelComponent;
+  @ViewChild(FormFeedbackComponent) formFeedbackChild: FormFeedbackComponent;
 
   ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
   constructor(
@@ -107,6 +110,15 @@ export class FormGroupComponent implements OnInit, AfterViewInit {
     }
     if (this.formLabelChild) {
       this.formLabelChild.initialize(this.name);
+    }
+
+    if (this.formFeedbackContent) {
+      this.formFeedbackContent.initialize(this.name);
+
+    }
+    if (this.formFeedbackChild) {
+      this.formFeedbackChild.initialize(this.name);
+
     }
   }
 

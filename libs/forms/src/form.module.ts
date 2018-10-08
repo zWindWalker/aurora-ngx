@@ -22,6 +22,7 @@ import { FormLabelComponent } from './components/form-label.component';
 import { FormFeedbackComponent } from './components/form-feedback.component';
 import { SubmitDirective } from './directives/submit.directive';
 import { FormTemplateComponent } from './components/form-template.component';
+import { FormService } from './form.service';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FormTemplateComponent } from './components/form-template.component';
 
     DynamicFieldDirective, SubmitDirective
   ],
+  providers: [FormService],
   imports: [
 
     CommonModule,

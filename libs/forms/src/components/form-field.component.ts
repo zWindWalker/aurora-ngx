@@ -1,12 +1,12 @@
 import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  SimpleChanges
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnChanges,
+    OnDestroy,
+    OnInit,
+    SimpleChanges, ViewEncapsulation
 } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { FormService } from '../form.service';

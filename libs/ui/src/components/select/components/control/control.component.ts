@@ -1,5 +1,5 @@
-import { Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
-import { rotate_trigger } from '@aurora-ngx/animations';
+import {Component, ElementRef, HostBinding, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {rotate_trigger} from '@aurora-ngx/animations';
 
 
 @Component({

@@ -1,4 +1,4 @@
-
+@import "global";
 
 .container {
     display: flex;
@@ -11,7 +11,4 @@
 
 aurora-form {
     width: 60%;
-    form-group {
-        background-color: red;
-    }
 }

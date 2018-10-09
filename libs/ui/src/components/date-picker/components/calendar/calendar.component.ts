@@ -1,6 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import  DateUtils from '../../utils/DateUtils';
-import  Helpers from '../../utils/Helpers';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import DateUtils from '../../utils/DateUtils';
+import Helpers from '../../utils/Helpers';
 
 @Component({
   selector: 'calendar',

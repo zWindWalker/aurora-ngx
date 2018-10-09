@@ -1,12 +1,12 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { AuroraForm, AuroraFormTemplate } from '@aurora-ngx/forms';
+import {Component, ViewEncapsulation} from '@angular/core';
+import {AuroraForm, AuroraFormTemplate} from '@aurora-ngx/forms';
 
 
 @Component({
   selector: 'aurora-ngx-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-
+    encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
   config: AuroraForm[] = [

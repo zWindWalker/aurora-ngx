@@ -1,6 +1,6 @@
-import { Component, HostBinding, HostListener, Input, OnInit } from '@angular/core';
+import {Component, HostBinding, HostListener, Input, OnInit} from '@angular/core';
 import DateUtils from '../../../utils/DateUtils';
-import { DatePickerService } from '../../../containers/date-picker.service';
+import {DatePickerService} from '../../../containers/date-picker.service';
 
 @Component({
   selector: 'date-cell',
@@ -13,7 +13,6 @@ export class DateCellComponent implements OnInit {
   @Input() currentMonth;
 
   @Input() day;
-  @Input() selectedDate;
 
   @HostBinding('class.today') today: Boolean;
   @HostBinding('class.outside') outside: Boolean;
@@ -27,14 +26,18 @@ export class DateCellComponent implements OnInit {
     }
   }
 
-  constructor(private dpSvs: DatePickerService) {
+    constructor(
+        private dpSvs: DatePickerService
+    ) {
   }
 
   ngOnInit() {
     this.today = DateUtils.isSameDay(this.day, new Date());
     this.outside = this.day.getMonth() !== this.currentMonth.getMonth();
-    this.past_day = DateUtils.isPastDay(this.day);
-    this.is_selected = DateUtils.isSameDay(this.day, this.selectedDate);
+    // this.past_day = DateUtils.isPastDay(this.day);
+
+
+      this.dpSvs.change_selected_date.subscribe(selected_date => this.is_selected = DateUtils.isSameDay(this.day, selected_date))
   }
 
 

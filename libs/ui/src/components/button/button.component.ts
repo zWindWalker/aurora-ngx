@@ -1,5 +1,5 @@
-import { Component, HostBinding, HostListener, Input, OnInit } from '@angular/core';
-import { click } from '../../animations/click.animations';
+import {Component, HostBinding, HostListener, Input, OnInit} from '@angular/core';
+import {click} from '../../animations/click.animations';
 
 @Component({
   selector: 'aurora-button',

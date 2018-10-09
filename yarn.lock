@@ -217,10 +217,24 @@
   dependencies:
     tslib "^1.9.0"
 
+"@aurora-ngx/animations@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@aurora-ngx/animations/-/animations-1.0.2.tgz#38a47179d281df9ea0af1bd7e19603ef422b0ac1"
+  integrity sha512-rFSDHP2+L5FsQWpi4KQf2E7rHmAd6rLVqVid88TuMWEo7CJhviuNkTwVHwgTjhUxLlOn0ecM4wW0V9YAksvcHA==
+  dependencies:
+    tslib "^1.9.0"
+
 "@aurora-ngx/schematics@^1.0.9":
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/@aurora-ngx/schematics/-/schematics-1.0.9.tgz#6bb16c10234604a3780be1aaff26518ea7d04aa5"
   integrity sha512-v3UTt+Ysma0834eWsRIVLAphaLL2rTfxV93khGNxmHWP8fmHQu/gn+7oiZ+Ma7Ktl5F18LDRCP27mrK6tnZl2A==
+
+"@aurora-ngx/ui@^1.0.14":
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/@aurora-ngx/ui/-/ui-1.0.14.tgz#3c6d233233563fea2e13d8cf75050be8185fd579"
+  integrity sha512-yfgQGUFsKSfzE212OHtToSvbKiBEHnDf0kzHKF/xiuaKJmb1X7Vqtoesk/g9NKzPzMDm90GA2jYbMbYXCqp5Jw==
+  dependencies:
+    tslib "^1.9.0"
 
 "@fortawesome/fontawesome-free@^5.3.1":
   version "5.3.1"

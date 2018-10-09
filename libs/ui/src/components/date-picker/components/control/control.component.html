@@ -1,6 +1,19 @@
 <div id="value">
-    <span *ngIf="!formatted_date">Please select</span>
-    <span *ngIf="formatted_date">{{formatted_date}}</span>
+    <!--<span *ngIf="!formatted_date">Please select</span>-->
+    <input
+            type="number"
+    >
+    /
+    <input
+            type="number"
+            min="1"
+            max="12"
+    >
+    /
+    <input
+            type="number"
+    >
+    <!--<span *ngIf="formatted_date">{{formatted_date}}</span>-->
 </div>
 
 <div id="icon" [@rotate]="{

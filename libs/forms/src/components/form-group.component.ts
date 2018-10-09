@@ -1,22 +1,22 @@
 import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ContentChild,
-  Host,
-  Input,
-  OnInit,
-  Optional,
-  SkipSelf,
-  ViewChild,
-  ViewEncapsulation
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    ContentChild,
+    Host,
+    Input,
+    OnInit,
+    Optional,
+    SkipSelf,
+    ViewChild,
+    ViewEncapsulation
 } from '@angular/core';
-import { FormGroupDirective } from '@angular/forms';
-import { FormFieldComponent } from './form-field.component';
-import { FormLabelComponent } from './form-label.component';
-import { AuroraForm } from '../form.model';
-import { FormFeedbackComponent } from './form-feedback.component';
+import {FormGroupDirective} from '@angular/forms';
+import {FormFieldComponent} from './form-field.component';
+import {FormLabelComponent} from './form-label.component';
+import {AuroraForm} from '../form.model';
+import {FormFeedbackComponent} from './form-feedback.component';
 
 @Component({
   selector: 'form-group',
@@ -29,18 +29,7 @@ import { FormFeedbackComponent } from './form-feedback.component';
       <form-feedback></form-feedback>
   `,
 
-  styles: [`
-      :host {
-          display: grid;
-          grid-template-areas: "label   field" ". feedback";
-          grid-template-columns: 30% 70%;
-          grid-template-rows: 80% 20%;
-          margin-bottom: 1rem;
-
-          height: auto;
-          min-height: 6rem;
-      }
-
+  styles: [`      
       form-label {
           grid-area: label;
       }
@@ -53,7 +42,6 @@ import { FormFeedbackComponent } from './form-feedback.component';
           grid-area: feedback;
       }
   `],
-  encapsulation: ViewEncapsulation.ShadowDom,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormGroupComponent implements OnInit, AfterViewInit {

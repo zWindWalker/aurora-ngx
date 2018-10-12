@@ -1,8 +1,8 @@
 <div id="value">
     <!--<span *ngIf="!formatted_date">Please select</span>-->
-    <input
-            type="number"
-    >
+    <aurora-input
+            [range]="[1, 31]"
+    ></aurora-input>
     /
     <input
             type="number"

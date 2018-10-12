@@ -1,0 +1,10 @@
+:host {
+    display: flex;
+    flex: 1;
+    input {
+        border: none;
+        display: flex;
+        flex: 1;
+        outline: none;
+    }
+}

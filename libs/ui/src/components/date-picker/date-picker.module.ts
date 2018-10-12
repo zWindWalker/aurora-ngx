@@ -10,6 +10,7 @@ import {WeekDaysComponent} from './components/calendar/week-days/week-days.compo
 import {DateCellComponent} from './components/calendar/month-grid/date_cell.component';
 import {DatePickerService} from './containers/date-picker.service';
 import {ButtonModule} from "../button/button.module";
+import {InputModule} from "../input/input.module";
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import {ButtonModule} from "../button/button.module";
     WeekDaysComponent,
     DateCellComponent,
   ],
-  imports: [CommonModule, ButtonModule],
+  imports: [CommonModule, ButtonModule, InputModule],
   exports: [
     AuroraDatePickerComponent
   ],

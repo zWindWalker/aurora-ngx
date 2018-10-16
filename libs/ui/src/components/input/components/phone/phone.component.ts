@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'aurora-phone',
@@ -8,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class PhoneComponent implements OnInit {
   ///-----------------------------------------------  Variables   -----------------------------------------------///
 
-
+    @Input() name = '';
+    @Input() value: any = '';
+    @Input() invalid;
+    @Input() change: EventEmitter<any>;
+    @Input() blur: EventEmitter<any>;
 
 
   ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///

@@ -9,21 +9,31 @@ import {
     Output, ViewChild
 } from '@angular/core';
 import {TextComponent} from "./components/text/text.component";
-import {InputService} from "./input.service";
 import {NumberComponent} from "./components/number/number.component";
 import {PhoneComponent} from "./components/phone/phone.component";
-import {DateComponent} from "./components/date/date.component";
 
 
 @Component({
     selector: 'aurora-input',
-    templateUrl: './input.component.html',
+    template: `
+        <ng-container
+                dynamic-input
+                [type]="input_type"
+                [name]="name"
+                [value]="value"
+                [invalid]="invalid"
+                [range]="range"
+                [change]="change"
+                [blur]="blur"
+        >
+        </ng-container>
+    `,
     styleUrls: ['./input.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class AuroraInputComponent implements OnInit {
-
+    input_type = ''
     @Input() type = '';
     @Input() name = '';
     @Input() value: any = '';
@@ -35,13 +45,12 @@ export class AuroraInputComponent implements OnInit {
     components = {
         'text': TextComponent,
         'number': NumberComponent,
-        'phone': PhoneComponent,
-        'date': DateComponent
+        'phone': PhoneComponent
     }
 
     component: ComponentRef<any>
 
-    constructor(private inputSvs: InputService) {
+    constructor() {
     }
 
     auto_validator = e => {
@@ -57,16 +66,6 @@ export class AuroraInputComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.inputSvs._setInputConfig(
-            this.type,
-            this.name,
-            this.value,
-            this.change,
-            this.blur,
-            this.invalid,
-            this.range
-        )
-
-        this.component = this.components[this.type]
+        this.input_type = (this.type === ('number' || 'phone')) ? this.type : 'text'
     }
 }

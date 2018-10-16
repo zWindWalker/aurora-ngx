@@ -3,10 +3,9 @@ import {NgModule} from '@angular/core';
 import {AuroraInputComponent} from "./input.component";
 import {NumberComponent} from './components/number/number.component';
 import {PhoneComponent} from './components/phone/phone.component';
-import {DateComponent} from './components/date/date.component';
 import {TextComponent} from './components/text/text.component';
 import {CommonModule} from "@angular/common";
-import {InputService} from "./input.service";
+import {DynamicInputDirective} from "./input.directive";
 
 
 @NgModule({
@@ -14,15 +13,15 @@ import {InputService} from "./input.service";
         AuroraInputComponent,
         NumberComponent,
         PhoneComponent,
-        DateComponent,
         TextComponent,
+
+        DynamicInputDirective
     ],
     imports: [CommonModule],
     exports: [
         AuroraInputComponent
     ],
-    providers: [InputService],
-    entryComponents: [TextComponent]
+    entryComponents: [TextComponent, NumberComponent, PhoneComponent]
 })
 export class InputModule {
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'aurora-number',
@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NumberComponent implements OnInit {
   ///-----------------------------------------------  Variables   -----------------------------------------------///
-
+    @Input() name = '';
+    @Input() value: any = '';
+    @Input() invalid;
+    @Input() change: EventEmitter<any>;
+    @Input() blur: EventEmitter<any>;
 
 
 

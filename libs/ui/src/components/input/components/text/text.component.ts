@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Host, HostListener, Input, OnInit, Optional, Output, SkipSelf} from '@angular/core';
-import {AuroraInputComponent} from "../../input.component";
-import {InputService} from "../../input.service";
+
 
 @Component({
     selector: 'text',
@@ -8,12 +7,17 @@ import {InputService} from "../../input.service";
     styleUrls: ['./text.component.scss']
 })
 export class TextComponent implements OnInit {
-    config
+    @Input() name = '';
+    @Input() value: any = '';
+    @Input() invalid;
+    @Input() change: EventEmitter<any>;
+    @Input() blur: EventEmitter<any>;
 
-    constructor(public inputSvs: InputService) {
+
+    constructor() {
     }
 
     ngOnInit() {
-        this.config = this.inputSvs._getInputConfig()
+
     }
 }

@@ -1,3 +1,7 @@
-<p>number  works!</p>
-
-
+<input
+        [name]="name"
+        [value]="value"
+        [class.invalid]="invalid"
+        (change)=" $event.stopPropagation(); change.emit($event.target.value);"
+        (blur)="blur.emit()"
+>

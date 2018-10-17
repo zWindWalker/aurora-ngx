@@ -1,27 +1,29 @@
-import { Component, OnInit,  Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
-  selector: '<%= dasherize(name) %>',
-  templateUrl: './<%= dasherize(name) %>.component.html',
-  styleUrls: ['./<%= dasherize(name) %>.component.scss']
+    selector: '<%= dasherize(name) %>',
+    templateUrl: './<%= dasherize(name) %>.component.html',
+    styleUrls: ['./<%= dasherize(name) %>.component.scss']
 })
-export class <%= classify(name) %>Component implements OnInit {
+export class <%= classify(name) %>Component implements OnInit, OnDestroy {
 
-  ///-----------------------------------------------  Variables   -----------------------------------------------///
-
-
-
-  ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
-
-  constructor() {
-  }
-
-  ngOnInit() {
-
-  }
+    ///-----------------------------------------------  Variables   -----------------------------------------------///
 
 
+    constructor() {
+    }
 
-  ///-----------------------------------------------  General Functions   -----------------------------------------------///
+    ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
+
+    ngOnInit() {
+
+    }
+
+    ngOnDestroy(): void {
+    }
+
+
+
+    ///-----------------------------------------------  Main Functions  -----------------------------------------------///
 
 }

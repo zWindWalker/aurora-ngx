@@ -1,31 +1,31 @@
-import { Component, OnInit<% if(!!viewEncapsulation) { %>, ViewEncapsulation<% }%><% if(changeDetection !== 'Default') { %>, ChangeDetectionStrategy<% }%> } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
-  selector: '<%= selector %>',<% if(inlineTemplate) { %>
-  template: `
-    <p>
-      <%= dasherize(name) %> works!
-    </p>
-  `,<% } else { %>
-  templateUrl: './<%= dasherize(name) %>.component.html',<% } if(inlineStyle) { %>
-  styles: []<% } else { %>
-  styleUrls: ['./<%= dasherize(name) %>.component.scss']<% } %><% if(!!viewEncapsulation) { %>,
-  encapsulation: ViewEncapsulation.<%= viewEncapsulation %><% } if (changeDetection !== 'Default') { %>,
-  changeDetection: ChangeDetectionStrategy.<%= changeDetection %><% } %>
+    selector: '<%= dasherize(name) %>',
+    templateUrl: './<%= dasherize(name) %>.component.html',
+    styleUrls: ['./<%= dasherize(name) %>.component.scss']
 })
-export class <%= classify(name) %>Component implements OnInit {
-  ///-----------------------------------------------  Variables   -----------------------------------------------///
+export class <%= classify(name) %>Component implements OnInit, OnDestroy {
+
+    ///-----------------------------------------------  Variables   -----------------------------------------------///
+
+    constructor() {
+    }
+
+
+    ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
 
 
 
+    ngOnInit() {
 
-  ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
-  constructor() { }
+    }
 
-  ngOnInit() {
-  }
+    ngOnDestroy(): void {
+    }
 
 
-  ///-----------------------------------------------  Main Functions   -----------------------------------------------///
+
+    ///-----------------------------------------------  Main Functions  -----------------------------------------------///
 
 }

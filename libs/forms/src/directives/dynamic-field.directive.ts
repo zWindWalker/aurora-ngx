@@ -83,6 +83,10 @@ export class DynamicFieldDirective implements OnInit, OnDestroy, OnChanges {
         }
 
         this.componentRef.instance.input_type = this.config.input_type;
+        if (this.config.placeholder) this.componentRef.instance.placeholder = this.config.placeholder;
+        if (this.config.hidden) this.componentRef.instance.hidden = this.config.hidden;
+
+
         this.componentRef.instance.name = this.config.name;
         this.componentRef.instance.options = this.config.options;
         this.componentRef.instance.value = this.control.value;

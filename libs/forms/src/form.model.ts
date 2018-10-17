@@ -1,16 +1,18 @@
 export interface AuroraForm {
-  type?: string,
-  name: string,
-  label?: string,
-  value?: any,
-  input_type?: string,
-  checkbox_label?: string,
-  properties?: Object,
-  validators?: Array<string>,
-  options?: Array<{ value: any, label: any }>,
-  feedback?: Object
+    type?: string,
+    name: string,
+    placeholder?: string,
+    label?: string,
+    value?: any,
+    input_type?: string,
+    checkbox_label?: string,
+    properties?: Object,
+    validators?: Array<string>,
+    options?: Array<{ value: any, label: any }>,
+    feedback?: Object,
+    hidden?: Boolean
 }
 
 export interface AuroraFormTemplate {
-  [name: string]: Array<string>
+    [name: string]: Array<string>
 }

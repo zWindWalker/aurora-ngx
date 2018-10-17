@@ -19,21 +19,22 @@ import {FormService} from './form.service';
 
 import {FormTemplateComponent} from './components/form-template.component';
 import {AuroraForm, AuroraFormTemplate} from './form.model';
-import {untilDestroyed} from './utils/take-until-destroy';
+
 import {FormGroupComponent} from './components/form-group.component';
+import {untilDestroyed} from "@aurora-ngx/utils";
 
 
 @Component({
-  selector: 'aurora-form',
-  template: `
-    <ng-container 
-            [formGroup]="form"
-    >
-        <form-template *ngIf="default_template"></form-template>
-        <ng-content></ng-content>
-    </ng-container>
-      
-  `,
+    selector: 'aurora-form',
+    template: `
+        <ng-container
+                [formGroup]="form"
+        >
+            <form-template *ngIf="default_template"></form-template>
+            <ng-content></ng-content>
+        </ng-container>
+
+    `,
     styles: [`
         form-group {
             display: grid;
@@ -46,50 +47,58 @@ import {FormGroupComponent} from './components/form-group.component';
         }
     `],
     encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 @Injectable()
 export class AuroraFormComponent implements OnInit, AfterViewInit, AfterViewChecked, OnDestroy {
 
-  form: FormGroup = this.fb.group({});
-  @Input() default_template: Boolean = false;
-  @Input() config: AuroraForm[] = [];
-  @Input() template_config: AuroraFormTemplate = {};
-  @Input() media_type: String;
-  @Output() submit = new EventEmitter();
+    form: FormGroup = this.fb.group({});
+    @Input() default_template: Boolean = false;
+    @Input() config: AuroraForm[] = [];
+    @Input() template_config: AuroraFormTemplate = {};
+    @Input() media_type: String;
+    @Input() show_feedback: Boolean = true
 
-  @ViewChild(FormGroupDirective) formGrDir: FormGroupDirective;
-  @ContentChildren(FormGroupComponent) formGrCom: QueryList<FormGroupComponent>;
-  @ContentChildren(FormTemplateComponent) formTplCom: QueryList<FormTemplateComponent>;
+    @Output() submit = new EventEmitter();
 
-  constructor(
-    private formSvs: FormService,
-    private fb: FormBuilder
-  ) {
-  }
+    @ViewChild(FormGroupDirective) formGrDir: FormGroupDirective;
+    @ContentChildren(FormGroupComponent) formGrCom: QueryList<FormGroupComponent>;
+    @ContentChildren(FormTemplateComponent) formTplCom: QueryList<FormTemplateComponent>;
 
-  ngOnInit() {
-    this.form = this.formSvs._initializeForm(this.config, this.template_config, this.formGrDir, this.media_type);
+    constructor(
+        private formSvs: FormService,
+        private fb: FormBuilder
+    ) {
+    }
 
-    this.formGrDir.ngSubmit.pipe(untilDestroyed(this)).subscribe(data => {
-      if (data instanceof Event) {
-        data.stopPropagation();
-      } else if (this.form.valid) {
-        this.submit.emit(data);
-      }
-    })
-  }
+    ngOnInit() {
+        this.form = this.formSvs._initializeForm(
+            this.config,
+            this.template_config,
+            this.formGrDir,
+            this.media_type,
+            this.show_feedback
+        );
 
-  ngAfterViewInit(): void {
+        this.formGrDir.ngSubmit.pipe(untilDestroyed(this)).subscribe(data => {
+            if (data instanceof Event) {
+                data.stopPropagation();
+            } else if (this.form.valid) {
+                this.submit.emit(data);
+            }
+        })
+    }
 
-  }
+    ngAfterViewInit(): void {
 
-  ngAfterViewChecked(): void {
+    }
 
-  }
+    ngAfterViewChecked(): void {
 
-  ngOnDestroy(): void {
-  }
+    }
+
+    ngOnDestroy(): void {
+    }
 
 }

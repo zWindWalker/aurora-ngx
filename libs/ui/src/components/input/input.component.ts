@@ -1,12 +1,15 @@
 import {
     ChangeDetectionStrategy,
     Component,
+    ElementRef,
     EventEmitter,
-    Input,
+    HostBinding,
+    Input, OnDestroy,
     OnInit,
     Output,
     ViewEncapsulation
 } from '@angular/core';
+import {untilDestroyed} from "@aurora-ngx/utils";
 
 
 @Component({
@@ -17,11 +20,13 @@ import {
                 [component_type]="component_type"
                 [input_type]="input_type"
                 [name]="name"
+                [placeholder]="placeholder"
                 [value]="value"
                 [invalid]="invalid"
                 [range]="range"
                 [change]="change"
                 [blur]="blur"
+                [focus]="focus"
         >
         </ng-container>
     `,
@@ -30,17 +35,23 @@ import {
     encapsulation: ViewEncapsulation.ShadowDom
 })
 
-export class AuroraInputComponent implements OnInit {
+export class AuroraInputComponent implements OnInit, OnDestroy {
     component_type = ''
+    focus = new EventEmitter()
+
     @Input() input_type = '';
     @Input() name = '';
+    @Input() placeholder = ''
     @Input() value: any = '';
     @Output() change = new EventEmitter();
     @Output() blur = new EventEmitter();
     @Input() invalid;
     @Input() range = []
 
-    constructor() {
+    @HostBinding('tabindex') tabindex = 0
+
+
+    constructor(private el: ElementRef) {
     }
 
     auto_validator = e => {
@@ -58,7 +69,13 @@ export class AuroraInputComponent implements OnInit {
     ngOnInit(): void {
         this.component_type = (this.input_type === 'number' || this.input_type === 'phone') ? this.input_type : 'text'
 
-        console.log(this.component_type)
+        this.focus.pipe(untilDestroyed(this)).subscribe(() => {
+            console.log('lksdj')
+            this.el.nativeElement.focus()
+        })
+    }
+
+    ngOnDestroy(): void {
     }
 
 }

@@ -40,8 +40,4 @@ export class AuroraDatePickerComponent implements AfterViewChecked {
 
   ///-----------------------------------------------  General Functions   -----------------------------------------------///
 
-  onToggleCalendar = () => {
-    this.show_calendar = !this.show_calendar;
-  };
-
 }

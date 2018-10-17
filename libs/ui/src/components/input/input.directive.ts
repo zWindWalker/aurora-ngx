@@ -20,9 +20,11 @@ export class DynamicInputDirective implements OnInit, OnDestroy, OnChanges {
     @Input() input_type = '';
     @Input() component_type = ''
     @Input() name = '';
+    @Input() placeholder = ''
     @Input() value: any = '';
     @Input() change: EventEmitter<any>;
     @Input() blur: EventEmitter<any>;
+    @Input() focus: EventEmitter<any>;
     @Input() invalid;
     @Input() range = []
 
@@ -63,12 +65,14 @@ export class DynamicInputDirective implements OnInit, OnDestroy, OnChanges {
         this.componentRef = this.container.createComponent(factory);
 
         this.componentRef.instance.name = this.name;
+        this.componentRef.instance.placeholder = this.placeholder;
         this.componentRef.instance.input_type = this.input_type;
         this.componentRef.instance.value = this.value;
         this.componentRef.instance.invalid = this.invalid;
         this.componentRef.instance.range = this.range;
         this.componentRef.instance.change = this.change;
         this.componentRef.instance.blur = this.blur;
+        this.componentRef.instance.focus = this.focus;
     };
 
 

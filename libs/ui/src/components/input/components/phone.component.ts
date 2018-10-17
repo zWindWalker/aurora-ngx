@@ -6,6 +6,7 @@ import {Component, EventEmitter, Input} from '@angular/core';
     template: `
         <input
                 [name]="name"
+                [placeholder]="placeholder"
                 [value]="value"
                 [class.invalid]="invalid"
                 (change)=" $event.stopPropagation(); change.emit($event.target.value);"
@@ -23,8 +24,9 @@ import {Component, EventEmitter, Input} from '@angular/core';
     `]
 })
 export class PhoneComponent {
-    @Input() name = '';
-    @Input() value: any = '';
+    @Input() name
+    @Input() placeholder
+    @Input() value
     @Input() invalid;
     @Input() change: EventEmitter<any>;
     @Input() blur: EventEmitter<any>;
@@ -33,6 +35,7 @@ export class PhoneComponent {
         // Allow
         if (
             e.keyCode === 8 ||      // backspace
+            e.keyCode === 9 ||          // Tab
             e.keyCode === 13 ||       // enter
             (e.keyCode === 65 && (e.ctrlKey || e.metaKey)) ||      //  Ctrl + A
             (e.keyCode === 67 && (e.ctrlKey || e.metaKey)) ||       //  Ctrl + C
@@ -57,7 +60,6 @@ export class PhoneComponent {
 
     // Ensure that pasted value is a number or string of number
     onPaste = (e: ClipboardEvent) => {
-        console.log(e)
         if (!/^\d+$/.test(e.clipboardData.getData('Text'))) {
             e.preventDefault()
         }

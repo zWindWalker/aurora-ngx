@@ -1,8 +1,7 @@
-import {Component, ElementRef, HostBinding, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output} from '@angular/core';
 import {DatePickerService} from '../../containers/date-picker.service';
 import moment from 'moment';
 import {rotate_trigger} from '@aurora-ngx/animations';
-import {of} from "rxjs";
 
 @Component({
     selector: 'control',
@@ -11,9 +10,12 @@ import {of} from "rxjs";
     animations: [rotate_trigger]
 })
 export class ControlComponent implements OnInit {
-    @Input() show_calendar = false;
-    @HostBinding() tabindex = 0;
     formatted_date: String;
+
+
+    @Input() show_calendar = false;
+    @Output() open_calendar = new EventEmitter()
+    @HostBinding() tabindex = 0;
 
 
     constructor(private eRef: ElementRef, private dpSvs: DatePickerService) {
@@ -25,10 +27,6 @@ export class ControlComponent implements OnInit {
         this.dpSvs.change_selected_date.subscribe(selected_date => this.formatted_date = moment(selected_date).format('DD/MM/YYYY'));
     }
 
-    onChange = e => {
-        if (!(e instanceof Event)) {
-            console.log(e)
-        }
-    }
+
 
 }

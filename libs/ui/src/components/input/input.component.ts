@@ -1,16 +1,12 @@
 import {
     ChangeDetectionStrategy,
-    Component, ComponentRef,
-    ElementRef,
+    Component,
     EventEmitter,
-    HostBinding, Injector,
     Input,
     OnInit,
-    Output, ViewChild
+    Output,
+    ViewEncapsulation
 } from '@angular/core';
-import {TextComponent} from "./components/text/text.component";
-import {NumberComponent} from "./components/number/number.component";
-import {PhoneComponent} from "./components/phone/phone.component";
 
 
 @Component({
@@ -18,7 +14,8 @@ import {PhoneComponent} from "./components/phone/phone.component";
     template: `
         <ng-container
                 dynamic-input
-                [type]="input_type"
+                [component_type]="component_type"
+                [input_type]="input_type"
                 [name]="name"
                 [value]="value"
                 [invalid]="invalid"
@@ -29,26 +26,19 @@ import {PhoneComponent} from "./components/phone/phone.component";
         </ng-container>
     `,
     styleUrls: ['./input.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.ShadowDom
 })
 
 export class AuroraInputComponent implements OnInit {
-    input_type = ''
-    @Input() type = '';
+    component_type = ''
+    @Input() input_type = '';
     @Input() name = '';
     @Input() value: any = '';
     @Output() change = new EventEmitter();
     @Output() blur = new EventEmitter();
     @Input() invalid;
     @Input() range = []
-
-    components = {
-        'text': TextComponent,
-        'number': NumberComponent,
-        'phone': PhoneComponent
-    }
-
-    component: ComponentRef<any>
 
     constructor() {
     }
@@ -66,6 +56,9 @@ export class AuroraInputComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.input_type = (this.type === ('number' || 'phone')) ? this.type : 'text'
+        this.component_type = (this.input_type === 'number' || this.input_type === 'phone') ? this.input_type : 'text'
+
+        console.log(this.component_type)
     }
+
 }

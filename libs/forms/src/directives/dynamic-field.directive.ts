@@ -82,7 +82,7 @@ export class DynamicFieldDirective implements OnInit, OnDestroy, OnChanges {
             this.componentRef.instance.blur.subscribe(() => this.blur.emit());
         }
 
-        this.componentRef.instance.type = this.config.input_type;
+        this.componentRef.instance.input_type = this.config.input_type;
         this.componentRef.instance.name = this.config.name;
         this.componentRef.instance.options = this.config.options;
         this.componentRef.instance.value = this.control.value;

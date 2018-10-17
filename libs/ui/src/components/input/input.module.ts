@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 
 import {AuroraInputComponent} from "./input.component";
-import {NumberComponent} from './components/number/number.component';
-import {PhoneComponent} from './components/phone/phone.component';
-import {TextComponent} from './components/text/text.component';
+import {NumberComponent} from './components/number.component';
+import {PhoneComponent} from './components/phone.component';
+import {TextComponent} from './components/text.component';
 import {CommonModule} from "@angular/common";
 import {DynamicInputDirective} from "./input.directive";
 

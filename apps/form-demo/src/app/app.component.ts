@@ -39,11 +39,15 @@ export class AppComponent {
         },
         {
             type: 'input',
+            input_type: 'number',
+            name: 'number',
+            label: 'Number'
+        },
+        {
+            type: 'input',
             input_type: 'phone',
-            name: 'Phone',
-            label: 'Phone',
-            validators: ['required']
-
+            name: 'phone',
+            label: 'Phone'
         },
         {
             type: 'select',

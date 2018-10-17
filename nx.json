@@ -31,6 +31,12 @@
     },
     "ui-demo": {
       "tags": []
+    },
+    "homeey": {
+      "tags": []
+    },
+    "utils": {
+      "tags": []
     }
   }
 }

@@ -2,7 +2,8 @@
   "name": "@aurora-ngx/forms",
   "version": "1.0.13",
   "peerDependencies": {
-    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+    "@angular-devkit/core": "0.7.2",
+    "@angular-devkit/schematics": "0.7.2",
+    "typescript": ">=2.6.2 <2.8"
   }
 }

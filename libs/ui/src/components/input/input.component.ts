@@ -1,81 +1,172 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
-    ElementRef,
     EventEmitter,
     HostBinding,
-    Input, OnDestroy,
+    Input,
+    OnDestroy,
     OnInit,
-    Output,
-    ViewEncapsulation
+    Output
 } from '@angular/core';
-import {untilDestroyed} from "@aurora-ngx/utils";
+import {Event} from "@angular/router";
+import {EventListener} from "@angular/core/src/debug/debug_node";
 
 
 @Component({
     selector: 'aurora-input',
     template: `
-        <ng-container
-                dynamic-input
-                [component_type]="component_type"
-                [input_type]="input_type"
+        <input
+                [type]="input_type"
                 [name]="name"
                 [placeholder]="placeholder"
                 [value]="value"
-                [invalid]="invalid"
-                [range]="range"
-                [change]="change"
-                [blur]="blur"
-                [focus]="focus"
+                (change)="onChange($event)"
+                (blur)="onBlur()"
+                (focus)="onFocus()"
+                (keydown)="onKeyDown($event)"
+                (paste)="onPaste($event)"
         >
-        </ng-container>
     `,
     styleUrls: ['./input.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.ShadowDom
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class AuroraInputComponent implements OnInit, OnDestroy {
-    component_type = ''
-    focus = new EventEmitter()
-
     @Input() input_type = '';
     @Input() name = '';
     @Input() placeholder = ''
     @Input() value: any = '';
     @Output() change = new EventEmitter();
     @Output() blur = new EventEmitter();
-    @Input() invalid;
+    @Input() invalid: Boolean = false;
     @Input() range = []
 
-    @HostBinding('tabindex') tabindex = 0
+    @HostBinding('class.focus') host_focus: Boolean = false
+    @HostBinding('class.invalid') host_invalid: Boolean = false
 
 
-    constructor(private el: ElementRef) {
-    }
-
-    auto_validator = e => {
-        // Range
-        if (this.range.length > 0) {
-            const in_range = this.range[0] <= Number.parseInt(e.target.value) && Number.parseInt(e.target.value) <= this.range[1]
-
-            if (!in_range) {
-                this.value = this.range[1]
-                this.change.emit(this.range[1])
-            }
-        }
+    constructor(private cd: ChangeDetectorRef) {
     }
 
     ngOnInit(): void {
-        this.component_type = (this.input_type === 'number' || this.input_type === 'phone') ? this.input_type : 'text'
-
-        this.focus.pipe(untilDestroyed(this)).subscribe(() => {
-            console.log('lksdj')
-            this.el.nativeElement.focus()
-        })
+        this.host_invalid = this.invalid
     }
 
     ngOnDestroy(): void {
+    }
+
+    onFocus = () => {
+        this.host_focus = true
+    }
+
+    onBlur = () => {
+        this.blur.emit()
+        this.host_focus = false
+        this.cd.markForCheck()
+    }
+
+    onKeyDown = (e: KeyboardEvent) => {
+        return (this.input_type === 'number')
+            ? this.onNumberKeyDown(e)
+            : (this.input_type === 'phone')
+                ? this.onPhoneKeyDown(e)
+                : null
+    }
+
+    onPaste = (e: ClipboardEvent) => {
+        return (this.input_type === 'number')
+            ? this.onNumberPaste(e)
+            : (this.input_type === 'phone')
+                ? this.onPhonePaste(e)
+                : null
+    }
+
+
+    // Ensure that it is a number from [0-9] no decimal_point
+
+    onPhoneKeyDown = (e: KeyboardEvent) => {
+        // Allow
+        if (
+            e.keyCode === 8 ||      // backspace
+            e.keyCode === 9 ||          // Tab
+            e.keyCode === 13 ||       // enter
+            (e.keyCode === 65 && (e.ctrlKey || e.metaKey)) ||      //  Ctrl + A
+            (e.keyCode === 67 && (e.ctrlKey || e.metaKey)) ||       //  Ctrl + C
+            (e.keyCode === 88 && (e.ctrlKey || e.metaKey)) ||        //  Ctrl + X
+            (e.keyCode === 86 && (e.ctrlKey || e.metaKey)) ||        //  Ctrl + V
+            (e.keyCode >= 35 && e.keyCode <= 39)                             // home, end, left, right
+        ) {
+            return
+        }
+
+
+        // Reject if not a number or numpad
+        if (
+            (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) &&       // not number
+            (e.keyCode < 96 || e.keyCode > 105)                                     // not numpad
+        ) {
+            e.preventDefault();
+        }
+
+    }
+
+    // Ensure that pasted value is a number or string of number
+    onPhonePaste = (e: ClipboardEvent) => {
+        if (!/^\d+$/.test(e.clipboardData.getData('Text'))) {
+            e.preventDefault()
+        }
+    }
+
+
+    // Ensure that it is a  number: integer || decimal
+    onNumberKeyDown = (e: KeyboardEvent) => {
+        // Allow
+        if (
+            e.keyCode === 8 ||      // backspace
+            e.keyCode === 9 ||          // Tab
+            e.keyCode === 13 ||       // enter
+            e.keyCode === 188 ||    // comma(",")
+            e.keyCode === 110 ||        //   numpad decimal point
+            e.keyCode === 190 ||        // period(".")
+            (e.keyCode === 65 && (e.ctrlKey || e.metaKey)) ||      //  Ctrl + A
+            (e.keyCode === 67 && (e.ctrlKey || e.metaKey)) ||       //  Ctrl + C
+            (e.keyCode === 88 && (e.ctrlKey || e.metaKey)) ||        //  Ctrl + X
+            (e.keyCode === 86 && (e.ctrlKey || e.metaKey)) ||        //  Ctrl + V
+            (e.keyCode >= 35 && e.keyCode <= 39)                             // home, end, left, right
+        ) {
+            return
+        }
+
+
+        // Reject if not a number or numpad
+        if (
+            (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) &&       // not number
+            (e.keyCode < 96 || e.keyCode > 105)                                     // not numpad
+        ) {
+            e.preventDefault();
+        }
+
+    }
+
+    // Ensure that pasted value is a string of number: integer || decimal
+    onNumberPaste = (e: ClipboardEvent) => {
+        if (!/^\d.+$/.test(e.clipboardData.getData('Text'))) {
+            e.preventDefault()
+        }
+    }
+
+    onChange = e => {
+        e.stopPropagation()
+        let value = e.target.value
+        const min = Number.parseInt(this.range[0])
+        const max = Number.parseInt(this.range[1])
+        if (this.range && this.input_type === 'number' && !(min <= value && value <= max)) {
+            value = e.target.value = this.range[1]
+        }
+
+        this.change.emit(value)
+
     }
 
 }

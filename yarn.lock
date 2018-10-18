@@ -112,7 +112,7 @@
     rxjs "^6.0.0"
     source-map "^0.5.6"
 
-"@angular-devkit/core@0.7.5":
+"@angular-devkit/core@0.7.5", "@angular-devkit/core@^0.7.2":
   version "0.7.5"
   resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-0.7.5.tgz#49f7854ccadf3ddda8d0ea4359543a1cbdc6854d"
   integrity sha512-r99BZvvuNAqSRm05jXfx0sb3Ip0zvHPtAM6NReXzWPoqaVFpjVUdj/CKA+9HWG/Zt9meG9pEQt/HKK8UXaZDVA==
@@ -128,6 +128,14 @@
   integrity sha512-4mhLhXc4Tyu07sGXWOHV9zXZ8uthbUo5zr63lj0Z9gv5f/vrJj5fyEoTnHONBFzVPdElMYS2vhiEtwnN0hKQDA==
   dependencies:
     "@angular-devkit/core" "0.7.2"
+    rxjs "^6.0.0"
+
+"@angular-devkit/schematics@^0.7.2":
+  version "0.7.5"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-0.7.5.tgz#f46b121f29cb40ad6095285d27a515114a56c5d6"
+  integrity sha512-E7HkQeJawUskf2gPnogMc+cTdjJ2Iv3QEZOgprh/ExEmBYByWkGDRX5fQOuy8wME8VZqUBvQACZaVkEredn5EA==
+  dependencies:
+    "@angular-devkit/core" "0.7.5"
     rxjs "^6.0.0"
 
 "@angular/animations@^6.1.0":
@@ -234,6 +242,21 @@
   resolved "https://registry.yarnpkg.com/@aurora-ngx/ui/-/ui-1.0.14.tgz#3c6d233233563fea2e13d8cf75050be8185fd579"
   integrity sha512-yfgQGUFsKSfzE212OHtToSvbKiBEHnDf0kzHKF/xiuaKJmb1X7Vqtoesk/g9NKzPzMDm90GA2jYbMbYXCqp5Jw==
   dependencies:
+    tslib "^1.9.0"
+
+"@datorama/akita-ngdevtools@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@datorama/akita-ngdevtools/-/akita-ngdevtools-1.0.2.tgz#c8a2c0e33392cd9fc87e657edcac000856946ea9"
+  integrity sha512-LCnl7MtZ+/P8ypbXzyrF6B4EGX2LeStJ9ZqYM9fVj5j5GOcEqwNSfR92QoTFZidOhOexf9cNjlw2WtJ/Tm2v+A==
+  dependencies:
+    tslib "^1.9.0"
+
+"@datorama/akita@^1.12.2":
+  version "1.12.2"
+  resolved "https://registry.yarnpkg.com/@datorama/akita/-/akita-1.12.2.tgz#028c66544f0ec7f89faad01007791f713f596589"
+  integrity sha512-XFBxw0vqvtgGYGh132eWdtKNYOef3Qde5HaLbJzKsK5UQVlvSO3F3oe4HT4VDkX2hjX0hsjFlHGb9P8lP34Ubw==
+  dependencies:
+    schematics-utilities "^1.1.1"
     tslib "^1.9.0"
 
 "@fortawesome/fontawesome-free@^5.3.1":
@@ -5955,6 +5978,11 @@ parse5@^4.0.0:
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-4.0.0.tgz#6d78656e3da8d78b4ec0b906f7c08ef1dfe3f608"
   integrity sha512-VrZ7eOd3T1Fk4XWNXMgiGBK/z0MG48BWG2uQNU4I72fkQuKUTZpl+u9k+CxEG0twMVzSmXEEz12z5Fnw1jIQFA==
 
+parse5@^5.0.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/parse5/-/parse5-5.1.0.tgz#c59341c9723f414c452975564c7c00a68d58acd2"
+  integrity sha512-fxNG2sQjHvlVAYmzBZS9YlDp6PTSSDwa98vkD4QgVDDCAo84z5X1t5XyJQ62ImdLXx5NdIIfihey6xpum9/gRQ==
+
 parseqs@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/parseqs/-/parseqs-0.0.5.tgz#d5208a3738e46766e291ba2ea173684921a8b89d"
@@ -7006,6 +7034,18 @@ schema-utils@^1.0.0:
     ajv "^6.1.0"
     ajv-errors "^1.0.0"
     ajv-keywords "^3.1.0"
+
+schematics-utilities@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/schematics-utilities/-/schematics-utilities-1.1.1.tgz#0b78f60dd13b1c0c19a75ce81e0f2f7e64897db2"
+  integrity sha512-y6slqE4OkfSly++E1lkz6UT5qtpcdsrEf3dusE1OP80EEnog0WsW03flnvNAp54Knn0GdyXJh70KRR9+dYFXZg==
+  dependencies:
+    "@angular-devkit/core" "^0.7.2"
+    "@angular-devkit/schematics" "^0.7.2"
+    npm-registry-client "^8.5.1"
+    parse5 "^5.0.0"
+    rxjs "^6.0.0"
+    typescript "^2.5.2"
 
 scss-tokenizer@^0.2.3:
   version "0.2.3"
@@ -8081,7 +8121,7 @@ typedarray@^0.0.6:
   resolved "http://registry.npmjs.org/typescript/-/typescript-2.7.2.tgz#2d615a1ef4aee4f574425cdff7026edf81919836"
   integrity sha512-p5TCYZDAO0m4G344hD+wx/LATebLWZNkkh2asWUFqSsD2OrDNhbAHuSjobrmsUmdzjJjEeZVU9g1h3O6vpstnw==
 
-typescript@~2.9.1:
+typescript@^2.5.2, typescript@~2.9.1:
   version "2.9.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.9.2.tgz#1cbf61d05d6b96269244eb6a3bce4bd914e0f00c"
   integrity sha512-Gr4p6nFNaoufRIY4NMdpQRNmgxVIGMs4Fcu/ujdYk3nAZqk7supzBE9idmvfZIlH/Cuj//dvi+019qEue9lV0w==

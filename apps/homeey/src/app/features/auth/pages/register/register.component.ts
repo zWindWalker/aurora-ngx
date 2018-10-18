@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService, Logger} from "../../../core/services";
+import {AuthService} from "../../providers/auth.service";
+import {Logger} from "../../../../core/services";
+
 
 const log = new Logger('RegisterComponent');
 
@@ -63,7 +65,7 @@ export class RegisterComponent implements OnInit {
 
     }
 
-    onRegister= form_data => {
+    onRegister = form_data => {
         log.debug(form_data);
         this.authSvs.register(form_data)
     }

@@ -3,15 +3,19 @@ import {CommonModule} from '@angular/common';
 import {HeaderModule} from './components/header/header.module';
 import {FooterModule} from './components/footer/footer.module';
 import {ErrorInterceptor, JwtInterceptor} from './interceptors';
-import {AuthGuard} from './guards/auth.guard';
-import {ApiService, AuthService, JwtService} from './services';
-import {HttpClientModule} from '@angular/common/http';
+import {AuthGuard} from '../features/auth/providers/auth.guard';
+import {ApiService} from './services';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {environment} from "../../environments/environment";
+import {AkitaNgDevtools} from "@datorama/akita-ngdevtools";
+
 
 @NgModule({
     imports: [
         CommonModule,
         HeaderModule,
-        FooterModule
+        FooterModule,
+        environment.production ? [] : AkitaNgDevtools.forRoot()
     ],
     exports: [
         FooterModule,
@@ -20,11 +24,12 @@ import {HttpClientModule} from '@angular/common/http';
     ],
     providers: [
         AuthGuard,
-        AuthService,
         ApiService,
-        JwtService,
-        JwtInterceptor,
-        ErrorInterceptor,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: JwtInterceptor,
+            multi: true
+        },
         HttpClientModule
     ]
 })

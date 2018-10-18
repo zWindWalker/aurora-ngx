@@ -1,24 +1,36 @@
-import {Injectable, Injector} from '@angular/core';
-import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {JwtService} from '../services';
+import {AuthService} from "../../features/auth/providers/auth.service";
 
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-    constructor(private jwtSvs: JwtService) {
+    constructor(private authSvs: AuthService) {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const headersConfig = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        };
+        let headersConfig = {};
 
-        const token = this.jwtSvs.getToken();
+        if (req.body instanceof FormData) {
+            headersConfig = {
+                'Content-Type': 'multipart/form-data'
+            }
+        } else {
+            headersConfig = {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }
+
+        if (req.method === "GET") {
+            headersConfig = {}
+        }
+
+        const token = this.authSvs._getToken();
 
         if (token) {
-            headersConfig['Authorization'] = `Token ${token}`;
+            headersConfig['Authorization'] = token.toLowerCase();
         }
 
         const request = req.clone({setHeaders: headersConfig});

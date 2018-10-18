@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService, Logger} from '../../../core/services';
+import {Logger} from "../../../../core/services";
+import {AuthService} from "../../providers/auth.service";
+
 
 const log = new Logger('LoginComponent');
 
@@ -23,7 +25,13 @@ export class LoginComponent implements OnInit {
             name: 'password',
             label: 'Password',
             validators: ['required']
-        }
+        },
+        {
+            type: 'input',
+            name: 'slug',
+            value: 'client',
+            hidden: true
+        },
     ];
 
     constructor(private authSvs: AuthService) {

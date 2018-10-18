@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService, Logger} from "../../../core/services";
+import {Logger} from "../../../../core/services";
+import {AuthService} from "../../providers/auth.service";
+
 
 const log = new Logger('ChangePasswordComponent');
 
@@ -50,7 +52,7 @@ export class ChangePasswordComponent implements OnInit {
 
     onChangePassword = form_data => {
         log.debug(form_data)
-        // this.authSvs.login(form_data)
+        this.authSvs.change_password(form_data)
     };
 
 

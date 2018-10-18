@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../../../../services';
+import {AuthService} from "../../../../../features/auth/providers/auth.service";
+
 
 @Component({
     selector: 'nav',
@@ -8,14 +9,11 @@ import {AuthService} from '../../../../services';
 })
 export class NavComponent implements OnInit {
 
-    is_authenticated: Boolean = false;
 
-    constructor(private authSvs: AuthService) {
+    constructor(public authSvs: AuthService) {
     }
 
     ngOnInit() {
-        this.authSvs.state_change.subscribe(state => {
-            this.is_authenticated = !!state;
-        });
+
     }
 }

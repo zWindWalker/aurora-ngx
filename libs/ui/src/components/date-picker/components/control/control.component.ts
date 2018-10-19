@@ -12,7 +12,7 @@ import {rotate_trigger} from '@aurora-ngx/animations';
 export class ControlComponent implements OnInit {
     formatted_date: String;
 
-
+    @Input() format
     @Input() show_calendar = false;
     @Output() open_calendar = new EventEmitter()
     @HostBinding() tabindex = 0;
@@ -24,9 +24,8 @@ export class ControlComponent implements OnInit {
     ngOnInit() {
         this.eRef.nativeElement.focus();
 
-        this.dpSvs.change_selected_date.subscribe(selected_date => this.formatted_date = moment(selected_date).format('DD/MM/YYYY'));
+        this.dpSvs.change_selected_date.subscribe(selected_date => this.formatted_date = moment(selected_date).format(this.format));
     }
-
 
 
 }

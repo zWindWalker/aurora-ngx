@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
-  selector: 'aurora-ngx-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'aurora-ngx-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ui-demo';
+    options = [
+        {
+            label: 'Test 1',
+            value: 1
+        },
+        {
+            label: 'Test 2',
+            value: 2
+        }
+    ]
 }

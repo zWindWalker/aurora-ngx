@@ -2,6 +2,8 @@ export * from './lib/ui.module';
 
 
 export { AuroraInputComponent }from './components/input/input.component';
+export {InputModule} from "./components/input/input.module";
+
 export { AuroraButtonComponent } from './components/button/button.component';
 
 export { AuroraTextareaComponent } from './components/textarea/textarea.component';

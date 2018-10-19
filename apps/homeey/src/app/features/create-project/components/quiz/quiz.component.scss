@@ -1,9 +1,13 @@
 aurora-form {
     form-group.question {
-
         grid-template-areas: "label" "field" "feedback";
         grid-template-rows: 40% 40% 20%;
         grid-template-columns: 1fr;
+    }
+}
 
+aurora-modal {
+    .content {
+        min-height: 60rem;
     }
 }

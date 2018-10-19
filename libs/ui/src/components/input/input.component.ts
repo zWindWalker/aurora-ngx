@@ -16,17 +16,17 @@ import {EventListener} from "@angular/core/src/debug/debug_node";
 @Component({
     selector: 'aurora-input',
     template: `
-        <input
-                [type]="input_type"
-                [name]="name"
-                [placeholder]="placeholder"
-                [value]="value"
-                (change)="onChange($event)"
-                (blur)="onBlur()"
-                (focus)="onFocus()"
-                (keydown)="onKeyDown($event)"
-                (paste)="onPaste($event)"
-        >
+        <!--<input-->
+                <!--[type]="input_type"-->
+                <!--[name]="name"-->
+                <!--[placeholder]="placeholder"-->
+                <!--[value]="value"-->
+                <!--(change)="onChange($event)"-->
+                <!--(blur)="onBlur()"-->
+                <!--(focus)="onFocus()"-->
+                <!--(keydown)="onKeyDown($event)"-->
+                <!--(paste)="onPaste($event)"-->
+        <!--&gt;-->
     `,
     styleUrls: ['./input.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

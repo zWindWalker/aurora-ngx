@@ -1,45 +1,58 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
-import default_template from './templates/default.html'
-import {DyCom} from './dynamic/dynamic.component'
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  ViewEncapsulation
+} from '@angular/core';
 
+import default_template from './templates/default.template.html';
 
 @Component({
-    selector: 'aurora-radio',
-    templateUrl: './radio.component.html',
-    styleUrls: ['./radio.component.scss']
+  selector: 'aurora-radio',
+  templateUrl: './radio.component.html',
+  styleUrls: ['./radio.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
-export class AuroraRadioComponent implements OnInit, AfterViewInit {
+export class AuroraRadioComponent implements OnInit, OnChanges {
 
-    ///-----------------------------------------------  Variables   -----------------------------------------------///
+  ///-----------------------------------------------  Variables   -----------------------------------------------///
 
-    @Input() options;
-    @Input() name: string;
-    @Input() value: any;
-    @Output() change = new EventEmitter();
+  @Input() options;
+  @Input() name: string;
+  @Input() value: any = '';
+  @Output() change = new EventEmitter();
 
-    @ViewChild(TemplateRef) templateRef: TemplateRef<any>
+  //language=HTML
+  template
 
-    //language=HTML
-    template = default_template
 
-    ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
-    constructor() {
+  ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
+  constructor(private cd: ChangeDetectorRef) {
+  }
+
+  ngOnInit() {
+    console.log('radio init')
+    console.log(this.template)
+    if(this.options) {
+      this.template = default_template;
+      console.log(this.template)
+      this.cd.detectChanges()
     }
+  }
 
-    ngOnInit() {
-        console.log(DyCom)
-    }
+  ///-----------------------------------------------  Main Functions   -----------------------------------------------///
 
-    ngAfterViewInit(): void {
-        console.log(this.templateRef)
-    }
+  onClick = value => {
+    this.value = value;
+    // this.change.emit(value);
+  };
 
-
-    ///-----------------------------------------------  Main Functions   -----------------------------------------------///
-
-    onClick = value => {
-        this.value = value;
-        this.change.emit(value)
-    }
+  ngOnChanges(changes): void {
+    console.log('radio change')
+  }
 
 }

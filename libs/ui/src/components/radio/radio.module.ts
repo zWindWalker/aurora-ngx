@@ -1,21 +1,19 @@
-import {NgModule} from '@angular/core';
-
-import {CommonModule} from "@angular/common";
-import {AuroraRadioComponent} from "./radio.component";
-import {RadioDirective} from "./radio.directive";
-import {DynamicComponent} from "./dynamic/dynamic.component";
-
+import { NgModule } from '@angular/core';
+import { AuroraRadioComponent } from './radio.component';
+import { SharedModule } from '../../shared/shared.module';
+import { DynamicTemplateDirective } from './dynamic-template.directive';
 
 @NgModule({
-    declarations: [
-        AuroraRadioComponent,
-        RadioDirective,
-        DynamicComponent
-    ],
-    imports: [CommonModule],
-    exports: [
-        AuroraRadioComponent
-    ]
+  declarations: [
+    AuroraRadioComponent,
+    DynamicTemplateDirective
+  ],
+  imports: [
+    SharedModule
+  ],
+  exports: [
+    AuroraRadioComponent
+  ]
 })
 export class RadioModule {
 }

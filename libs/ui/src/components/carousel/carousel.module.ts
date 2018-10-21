@@ -19,7 +19,6 @@ import { CarouselDirective } from './directives/carousel.directive';
   ],
   entryComponents: [
     ItemComponent
-
   ]
 })
 export class CarouselModule {

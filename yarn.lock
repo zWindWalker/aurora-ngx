@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@angular-builders/custom-webpack@^2.5.4":
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/@angular-builders/custom-webpack/-/custom-webpack-2.5.4.tgz#7ecffc226f59b56d3d28e0d839f66c247e8abb51"
+  integrity sha512-aMFemC2BXY4oKChg0pFN6J6IOpwS6AtVZJYhftI7SNZyUIp+IVT/hUIglVaUgnvAdcPHYM3iqOLCkjwspDZvOA==
+  dependencies:
+    lodash "^4.17.10"
+
 "@angular-devkit/architect@0.7.2":
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.7.2.tgz#b630f201f338c2b145c360b2b816185e1994b2c0"
@@ -370,11 +377,6 @@
   version "6.0.117"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.117.tgz#ccfc2506001404708528d657aad9c1b931111646"
   integrity sha512-sihk0SnN8PpiS5ihu5xJQ5ddnURNq4P+XPmW+nORlKkHy21CoZO/IVHK/Wq/l3G8fFW06Fkltgnqx229uPlnRg==
-
-"@types/node@~8.9.4":
-  version "8.9.5"
-  resolved "http://registry.npmjs.org/@types/node/-/node-8.9.5.tgz#162b864bc70be077e6db212b322754917929e976"
-  integrity sha512-jRHfWsvyMtXdbhnz5CVHxaBgnV6duZnPlQuRSo/dm/GnmikNcmZhxIES4E9OZjUmQ8C+HCl4KJux+cXN/ErGDQ==
 
 "@types/q@^0.0.32":
   version "0.0.32"
@@ -959,6 +961,11 @@ babel-messages@^6.23.0:
   integrity sha1-8830cDhYA1sqKVHG7F7fbGLyYw4=
   dependencies:
     babel-runtime "^6.22.0"
+
+babel-plugin-transform-html-import-require-to-string@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-html-import-require-to-string/-/babel-plugin-transform-html-import-require-to-string-0.0.3.tgz#67c1a797fa616d58c809db57af3efaf88ea0021e"
+  integrity sha512-tANZz2t1iPVDE1EpeMEbR7Uath4nwesgITAxuZPEH9FS5iafl0Gy6jvk1ntOO/DKnAokZbeDLa6Kc3dnOeqszw==
 
 babel-runtime@^6.22.0, babel-runtime@^6.26.0:
   version "6.26.0"

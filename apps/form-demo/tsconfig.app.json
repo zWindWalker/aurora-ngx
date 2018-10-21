@@ -1,8 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc/apps/form-demo",
-    "types": []
+    "outDir": "../../dist/out-tsc/apps/form-demo"
   },
   "exclude": [
     "src/test.ts",

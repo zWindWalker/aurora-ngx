@@ -15,7 +15,7 @@ export class AuroraSelectComponent implements OnInit {
   ///-----------------------------------------------  Variables   -----------------------------------------------///
   show_menu: Boolean = false;
   selected_option: any = null;
-  @Input() options: any = [];
+  @Input() options: any = null;
   @Input() value = null;
   @Output() change = new EventEmitter();
   @Output() blur = new EventEmitter();

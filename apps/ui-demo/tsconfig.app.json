@@ -1,8 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc/apps/ui-demo",
-    "types": []
+    "outDir": "../../dist/out-tsc/apps/ui-demo"
   },
   "exclude": [
     "src/test.ts",

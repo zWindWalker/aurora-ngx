@@ -1,11 +1,26 @@
 <!--<ng-container *ngFor="let option of options">-->
-    <!--<div class="radio_container">-->
-        <!--&lt;!&ndash;<div&ndash;&gt;-->
-                <!--&lt;!&ndash;[dynamic-template]="template"&ndash;&gt;-->
-                <!--&lt;!&ndash;[context]="{label: option.label}"&ndash;&gt;-->
-        <!--&lt;!&ndash;&gt;</div>&ndash;&gt;-->
 
-    <!--</div>-->
+<!--<ng-container-->
+        <!--dynamic_template-->
+        <!--[template]="template"-->
+        <!--[properties]="{-->
+                    <!--value: option?.value,-->
+                    <!--is_selected: !!(option.value === value),-->
+                    <!--label: option?.label,-->
+                    <!--onClick: onClick-->
+                <!--}"-->
+<!--&gt;</ng-container>-->
 <!--</ng-container>-->
+<ng-container *ngIf="options[0].label">
 
-<dynamic></dynamic>
+    <ng-container
+            dynamic_template
+            [template]="template"
+            [properties]="{
+                    value: options[0].value,
+                    is_selected: !!(options[0].value === value),
+                    label: options[0].label,
+                    onClick: onClick
+                }"
+    ></ng-container>
+</ng-container>

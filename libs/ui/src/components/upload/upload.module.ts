@@ -14,7 +14,8 @@ import { FileComponent } from './components/file/file.component';
     FileComponent
   ],
   imports: [CommonModule],
-  exports: [AuroraUploadComponent]
+  exports: [AuroraUploadComponent],
+  entryComponents: [AuroraUploadComponent]
 })
 export class UploadModule {
 }

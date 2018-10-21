@@ -1,17 +1,14 @@
-import {NgModule} from '@angular/core';
-
-import {AuroraInputComponent} from "./input.component";
-import {CommonModule} from "@angular/common";
-
+import { NgModule } from '@angular/core';
+import { AuroraInputComponent } from './input.component';
 
 @NgModule({
-    declarations: [
-        AuroraInputComponent,
-    ],
-    imports: [CommonModule],
-    exports: [
-        AuroraInputComponent
-    ]
+  declarations: [
+    AuroraInputComponent
+  ],
+  exports: [
+    AuroraInputComponent
+  ],
+  entryComponents: [AuroraInputComponent]
 })
 export class InputModule {
 }

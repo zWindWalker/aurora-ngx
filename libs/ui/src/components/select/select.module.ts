@@ -19,7 +19,8 @@ import { OptionComponent } from './components/menu/option/option.component';
   ],
   exports: [
     AuroraSelectComponent
-  ]
+  ],
+  entryComponents: [AuroraSelectComponent]
 })
 export class SelectModule {
 }

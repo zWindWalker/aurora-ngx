@@ -4,16 +4,7 @@ import { AuroraFormComponent } from './form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
-import {
-  AuroraCheckboxComponent,
-  AuroraDatePickerComponent,
-  AuroraInputComponent,
-  AuroraRadioComponent,
-  AuroraSelectComponent,
-  AuroraTextareaComponent,
-  AuroraUiModule,
-  AuroraUploadComponent
-} from '@aurora-ngx/ui';
+import { AuroraRadioComponent, AuroraUiModule } from '@aurora-ngx/ui';
 
 import { DynamicFieldDirective } from './directives/dynamic-field.directive';
 import { FormGroupComponent } from './components/form-group.component';
@@ -51,15 +42,7 @@ import { FormService } from './form.service';
     FormTemplateComponent,
     SubmitDirective
   ],
-  entryComponents: [
-    AuroraInputComponent,
-    AuroraTextareaComponent,
-    AuroraSelectComponent,
-    AuroraCheckboxComponent,
-    AuroraDatePickerComponent,
-    AuroraUploadComponent,
-    AuroraRadioComponent
-  ]
+  entryComponents: [AuroraRadioComponent]
 })
 export class AuroraFormsModule {
 }

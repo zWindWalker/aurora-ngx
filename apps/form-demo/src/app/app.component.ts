@@ -89,7 +89,7 @@ export class AppComponent {
                     value: 'blue'
                 }
             ]
-        }
+        },
         {
             type: 'checkbox',
             name: 'agreement',

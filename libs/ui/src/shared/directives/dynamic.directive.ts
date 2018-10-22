@@ -41,6 +41,7 @@ export class DynamicDirective implements OnInit, OnDestroy, OnChanges {
     }
 
     ngOnInit(): void {
+
         if (this.template) {
             this.createTemplate()
         }
@@ -121,14 +122,25 @@ export class DynamicDirective implements OnInit, OnDestroy, OnChanges {
 
     ///-----------------------------------------------  Context   -----------------------------------------------///
 
+
     private initContext = () => {
         this.parseContext()
-        this.compRef.instance.ngOnInit()
+
+        if (typeof this.compRef.instance.ngOnInit === 'function') {
+            this.compRef.instance.ngOnInit()
+        } else {
+            throw new Error(`${this.compRef.componentType.name} doesn't implement 'ngOnInit'`);
+        }
     }
 
     private updateContext = () => {
         this.parseContext()
-        this.compRef.instance.ngOnChanges()
+        if (typeof this.compRef.instance.ngOnChanges === 'function') {
+            this.compRef.instance.ngOnChanges()
+        } else {
+            throw new Error(`${this.compRef.componentType.name} doesn't implement 'ngOnChanges'`);
+        }
+
     };
 
     private parseContext = () => {
@@ -148,5 +160,6 @@ export class DynamicDirective implements OnInit, OnDestroy, OnChanges {
         });
 
     }
+
 
 }

@@ -7,7 +7,7 @@ import {Component, ViewEncapsulation} from '@angular/core';
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-    options: [
+    options = [
         {
             label: 'Red',
             value: 'red'
@@ -20,6 +20,6 @@ export class AppComponent {
             label: 'Blue',
             value: 'blue'
         }
-        ]
+    ]
 
 }

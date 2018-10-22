@@ -1,4 +1,13 @@
-import {AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
+    ViewEncapsulation
+} from '@angular/core';
 import {AuroraForm, AuroraFormTemplate} from '@aurora-ngx/forms';
 import _ from 'lodash';
 
@@ -6,13 +15,10 @@ import _ from 'lodash';
     selector: 'quiz',
     templateUrl: './quiz.component.html',
     styleUrls: ['./quiz.component.scss'],
-    encapsulation: ViewEncapsulation.None
 })
 export class QuizComponent implements OnInit, AfterViewInit {
     ///-----------------------------------------------  Variables   -----------------------------------------------///
 
-    @Input() visible: Boolean;
-    @Output() close = new EventEmitter();
     form_config: AuroraForm[] = [
         {
             type: 'input',
@@ -51,16 +57,26 @@ export class QuizComponent implements OnInit, AfterViewInit {
             type: 'radio',
             label: 'What are you looking for',
             options: [
-                {label: 'Kitchen', value: 'kitchen'},
-                {label: 'Full home interior', value: 'full_home_interior'}
-            ]
+                {
+                    label: 'https://www.magnet.co.uk/imagevault/publishedmedia/s7azom6fq48lm8ahzlpf/yellow-category-selector-2.jpg',
+                    value: 'kitchen'
+                },
+                {
+                    label: 'http://marceladick.com/wp-content/uploads/2016/03/home-and-furniture-store-new-with-picture-of-home-and-ideas-fresh-at-design.jpg',
+                    value: 'full_home_interior'
+                }
+            ],
+            template: require('./templates/question_with_image.template').default
         },
         {
             name: 'question_2',
             type: 'radio',
             label: 'Are you looking to design a new home or existing',
             options: [
-                {label: 'New', value: 'new'},
+                {
+                    label: 'New',
+                    value: 'new'
+                },
                 {label: 'Existing', value: 'existing'}
             ]
         },
@@ -163,7 +179,6 @@ export class QuizComponent implements OnInit, AfterViewInit {
             this.index += 1;
             this.cd.markForCheck();
         } else {
-            this.close.emit();
             this.resetQuiz();
         }
     };

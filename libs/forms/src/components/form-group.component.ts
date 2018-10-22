@@ -10,7 +10,7 @@ import {
     OnInit,
     Optional,
     SkipSelf,
-    ViewChild
+    ViewChild, ViewEncapsulation
 } from '@angular/core';
 import {FormGroupDirective} from '@angular/forms';
 import {FormFieldComponent} from './form-field.component';

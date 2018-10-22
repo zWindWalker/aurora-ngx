@@ -1,6 +1,9 @@
-aurora-button {
+:host {
+    display: flex;
+    margin-top: 5rem;
+    aurora-button {
+        margin-top: 20rem;
 
-    margin-top: 20rem;
-
-    width: 30rem;
+        width: 30rem;
+    }
 }

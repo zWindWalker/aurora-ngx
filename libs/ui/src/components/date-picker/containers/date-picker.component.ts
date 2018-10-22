@@ -1,4 +1,15 @@
-import {AfterViewChecked, Component, ElementRef, EventEmitter, HostListener, Input, Output} from '@angular/core';
+import {
+    AfterViewChecked,
+    Component,
+    ElementRef,
+    EventEmitter,
+    HostListener,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    SimpleChanges
+} from '@angular/core';
 import {DatePickerService} from './date-picker.service';
 import moment from 'moment';
 import {toggle_trigger} from '../../../animations/toggle.animation';
@@ -9,7 +20,7 @@ import {toggle_trigger} from '../../../animations/toggle.animation';
     styleUrls: ['./date-picker.component.scss'],
     animations: [toggle_trigger]
 })
-export class AuroraDatePickerComponent implements AfterViewChecked {
+export class AuroraDatePickerComponent implements OnInit, OnChanges, AfterViewChecked {
 
     ///-----------------------------------------------  Variables   -----------------------------------------------///
 
@@ -37,6 +48,12 @@ export class AuroraDatePickerComponent implements AfterViewChecked {
 
     ngAfterViewChecked() {
         this.dpSvs.change_selected_date.subscribe(selected_date => this.change.emit(moment(selected_date).toISOString()));
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+    }
+
+    ngOnInit(): void {
     }
 
     ///-----------------------------------------------  General Functions   -----------------------------------------------///

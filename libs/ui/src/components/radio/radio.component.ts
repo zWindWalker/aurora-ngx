@@ -9,7 +9,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 
-import default_template from './templates/default.template.html';
+import default_template from './templates/default.template'
 
 @Component({
     selector: 'aurora-radio',
@@ -23,11 +23,9 @@ export class AuroraRadioComponent implements OnInit, OnChanges {
 
     @Input() options;
     @Input() name: string;
-    @Input() value: any = '';
+    @Input() value: any = ''
     @Output() change = new EventEmitter();
-
-    //language=HTML
-    template
+    @Input() template: string = default_template
 
 
     ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
@@ -35,12 +33,17 @@ export class AuroraRadioComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
-        this.template = default_template;
+        this.value = this.options[0].value;
     }
-
-    ///-----------------------------------------------  Main Functions   -----------------------------------------------///
 
     ngOnChanges(changes): void {
     }
 
+    ///-----------------------------------------------  Main Functions   -----------------------------------------------///
+
+
+    onChange = e => {
+        this.value = e
+        this.change.emit(e)
+    }
 }

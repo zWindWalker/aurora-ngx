@@ -72,7 +72,13 @@ export class AuthService implements OnDestroy {
 
     change_password = body => {
         this.apiSvs.post('/auth/change-password', body).pipe(untilDestroyed(this)).subscribe(res => {
+            console.log(res)
+        })
 
+    }
+
+    reset_password = body => {
+        this.apiSvs.post('/auth/reset-password', body).pipe(untilDestroyed(this)).subscribe(res => {
             console.log(res)
         })
 

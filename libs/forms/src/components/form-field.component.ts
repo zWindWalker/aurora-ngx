@@ -6,7 +6,7 @@ import {
     OnChanges,
     OnDestroy,
     OnInit,
-    SimpleChanges
+    SimpleChanges, ViewEncapsulation
 } from '@angular/core';
 import {AbstractControl} from '@angular/forms';
 import {FormService} from '../form.service';
@@ -41,7 +41,8 @@ import {
                         options: config.options,
                         value: control.value,
                         label: config.checkbox_label,
-                        properties: config.properties
+                        properties: config.properties,
+                        template: config.template
                   }"
                     [events]="{
                           change: onChanged,

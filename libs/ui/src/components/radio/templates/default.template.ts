@@ -1,4 +1,5 @@
-<div class="radio_container">
+export default `
+    <div class="radio_container">
     <div
             class="radio_button"
             (click)="change.emit(value)"
@@ -6,3 +7,4 @@
     ></div>
     <label>{{label}}</label>
 </div>
+`

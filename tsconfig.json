@@ -9,11 +9,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "target": "es5",
-    "types": [
-      "html"
-    ],
     "typeRoots": [
-      "types",
       "node_modules/@types"
     ],
     "lib": [
@@ -32,13 +28,13 @@
         "libs/forms/src/index.ts"
       ],
       "@aurora-ngx/ui": [
-        "libs/ui/index.ts"
+        "libs/ui/src/index.ts"
       ],
-      "@aurora-ngx/animations": [
-        "libs/animations/src/index.ts"
-      ],
+      //      "@aurora-ngx/animations": [
+      //        "libs/animations/src/index.ts"
+      //      ],
       "@aurora-ngx/utils": [
-        "libs/utils/src/index.ts"
+        "libs/utils/src"
       ]
     }
   },

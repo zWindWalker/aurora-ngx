@@ -3,6 +3,6 @@
   "dest": "../../dist/libs/ui",
   "deleteDestPath": false,
   "lib": {
-    "entryFile": "index.ts"
+    "entryFile": "src/index.ts"
   }
 }

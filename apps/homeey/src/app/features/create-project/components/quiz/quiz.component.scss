@@ -1,13 +1,36 @@
-aurora-form {
-    form-group.question {
-        grid-template-areas: "label" "field" "feedback";
-        grid-template-rows: 40% 40% 20%;
-        grid-template-columns: 1fr;
+:host {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+    aurora-form {
+        width: 50%;
+        ::ng-deep form-group.question {
+            grid-template-areas: "label" "field" "feedback";
+            grid-template-rows: 40% 40% 20%;
+            grid-template-columns: 1fr;
+            aurora-radio {
+                img {
+                    width: 40%;
+                }
+            }
+        }
+        .navigate_button {
+            display: flex;
+            justify-content: space-around;
+            aurora-button {
+                align-self: center;
+                display: inline-flex;
+
+                width: 20rem;
+            }
+        }
+
+    }
+
+    aurora-modal {
+        .content {
+            min-height: 60rem;
+        }
     }
 }
 
-aurora-modal {
-    .content {
-        min-height: 60rem;
-    }
-}

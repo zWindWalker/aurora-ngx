@@ -45,6 +45,8 @@
     "@ngrx/router-store": "6.0.1",
     "@ngrx/store": "6.0.1",
     "@nrwl/nx": "6.3.1",
+    "@types/lodash": "^4.14.117",
+    "@types/moment": "^2.13.0",
     "babel-plugin-transform-html-import-require-to-string": "^0.0.3",
     "core-js": "^2.5.4",
     "moment": "^2.22.2",

@@ -6,7 +6,8 @@ import {
     Input,
     OnChanges,
     OnInit,
-    SimpleChanges
+    SimpleChanges,
+    ViewEncapsulation
 } from '@angular/core';
 import {FormService} from '../form.service';
 import _ from 'lodash';
@@ -46,7 +47,7 @@ export class FormTemplateComponent implements OnInit, AfterViewChecked, OnChange
     ngAfterViewChecked(): void {
         const form = this.formSvs._getFormConfig();
         if (!this.name) {
-            if (_.isEmpty(form.template_config, true)) {
+            if (_.isEmpty(form.template_config)) {
                 this.data = form.config;
                 this.cd.detectChanges();
             } else if (this.data.length === 0) {

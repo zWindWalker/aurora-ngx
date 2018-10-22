@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Logger} from "../../../../core/services";
 import {AuthService} from "../../providers/auth.service";
+import {Router} from "@angular/router";
 
 
 const log = new Logger('LoginComponent');
@@ -34,15 +35,22 @@ export class LoginComponent implements OnInit {
         },
     ];
 
-    constructor(private authSvs: AuthService) {
+    constructor(
+        private authSvs: AuthService,
+        private router: Router) {
     }
 
     ngOnInit() {
+    }
+
+    navToForgotPassPage = () => {
+        this.router.navigate(['/auth/forgot-password'])
     }
 
     onLogin = form_data => {
         log.debug(form_data)
         this.authSvs.login(form_data)
     };
+
 
 }

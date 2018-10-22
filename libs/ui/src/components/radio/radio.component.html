@@ -4,11 +4,11 @@
             [template]="template"
             [properties]="{
                     value: option?.value,
-                    is_selected: !!(option.value === value),
+                    is_selected: option.value === value,
                     label: option?.label
                 }"
             [events]="{
-                change: change
+                change: onChange
             }"
     ></ng-container>
 </ng-container>

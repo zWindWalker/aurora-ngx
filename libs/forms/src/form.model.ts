@@ -10,7 +10,8 @@ export interface AuroraForm {
     validators?: Array<string>,
     options?: Array<{ value: any, label: any }>,
     feedback?: Object,
-    hidden?: Boolean
+    hidden?: Boolean,
+    template?: string
 }
 
 export interface AuroraFormTemplate {

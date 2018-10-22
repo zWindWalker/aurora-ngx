@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { FormService } from '../form.service';
 import { Subject } from 'rxjs';
 import { AuroraForm } from '../form.model';

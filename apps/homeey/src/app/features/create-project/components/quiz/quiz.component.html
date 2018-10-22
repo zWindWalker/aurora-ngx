@@ -1,24 +1,25 @@
-<aurora-modal
-        [visible]="visible"
-        (close)="resetQuiz(); close.emit()"
-        (onOk)="nextQuiz()"
-        (onCancel)="previousQuiz()"
+<aurora-form
+        [config]="form_config"
+        [template_config]="form_template_config"
 >
-    <aurora-form
-            [config]="form_config"
-            [template_config]="form_template_config"
-    >
-        <ng-container *ngFor="let name of quiz_formatted_data; let i = index">
-            <form-template
-                    [name]="name"
-                    [class]="i !== 0 && 'question'"
-                    *ngIf="index === i"
-            >
-            </form-template>
-
-        </ng-container>
-
-    </aurora-form>
+    <ng-container *ngFor="let name of quiz_formatted_data; let i = index">
+        <form-template
+                [name]="name"
+                [class]="i !== 0 && 'question'"
+                *ngIf="index === i"
+        >
+        </form-template>
 
 
-</aurora-modal>
+    </ng-container>
+
+    <div class="navigate_button">
+        <aurora-button (click)="previousQuiz()">
+            Previous
+        </aurora-button>
+
+        <aurora-button (click)="nextQuiz()">
+            Next
+        </aurora-button>
+    </div>
+</aurora-form>

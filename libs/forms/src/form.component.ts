@@ -11,8 +11,7 @@ import {
     OnInit,
     Output,
     QueryList,
-    ViewChild,
-    ViewEncapsulation
+    ViewChild
 } from '@angular/core';
 import {FormBuilder, FormGroup, FormGroupDirective} from '@angular/forms';
 import {FormService} from './form.service';
@@ -36,7 +35,8 @@ import {untilDestroyed} from "@aurora-ngx/utils";
 
     `,
     styles: [`
-        form-group {
+
+        >>> form-group {
             display: grid;
             grid-template-areas: "label   field" ". feedback";
             grid-template-columns: 30% 70%;
@@ -46,7 +46,7 @@ import {untilDestroyed} from "@aurora-ngx/utils";
             min-height: 6rem;
         }
     `],
-    encapsulation: ViewEncapsulation.None,
+
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 

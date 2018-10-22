@@ -1,26 +1,14 @@
-<!--<ng-container *ngFor="let option of options">-->
-
-<!--<ng-container-->
-        <!--dynamic_template-->
-        <!--[template]="template"-->
-        <!--[properties]="{-->
-                    <!--value: option?.value,-->
-                    <!--is_selected: !!(option.value === value),-->
-                    <!--label: option?.label,-->
-                    <!--onClick: onClick-->
-                <!--}"-->
-<!--&gt;</ng-container>-->
-<!--</ng-container>-->
-<ng-container *ngIf="options[0].label">
-
+<ng-container *ngFor="let option of options">
     <ng-container
-            dynamic_template
+            dynamic
             [template]="template"
             [properties]="{
-                    value: options[0].value,
-                    is_selected: !!(options[0].value === value),
-                    label: options[0].label,
-                    onClick: onClick
+                    value: option?.value,
+                    is_selected: !!(option.value === value),
+                    label: option?.label
                 }"
+            [events]="{
+                change: change
+            }"
     ></ng-container>
 </ng-container>

@@ -1,7 +1,7 @@
 <div class="radio_container">
     <div
             class="radio_button"
-            (click)="onClick(value)"
+            (click)="change.emit(value)"
             [class.active]="is_selected"
     ></div>
     <label>{{label}}</label>

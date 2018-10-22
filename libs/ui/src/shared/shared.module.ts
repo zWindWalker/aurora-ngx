@@ -1,18 +1,18 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DynamicComponentDirective } from './directives/dynamic-component.directive';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {DynamicDirective} from './directives/dynamic.directive';
 
 @NgModule({
-  declarations: [
-    DynamicComponentDirective
-  ],
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    CommonModule,
-    DynamicComponentDirective
-  ]
+    declarations: [
+        DynamicDirective
+    ],
+    imports: [
+        CommonModule
+    ],
+    exports: [
+        CommonModule,
+        DynamicDirective
+    ]
 
 })
 export class SharedModule {

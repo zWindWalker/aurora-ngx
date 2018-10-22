@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 
 @Component({
     selector: 'aurora-ngx-root',
@@ -7,27 +7,19 @@ import { Component, ViewEncapsulation } from '@angular/core';
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-    configs = [
-      {
-        type: 'radio',
-        name: 'color',
-        label: 'Color',
-        options: [
-          {
+    options: [
+        {
             label: 'Red',
             value: 'red'
-          },
-          {
+        },
+        {
             label: 'Yellow',
             value: 'yellow'
-          },
-          {
+        },
+        {
             label: 'Blue',
             value: 'blue'
-          }
+        }
         ]
-      }
-    ]
-
 
 }

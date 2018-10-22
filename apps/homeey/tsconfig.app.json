@@ -1,8 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc/apps/homeey",
-    "types": []
+    "outDir": "../../dist/out-tsc/apps/homeey"
   },
   "exclude": [
     "src/test.ts",

@@ -1,20 +1,11 @@
-import {
-    AfterViewInit,
-    ChangeDetectorRef,
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-    ViewEncapsulation
-} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {AuroraForm, AuroraFormTemplate} from '@aurora-ngx/forms';
 import _ from 'lodash';
 
 @Component({
     selector: 'quiz',
     templateUrl: './quiz.component.html',
-    styleUrls: ['./quiz.component.scss'],
+    styleUrls: ['./quiz.component.scss']
 })
 export class QuizComponent implements OnInit, AfterViewInit {
     ///-----------------------------------------------  Variables   -----------------------------------------------///

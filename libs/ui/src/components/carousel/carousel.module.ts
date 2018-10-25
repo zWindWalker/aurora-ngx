@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AuroraCarouselComponent } from './containers/carousel.component';
-import { ItemComponent } from './components/item/item.component';
-import { CarouselDirective } from './directives/carousel.directive';
+import { AuroraCarouselComponent } from './carousel.component';
+
+import { CarouselItemDirective } from './directives/carousel-item.directive';
+import { CarouselItemComponent } from './carousel-item.component';
 
 
 @NgModule({
@@ -12,13 +13,10 @@ import { CarouselDirective } from './directives/carousel.directive';
     CommonModule
   ],
   declarations: [
-    AuroraCarouselComponent, ItemComponent, CarouselDirective
+    AuroraCarouselComponent, CarouselItemDirective, CarouselItemComponent
   ],
   exports: [
-    AuroraCarouselComponent
-  ],
-  entryComponents: [
-    ItemComponent
+    AuroraCarouselComponent, CarouselItemDirective
   ]
 })
 export class CarouselModule {

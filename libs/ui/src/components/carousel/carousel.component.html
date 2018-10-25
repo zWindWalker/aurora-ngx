@@ -2,11 +2,10 @@
     <i class="fas fa-chevron-left"></i>
 </div>
 
-<ng-container
-        carousel
-        [index]="index"
-        [data]="data"
->
+<ng-container *ngFor="let item of item_dir_list;let i = index">
+    <carousel-item
+            [tplRef]="item.tplRef"
+    ></carousel-item>
 </ng-container>
 
 <div class="arrow-right" (click)="nextSlide()">

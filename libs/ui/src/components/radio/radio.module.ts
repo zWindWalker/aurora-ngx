@@ -11,7 +11,8 @@ import {SharedModule} from '../../shared/shared.module';
     ],
     exports: [
         AuroraRadioComponent
-    ]
+    ],
+    entryComponents: [AuroraRadioComponent]
 })
 export class RadioModule {
 }

@@ -4,7 +4,7 @@ import {AuroraFormComponent} from './form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 
 
-import {AuroraRadioComponent, AuroraUiModule} from '@aurora-ngx/ui';
+import {AuroraUiModule} from '@aurora-ngx/ui';
 
 import {DynamicFieldDirective} from './directives/dynamic-field.directive';
 import {FormGroupComponent} from './components/form-group.component';
@@ -12,7 +12,7 @@ import {FormFieldComponent} from './components/form-field.component';
 import {FormLabelComponent} from './components/form-label.component';
 import {FormFeedbackComponent} from './components/form-feedback.component';
 import {SubmitDirective} from './directives/submit.directive';
-import {FormTemplateComponent} from './components/form-template.component';
+
 import {FormService} from './form.service';
 
 @NgModule({
@@ -20,7 +20,6 @@ import {FormService} from './form.service';
         AuroraFormComponent,
         FormGroupComponent,
         FormLabelComponent,
-        FormTemplateComponent,
         FormFeedbackComponent,
         FormFieldComponent,
 
@@ -39,10 +38,8 @@ import {FormService} from './form.service';
         FormFieldComponent,
         FormLabelComponent,
         FormFeedbackComponent,
-        FormTemplateComponent,
         SubmitDirective
-    ],
-    entryComponents: [AuroraRadioComponent]
+    ]
 })
 export class AuroraFormsModule {
 }

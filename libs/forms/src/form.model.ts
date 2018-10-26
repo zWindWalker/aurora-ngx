@@ -8,10 +8,12 @@ export interface AuroraForm {
     checkbox_label?: string,
     properties?: Object,
     validators?: Array<string>,
-    options?: Array<{ value: any, label: any }>,
+    options?: Array<{ value: any, label: any, [property: string]: any }>,
     feedback?: Object,
     hidden?: Boolean,
-    template?: string
+    template?: string,
+
+    [property: string]: any
 }
 
 export interface AuroraFormTemplate {

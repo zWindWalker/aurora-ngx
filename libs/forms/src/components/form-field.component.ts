@@ -6,13 +6,14 @@ import {
     OnChanges,
     OnDestroy,
     OnInit,
-    SimpleChanges, ViewEncapsulation
+    SimpleChanges
 } from '@angular/core';
 import {AbstractControl} from '@angular/forms';
 import {FormService} from '../form.service';
 import {Subject} from 'rxjs';
 import {AuroraForm} from '../form.model';
-import {untilDestroyed} from '@aurora-ngx/utils';
+import {untilDestroyed} from "@aurora-ngx/ui";
+
 import {
     AuroraCheckboxComponent,
     AuroraDatePickerComponent,
@@ -93,6 +94,7 @@ export class FormFieldComponent implements OnInit, AfterViewInit, OnChanges, OnD
             this.control = this.formSvs._getControl(this.name);
             this.config = this.formSvs._getControlConfig(this.name);
             this.submitted = this.formSvs._getSubmittedStatus();
+            this.cd.detectChanges()
         });
 
         this.formSvs.state_change.pipe(untilDestroyed(this)).subscribe(() => {

@@ -4,16 +4,30 @@
     padding-top: 2rem;
     aurora-form {
         width: 50%;
+
         ::ng-deep form-group.question {
             grid-template-areas: "label" "field" "feedback";
             grid-template-rows: 40% 40% 20%;
             grid-template-columns: 1fr;
+            form-field {
+                margin: 5rem;
+            }
+            form-feedback {
+                font-size: 2rem;
+                margin-left: 5rem;
+            }
             aurora-radio {
-                img {
-                    width: 40%;
+                .radio_container {
+                    img {
+                        margin: 0 5rem;
+                        height: 30%;
+                        width: 30%;
+                    }
                 }
+
             }
         }
+
         .navigate_button {
             display: flex;
             justify-content: space-around;
@@ -27,10 +41,12 @@
 
     }
 
-    aurora-modal {
-        .content {
-            min-height: 60rem;
-        }
+    aurora-carousel {
+        height: 55rem;
+    }
+
+    aurora-button {
+        width: 30rem;
     }
 }
 

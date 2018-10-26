@@ -14,7 +14,7 @@ const ast_utils_1 = require("../utility/ast-utils");
 const config_1 = require("../utility/config");
 const ng_ast_utils_1 = require("../utility/ng-ast-utils");
 const route_utils_1 = require("../utility/route-utils");
-// Helper functions. (possible refactors to utils)
+// Helper functions. (possible refactors to sdfsa)
 function formatMissingAppMsg(label, nameOrIndex) {
     const nameOrIndexText = nameOrIndex ? ` (${nameOrIndex})` : '';
     return `${label} app ${nameOrIndexText} not found.`;

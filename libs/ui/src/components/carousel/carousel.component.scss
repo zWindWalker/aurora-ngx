@@ -1,4 +1,5 @@
 :host {
+    background-color: transparent;
     display: flex;
     position: relative;
     height: 300px;
@@ -20,11 +21,9 @@
 }
 
 .arrow-left {
-    grid-area: arrow_left;
     left: 0;
 }
 
 .arrow-right {
-    grid-area: arrow-right;
     right: 0;
 }

@@ -33,7 +33,6 @@ export class AuroraRadioComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
-        this.value = this.options[0].value;
     }
 
     ngOnChanges(changes): void {

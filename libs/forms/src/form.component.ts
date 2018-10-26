@@ -11,17 +11,16 @@ import {
     OnInit,
     Output,
     QueryList,
-    ViewChild,
-    ViewEncapsulation
+    ViewChild
 } from '@angular/core';
 import {FormBuilder, FormGroup, FormGroupDirective} from '@angular/forms';
 import {FormService} from './form.service';
 
-import {FormTemplateComponent} from './components/form-template.component';
 import {AuroraForm, AuroraFormTemplate} from './form.model';
 
 import {FormGroupComponent} from './components/form-group.component';
-import {untilDestroyed} from "@aurora-ngx/utils";
+import {untilDestroyed} from "@aurora-ngx/ui";
+
 
 
 @Component({
@@ -30,12 +29,23 @@ import {untilDestroyed} from "@aurora-ngx/utils";
         <ng-container
                 [formGroup]="form"
         >
-            <form-template *ngIf="default_template"></form-template>
-            <ng-content></ng-content>
+
+            <ng-container *ngIf="default_template; else custom_tpl">
+                <ng-container
+                        *ngFor="let group of config"
+                >
+                    <form-group [name]="group.name" [class]="class" [id]="id">
+                    </form-group>
+                </ng-container>
+            </ng-container>
+
+            <ng-template #custom_tpl>
+                <ng-content></ng-content>
+            </ng-template>
         </ng-container>
 
     `,
-    styles: [`        
+    styles: [`
         ::ng-deep form-group {
             display: grid;
             grid-template-areas: "label   field" ". feedback";
@@ -44,6 +54,8 @@ import {untilDestroyed} from "@aurora-ngx/utils";
             margin-bottom: 1rem;
             height: auto;
             min-height: 6rem;
+            visibility: visible;
+            z-index: 99999999;
         }
     `],
     changeDetection: ChangeDetectionStrategy.OnPush
@@ -58,12 +70,13 @@ export class AuroraFormComponent implements OnInit, AfterViewInit, AfterViewChec
     @Input() template_config: AuroraFormTemplate = {};
     @Input() media_type: String;
     @Input() show_feedback: Boolean = true
+    @Input() class
+    @Input() id
 
     @Output() submit = new EventEmitter();
 
     @ViewChild(FormGroupDirective) formGrDir: FormGroupDirective;
     @ContentChildren(FormGroupComponent) formGrCom: QueryList<FormGroupComponent>;
-    @ContentChildren(FormTemplateComponent) formTplCom: QueryList<FormTemplateComponent>;
 
     constructor(
         private formSvs: FormService,

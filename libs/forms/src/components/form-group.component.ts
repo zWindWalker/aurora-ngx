@@ -4,19 +4,20 @@ import {
     ChangeDetectorRef,
     Component,
     ContentChild,
-    Host,
+    EventEmitter,
     HostBinding,
     Input,
+    OnDestroy,
     OnInit,
-    Optional,
-    SkipSelf,
-    ViewChild, ViewEncapsulation
+    Output,
+    ViewChild
 } from '@angular/core';
-import {FormGroupDirective} from '@angular/forms';
 import {FormFieldComponent} from './form-field.component';
 import {FormLabelComponent} from './form-label.component';
 import {FormFeedbackComponent} from './form-feedback.component';
 import {FormService} from "../form.service";
+import _ from 'lodash'
+
 
 @Component({
     selector: 'form-group',
@@ -30,7 +31,7 @@ import {FormService} from "../form.service";
     `,
 
     styles: [`
-        :host-context(.hidden)  {
+        :host-context(.hidden) {
             display: none;
         }
 
@@ -48,10 +49,10 @@ import {FormService} from "../form.service";
     `],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormGroupComponent implements OnInit, AfterViewInit {
+export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy {
 ///-----------------------------------------------  Variables   -----------------------------------------------///
     @Input() name = '';
-
+    @Output() change = new EventEmitter()
 
     @ContentChild(FormFieldComponent) formFieldContent: FormFieldComponent;
     @ContentChild(FormLabelComponent) formLabelContent: FormLabelComponent;
@@ -66,8 +67,6 @@ export class FormGroupComponent implements OnInit, AfterViewInit {
 
     ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
     constructor(
-        @Optional() @Host() @SkipSelf()
-        private formGroupDirective: FormGroupDirective,
         private cd: ChangeDetectorRef,
         private formSvs: FormService
     ) {
@@ -75,6 +74,24 @@ export class FormGroupComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         this.hidden = this.formSvs._getControlConfig(this.name).hidden;
+
+        const control = this.formSvs._getControl(this.name);
+        const config = this.formSvs._getControlConfig(this.name)
+
+        control.valueChanges.subscribe(value => {
+            const change_data = {
+                selected_value: value,
+                config: config
+            }
+
+            if (config.options) {
+                _.assign(change_data, {}, {
+                    selected_option: _.find(config.options, ['value', value])
+                })
+            }
+
+            this.change.emit(change_data)
+        })
     }
 
     ngAfterViewInit(): void {
@@ -101,5 +118,7 @@ export class FormGroupComponent implements OnInit, AfterViewInit {
         }
     }
 
+    ngOnDestroy(): void {
+    }
 
 }

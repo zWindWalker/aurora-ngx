@@ -19,6 +19,8 @@ import {
 
 import _ from 'lodash';
 import {CommonModule} from "@angular/common";
+import {untilDestroyed} from "../../utils";
+
 
 
 @Directive({
@@ -57,7 +59,7 @@ export class DynamicDirective implements OnInit, OnDestroy, OnChanges {
     }
 
     ngOnDestroy() {
-        this.compRef.destroy();
+        if (this.compRef) this.compRef.destroy();
     }
 
     ///-----------------------------------------------  Template   -----------------------------------------------///
@@ -134,7 +136,7 @@ export class DynamicDirective implements OnInit, OnDestroy, OnChanges {
     }
 
     private updateContext = () => {
-        this.parseContext()
+        this.parseContext('updated')
         if (typeof this.compRef.instance.ngOnChanges === 'function') {
             this.compRef.instance.ngOnChanges()
         } else {
@@ -143,21 +145,25 @@ export class DynamicDirective implements OnInit, OnDestroy, OnChanges {
 
     };
 
-    private parseContext = () => {
+    private parseContext = (context = 'all') => {
         _.forOwn(this.properties, (value, key) => {
             if (value !== undefined) this.compRef.instance[key] = value;
         });
 
-        _.forOwn(this.events, (value, key) => {
+        if (context === 'all') {
+            _.forOwn(this.events, (value, key) => {
 
-            if (!this.compRef.instance[key])
-                this.compRef.instance[key] = new EventEmitter()
+                if (!this.compRef.instance[key])
+                    this.compRef.instance[key] = new EventEmitter()
 
-            this.compRef.instance[key].subscribe(event => {
-                (value instanceof EventEmitter) ? value.emit(event) : value(event)
-            })
+                this.compRef.instance[key].pipe(untilDestroyed(this)).subscribe(event => {
+                    (value instanceof EventEmitter)
+                        ? value.emit(event)
+                        : value(event)
+                })
 
-        });
+            });
+        }
 
     }
 

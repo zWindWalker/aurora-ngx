@@ -4,7 +4,7 @@ import _ from 'lodash';
 import {AuroraForm} from '../form.model';
 import {Subject} from 'rxjs';
 import {FormService} from '../form.service';
-import {untilDestroyed} from "@aurora-ngx/utils";
+import {untilDestroyed} from "@aurora-ngx/ui";
 
 @Component({
     selector: 'form-feedback',
@@ -12,7 +12,7 @@ import {untilDestroyed} from "@aurora-ngx/utils";
         <ng-container *ngIf="show_feedback">
             <ng-container *ngIf="control?.invalid && (control?.dirty || control?.touched || submitted)">
                 <ng-container *ngFor="let err of error_list">
-                    <p>{{err}}</p>
+                    {{err}}
                 </ng-container>
 
             </ng-container>
@@ -24,9 +24,6 @@ import {untilDestroyed} from "@aurora-ngx/utils";
             display: flex;
             justify-content: flex-start;
             width: 100%;
-        }
-
-        p {
             color: #f5222d;
             font-size: 1.2rem;
             margin-top: 0.5rem;
@@ -63,6 +60,8 @@ export class FormFeedbackComponent implements OnInit, OnChanges, OnDestroy {
             this.control.statusChanges.subscribe(status => {
                 this.error_list = _.map(this.control.errors, (value, key) => this.generate_feedback(key));
             });
+
+            this.cd.detectChanges()
         });
 
         this.formSvs.state_change.pipe(untilDestroyed(this)).subscribe(() => {

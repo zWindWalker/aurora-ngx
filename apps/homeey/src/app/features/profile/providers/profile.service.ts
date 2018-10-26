@@ -1,6 +1,6 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {Router} from '@angular/router';
-import {untilDestroyed} from "@aurora-ngx/utils";
+import {untilDestroyed} from "@aurora-ngx/sdfsa";
 import {ApiService, Logger} from "../../../core/services";
 
 

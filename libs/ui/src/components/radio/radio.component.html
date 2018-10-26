@@ -3,9 +3,8 @@
             dynamic
             [template]="template"
             [properties]="{
-                    value: option?.value,
-                    is_selected: option.value === value,
-                    label: option?.label
+                    option: option,
+                    is_selected: option.value === value
                 }"
             [events]="{
                 change: onChange

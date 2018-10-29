@@ -1,8 +1,9 @@
 <a routerLink="/about">About</a>
 <a routerLink="/auth/login" *ngIf="!authSvs.isAuthenticated()">Login</a>
-<a routerLink="/auth/register">Register</a>
+<a routerLink="/auth/register" *ngIf="!authSvs.isAuthenticated()">Register</a>
 <a routerLink="/auth/change-password" *ngIf="authSvs.isAuthenticated()">Change Password</a>
 <a routerLink="/profile" *ngIf="authSvs.isAuthenticated()">Profile</a>
+<a routerLink="/invoice" *ngIf="authSvs.isAuthenticated()">Invoice</a>
 <a routerLink="/create-project">Create project</a>
 
 

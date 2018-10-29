@@ -1,0 +1,118 @@
+<div class="row">
+    <div class="index">{{index}}</div>
+
+    <div class="image">
+        <img class="img-responsive" src="{{data.image}}" alt="">
+    </div>
+
+    <div class="content">
+        <h2>{{data.name}}</h2>
+        <p class="note" [innerHTML]="data.note"></p>
+    </div>
+
+    <div class="price">
+        <h2>Unit Price</h2>
+        <p>{{data.unit_price | currency}}</p>
+    </div>
+
+    <div class="quantity">
+        <h2>Quantity</h2>
+        <p>{{data.quantity}}</p>
+    </div>
+
+    <div class="total">
+        <h2>Total</h2>
+        <p>{{data.subtotal | currency}}</p>
+    </div>
+
+    <div class="collapse_icon"  (click)="comment_modal_visiable = true">
+        <i class="far fa-comment-alt"></i>
+
+    </div>
+</div>
+
+<ng-container *ngIf="data.specification_list">
+    <div class="row specification">
+        <div class="index"></div>
+
+        <div class="image">
+
+        </div>
+
+        <div class="content">
+            <h2>Specification</h2>
+
+        </div>
+
+        <div class="price">
+
+        </div>
+
+        <div class="quantity">
+
+        </div>
+
+        <div class="total">
+
+        </div>
+    </div>
+
+    <div class="row specification" *ngFor="let spec of data.specification_list">
+        <div class="index"></div>
+
+        <div class="image">
+
+        </div>
+
+        <div class="content">
+            <h2>{{spec.name}}</h2>
+            <img class="img-responsive"
+                 src="{{spec.image}}"
+                 alt="">
+            <label>{{spec.label}}</label>
+        </div>
+
+        <div class="price">
+            {{spec.unit_price | currency}}
+        </div>
+
+        <div class="quantity">
+            <p>{{spec.quantity}}</p>
+        </div>
+
+        <div class="total">
+            <p>{{spec.subtotal | currency}}</p>
+        </div>
+    </div>
+
+    <div class="row specification">
+        <div class="index"></div>
+
+        <div class="image">
+
+        </div>
+
+        <div class="content">
+        </div>
+
+        <div class="price">
+
+        </div>
+
+        <div class="quantity">
+            <span>Sub Total</span>
+        </div>
+
+        <div class="total">
+            <p>{{data.specification_subtotal | currency}}</p>
+        </div>
+    </div>
+</ng-container>
+
+
+<product-comment
+        [visible]="comment_modal_visiable"
+        (close)="comment_modal_visiable = false"
+>
+
+</product-comment>

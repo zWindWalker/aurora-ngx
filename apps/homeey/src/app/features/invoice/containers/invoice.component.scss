@@ -1,0 +1,72 @@
+:host {
+
+    display: flex;
+    flex-direction: column;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 5rem;
+    h1 {
+        align-self: center;
+        margin: 2rem 0;
+    }
+    h2 {
+        font-size: 2.1rem;
+        font-weight: 700;
+        margin: 1rem 0;
+    }
+    h3 {
+        font-size: 1.8rem;
+        margin: 0.2rem 0;
+    }
+}
+
+.summary {
+
+    .title {
+        border-bottom: 1px solid black;
+        margin: 5rem 0;
+        font-size: 1.6rem;
+        padding: 1.4rem;
+    }
+    .content {
+        margin: 0 2rem;
+        .room_list {
+            .room {
+                display: flex;
+                justify-content: space-between;
+                margin: 1rem 0;
+            }
+        }
+        .shipping, .tax, .deposit {
+            max-width: 50%;
+            .node {
+                display: flex;
+                justify-content: space-between;
+                margin: 2rem 0;
+            }
+            .shipping_location {
+                display: flex;
+                justify-content: space-between;
+                max-width: 30%;
+                margin-left: auto;
+                margin-top: 2rem;
+            }
+        }
+
+        .total, .subtotal {
+            border-top: 1px solid black;
+            display: flex;
+            justify-content: space-between;
+            max-width: 40%;
+            margin-left: auto;
+            margin-top: 1rem;
+            padding-top: 2rem;
+        }
+    }
+}

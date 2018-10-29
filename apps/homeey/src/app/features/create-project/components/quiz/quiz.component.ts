@@ -1,8 +1,8 @@
 import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
-import {AuroraForm} from '@aurora-ngx/forms';
+import {AuroraForm, FormService} from '@aurora-ngx/forms';
 import _ from 'lodash';
-import {AuroraCarouselComponent} from "@aurora-ngx/ui";
-import {FormService} from "../../../../../../../../libs/forms/src/form.service";
+import {AuroraCarouselComponent} from '@aurora-ngx/ui';
+
 
 @Component({
     selector: 'quiz',
@@ -45,11 +45,11 @@ export class QuizComponent implements OnInit, AfterViewInit {
             name: 'post_code',
             label: 'Post code'
         },
-    ]
+    ];
     quiz_form_config: AuroraForm[] = [
         {
             name: 'question_1',
-            id: "001",
+            id: '001',
             type: 'radio',
             label: 'What are you looking for',
             options: [
@@ -72,7 +72,7 @@ export class QuizComponent implements OnInit, AfterViewInit {
         },
         {
             name: 'question_2',
-            id: "002",
+            id: '002',
             type: 'radio',
             label: 'Are you looking to design a new home or existing',
             options: [
@@ -83,7 +83,7 @@ export class QuizComponent implements OnInit, AfterViewInit {
                 {
                     label: 'Existing',
                     value: 'existing',
-                    next_question_id: "005"
+                    next_question_id: '005'
                 }
             ],
             validators: ['required'],
@@ -93,7 +93,7 @@ export class QuizComponent implements OnInit, AfterViewInit {
         },
         {
             name: 'question_3',
-            id: "003",
+            id: '003',
             type: 'radio',
             label: `That's great. When do you expect to get possessions of your property`,
             value: 'already_have',
@@ -109,7 +109,7 @@ export class QuizComponent implements OnInit, AfterViewInit {
         },
         {
             name: 'question_4',
-            id: "004",
+            id: '004',
             type: 'radio',
             label: `Please select the rooms you want to design`,
             value: 'living_room',
@@ -127,7 +127,7 @@ export class QuizComponent implements OnInit, AfterViewInit {
         },
         {
             name: 'question_5',
-            id: "005",
+            id: '005',
             type: 'input',
             label: `Please enter the project name`,
             validators: ['required'],
@@ -137,7 +137,7 @@ export class QuizComponent implements OnInit, AfterViewInit {
         },
         {
             name: 'question_6',
-            id: "006",
+            id: '006',
             type: 'radio',
             label: `When do you plan to get started?`,
             options: [
@@ -153,7 +153,7 @@ export class QuizComponent implements OnInit, AfterViewInit {
         },
         {
             name: 'question_7',
-            id: "007",
+            id: '007',
             type: 'radio',
             label: `What's your budget?`,
             options: [
@@ -169,22 +169,22 @@ export class QuizComponent implements OnInit, AfterViewInit {
         },
         {
             name: 'question_8',
-            id: "008",
+            id: '008',
             label: `That's it. We're ready to go`,
             skip: true
         }
-    ]
+    ];
 
     carousel_config = {
-        "slide_0": this.user_infor_form_config
-    }
+        'slide_0': this.user_infor_form_config
+    };
 
     form_config: AuroraForm[] = [
         ...this.user_infor_form_config,
         ...this.quiz_form_config
-    ]
+    ];
 
-    @ViewChild(AuroraCarouselComponent) carousel: AuroraCarouselComponent
+    @ViewChild(AuroraCarouselComponent) carousel: AuroraCarouselComponent;
 
     ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
     constructor(private cd: ChangeDetectorRef, private formSvs: FormService) {
@@ -194,44 +194,44 @@ export class QuizComponent implements OnInit, AfterViewInit {
         _.each(this.quiz_form_config, (item, i) => {
             _.assign(this.carousel_config, {}, {
                 [`slide_${i + 1}`]: [item]
-            })
+            });
         });
     }
 
 
     ngAfterViewInit(): void {
-        this.cd.detectChanges()
+        this.cd.detectChanges();
     }
 
 
 ///-----------------------------------------------  Main Functions   -----------------------------------------------///
 
     onSubmit = form_data => {
-        console.log(form_data)
-    }
+        console.log(form_data);
+    };
 
     onSelectAnswer = e => {
         if (e.selected_option && e.selected_option.next_question_id) {
-            const quiz_array = _.flatten(_.drop(_.values(this.carousel_config)))
-            const from_index = _.findIndex(quiz_array, ['id', e.config.id])
-            const to_index = _.findIndex(quiz_array, ['id', e.selected_option.next_question_id])
-            const number_of_step = to_index - from_index - 1
+            const quiz_array = _.flatten(_.drop(_.values(this.carousel_config)));
+            const from_index = _.findIndex(quiz_array, ['id', e.config.id]);
+            const to_index = _.findIndex(quiz_array, ['id', e.selected_option.next_question_id]);
+            const number_of_step = to_index - from_index - 1;
 
             _.times(number_of_step, n => {
-                this.carousel.skip.push(this.carousel.index + n + 1)
-            })
+                this.carousel.skip.push(this.carousel.index + n + 1);
+            });
         }
-        else if (this.carousel.index < Math.min(...this.carousel.skip)) this.carousel.skip = []
+        else if (this.carousel.index < Math.min(...this.carousel.skip)) this.carousel.skip = [];
 
-    }
+    };
 
     nextSlide = () => {
         let form_valid = true;
         _.each(this.carousel_config[`slide_${this.carousel.index}`], (form_control, i) => {
-            this.formSvs._markAsDirty(form_control.name)
-            form_valid = form_valid && this.formSvs._getControlValid(form_control.name)
-        })
+            this.formSvs._markAsDirty(form_control.name);
+            form_valid = form_valid && this.formSvs._getControlValid(form_control.name);
+        });
 
-        if (form_valid) this.carousel.nextSlide()
-    }
+        if (form_valid) this.carousel.nextSlide();
+    };
 }

@@ -1,0 +1,24 @@
+<ng-container
+        *ngFor="let room of room_list ; let i = index"
+>
+    <div class="room" (click)="toggleDetail(i)">
+        <ng-container>
+            <h3>{{room.name}}</h3>
+        </ng-container>
+        <!--<div class="sub_total">sub total</div>-->
+        <i class="fas fa-caret-right"
+           [@rotate]="{
+                value: 'rotated',
+                params: {
+                    deg: 180
+                }
+            }"
+        ></i>
+    </div>
+    <div
+            *ngIf="room.show_detail"
+    >
+        <product [data]="product_data" [index]="i"
+                 *ngFor="let product_data of room.product_list; let i = index"></product>
+    </div>
+</ng-container>

@@ -1,10 +1,10 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {Router} from '@angular/router';
-import {untilDestroyed} from "@aurora-ngx/sdfsa";
-import {ApiService, Logger} from "../../../core/services";
+import {untilDestroyed} from '@aurora-ngx/ui';
+import {ApiService, Logger} from '../../../core/services';
 
 
-const log = new Logger('ProfileService')
+const log = new Logger('ProfileService');
 
 @Injectable()
 
@@ -22,7 +22,7 @@ export class ProfileService implements OnDestroy {
 
     _getUserProfile = () => {
         this.apiSvs.get('/auth/profile').pipe(untilDestroyed(this)).subscribe(res => {
-            console.log(res)
-        })
-    }
+            console.log(res);
+        });
+    };
 }

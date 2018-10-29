@@ -1,0 +1,23 @@
+<div class="mask" *ngIf="visible">
+    <div class="content">
+        <div class="body">
+            <div id="comment_list">
+                <div class="comment" *ngFor="let comment of comment_list">
+                    <p>{{comment.text}}</p>
+                </div>
+
+            </div>
+
+            <div id="comment_input">
+                <aurora-input
+                        type="text"
+                        (change)="value=$event"
+                ></aurora-input>
+                <aurora-button (click)="newComment($event)">
+                    OK
+                </aurora-button>
+            </div>
+
+        </div>
+    </div>
+</div>

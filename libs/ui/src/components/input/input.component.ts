@@ -35,10 +35,12 @@ export class AuroraInputComponent implements OnInit, OnChanges, OnDestroy {
 
     ///-----------------------------------------------  Variables   -----------------------------------------------///
 
+    value: any = null
+
     @Input() input_type = '';
     @Input() name = '';
     @Input() placeholder = '';
-    @Input() value: any = null;
+    @Input('value') default_value: any = null;
     @Output() change = new EventEmitter();
     @Output() blur = new EventEmitter();
     @Input() invalid: Boolean = false;
@@ -55,6 +57,8 @@ export class AuroraInputComponent implements OnInit, OnChanges, OnDestroy {
 
     ngOnInit(): void {
         this.host_invalid = this.invalid;
+        this.value = this.default_value
+        this.cd.markForCheck()
     }
 
     ngOnChanges(): void {

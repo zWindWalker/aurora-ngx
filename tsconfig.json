@@ -27,15 +27,12 @@
       "@aurora-ngx/forms": [
         "libs/forms/src/index.ts"
       ],
-//      "@aurora-ngx/ui": [
-//        "libs/ui/src/index.ts"
-//      ],
-//      "@aurora-ngx/animations": [
-//        "libs/animations/src/index.ts"
-//      ],
-//      "@aurora-ngx/sdfsa": [
-//        "libs/sdfsa/src"
-//      ]
+      "@aurora-ngx/ui": [
+        "libs/ui/src/index.ts"
+      ],
+      "@aurora-ngx/animations": [
+        "libs/animations/src/index.ts"
+      ]
     }
   },
   "exclude": [

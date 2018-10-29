@@ -1,0 +1,60 @@
+<div class="header">
+    <h1>Invoice</h1>
+    <h2>{{invoice.project_name}}</h2>
+    <h3>Client: </h3>
+    <h3>Address: </h3>
+    <h3>Date</h3>
+    <h3>Designer: </h3>
+    <h3>Revision: </h3>
+</div>
+
+<room-list
+        [data]="invoice.room_list"
+></room-list>
+
+<div class="summary">
+    <div class="title">Summary</div>
+
+    <div class="content">
+        <div class="room_list">
+            <div class="room" *ngFor="let room of invoice.room_list">
+                <h2>{{room.name}}</h2>
+                <p>{{room.subtotal | currency}}</p>
+            </div>
+        </div>
+        <div class="subtotal">
+            <h2>Subtotal</h2>
+            <p>{{invoice.all_room_subtotal | currency}}</p>
+        </div>
+        <div class="shipping">
+            <div class="node">
+                <h2>Shipping</h2>
+            </div>
+
+            <div class="shipping_location" *ngFor="let shipping_location of invoice.shipping_location">
+                <h2>{{shipping_location.name}}</h2>
+                <p>{{shipping_location.fee | currency}}</p>
+            </div>
+        </div>
+        <div class="tax">
+            <div class="node">
+                <h2>Tax</h2>
+                <p>{{invoice.tax_fee | currency}}</p>
+            </div>
+
+        </div>
+        <div class="deposit">
+            <div class="node">
+                <h2>Deposit 50%</h2>
+                <p>{{'200' | currency}}</p>
+            </div>
+        </div>
+
+        <div class="total">
+            <h2>Subtotal</h2>
+            <p>{{invoice.total | currency}}</p>
+        </div>
+    </div>
+</div>
+
+

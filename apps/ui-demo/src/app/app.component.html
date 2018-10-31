@@ -1,37 +1,9 @@
-<aurora-carousel>
+<aurora-radio [options]="[
+{label: 'Red', value: 'red'},
+{label: 'Yellow', value: 'yellow'},
+{label: 'Blue', value: 'blue'}
+]"
+[template]="template"
+>
 
-    <ng-container *carousel_item>
-<span class="red_orange">
-
-</span>
-    </ng-container>
-    <ng-container *carousel_item>
-<span class="medium_sea_green">
-
-</span>
-    </ng-container>
-    <ng-container *carousel_item>
-<span class="summer_sky">
-
-</span>
-    </ng-container>
-    <ng-container *carousel_item>
-<span class="moon_yellow">
-
-</span>
-    </ng-container>
-    <ng-container *carousel_item>
-<span class="mountain_meadow">
-
-</span>
-    </ng-container>
-
-</aurora-carousel>
-
-<!--<aurora-radio [options]="[-->
-<!--{label: 'Red', value: 'red'},-->
-<!--{label: 'Yellow', value: 'yellow'},-->
-<!--{label: 'Blue', value: 'blue'}-->
-<!--]">-->
-
-<!--</aurora-radio>-->
+</aurora-radio>

@@ -5,10 +5,10 @@ import {
     ComponentFactoryResolver,
     ComponentRef,
     Directive,
-    EventEmitter,
+    EventEmitter, Injector,
     Input,
     ModuleWithComponentFactories,
-    NgModule,
+    NgModule, NgModuleRef,
     OnChanges,
     OnDestroy,
     OnInit,
@@ -20,7 +20,6 @@ import {
 import _ from 'lodash';
 import {CommonModule} from "@angular/common";
 import {untilDestroyed} from "../../utils";
-
 
 
 @Directive({
@@ -38,7 +37,9 @@ export class DynamicDirective implements OnInit, OnDestroy, OnChanges {
     constructor(
         private resolver: ComponentFactoryResolver,
         private vcRef: ViewContainerRef,
-        private compiler: Compiler
+        private _compiler: Compiler,
+        private _injector: Injector,
+        private _m: NgModuleRef<any>
     ) {
     }
 
@@ -66,13 +67,16 @@ export class DynamicDirective implements OnInit, OnDestroy, OnChanges {
 
 
     createTemplate = () => {
-        const component = this.createTemplateComponent(this.template);
-        const module = this.createTemplateModule(component);
+        const tmpCmp = this.createTemplateComponent(this.template);
+        const tmpModule = this.createTemplateModule(tmpCmp);
 
-        this.compiler.compileModuleAndAllComponentsAsync(module)
+        this._compiler.compileModuleAndAllComponentsAsync(tmpModule)
             .then((moduleWithFactories: ModuleWithComponentFactories<any>) => {
-                const compFactory = moduleWithFactories.componentFactories.find(x => x.componentType === component);
-                this.compRef = this.vcRef.createComponent(compFactory);
+                const compFactory = moduleWithFactories.componentFactories.find(x => x.componentType === tmpCmp);
+                // this.compRef = this.vcRef.createComponent(compFactory);
+                this.compRef = compFactory.create(this._injector, [], null, this._m);
+
+                this.vcRef.insert(this.compRef.hostView)
                 this.initContext();
             })
             .catch(error => {
@@ -82,11 +86,12 @@ export class DynamicDirective implements OnInit, OnDestroy, OnChanges {
     };
 
     private createTemplateComponent = (template: string) => {
-        @Component({
+        const metadata = new Component({
             selector: 'dynamic-template',
             template: template
-        })
-        class TemplateComponent implements OnInit, OnChanges {
+        });
+
+        return Component(metadata)((class DynamicComponent implements OnInit, OnChanges {
             constructor(private cd: ChangeDetectorRef) {
             }
 
@@ -96,20 +101,15 @@ export class DynamicDirective implements OnInit, OnDestroy, OnChanges {
 
             ngOnChanges(changes: SimpleChanges): void {
             }
-        }
-
-        return TemplateComponent;
+        }));
     };
 
-    private createTemplateModule = (component: Type<any>) => {
-        @NgModule({
-            imports: [CommonModule],
-            declarations: [component]
-        })
-        class TemplateModule {
-        }
-
-        return TemplateModule;
+    private createTemplateModule = (componentType: Type<any>) => {
+        const moduleMeta: NgModule = {
+            declarations: [componentType]
+        };
+        return NgModule(moduleMeta)((): any => class DynamicModule {
+        });
     };
 
 

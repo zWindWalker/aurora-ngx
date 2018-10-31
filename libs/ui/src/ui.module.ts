@@ -1,55 +1,66 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SelectModule } from './components/select/select.module';
+import {Compiler, COMPILER_OPTIONS, CompilerFactory, NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {SelectModule} from './components/select/select.module';
 
-import { ReactiveFormsModule } from '@angular/forms';
-import { DatePickerModule } from './components/date-picker/date-picker.module';
-import { UploadModule } from './components/upload/upload.module';
-import { AuroraModalComponent } from './components/modal/modal.component';
-import { CarouselModule } from './components/carousel/carousel.module';
-import { ButtonModule } from './components/button/button.module';
-import { RadioModule } from './components/radio/radio.module';
-import { SharedModule } from './shared/shared.module';
-import { InputModule } from './components/input/input.module';
-import { SwitchModule } from './components/switch/switch.module';
-import { CheckboxModule } from './components/checkbox/checkbox.module';
-import { TextareaModule } from './components/textarea/textarea.module';
+import {ReactiveFormsModule} from '@angular/forms';
+import {DatePickerModule} from './components/date-picker/date-picker.module';
+import {UploadModule} from './components/upload/upload.module';
+import {AuroraModalComponent} from './components/modal/modal.component';
+import {CarouselModule} from './components/carousel/carousel.module';
+import {ButtonModule} from './components/button/button.module';
+import {RadioModule} from './components/radio/radio.module';
+import {SharedModule} from './shared/shared.module';
+import {InputModule} from './components/input/input.module';
+import {SwitchModule} from './components/switch/switch.module';
+import {CheckboxModule} from './components/checkbox/checkbox.module';
+import {TextareaModule} from './components/textarea/textarea.module';
 
+import {JitCompilerFactory} from "@angular/platform-browser-dynamic";
+
+const createJitCompiler = (compilerFactory: CompilerFactory) => {
+    return compilerFactory.createCompiler();
+}
 
 @NgModule({
-  declarations: [
-    ///-----------------------------------------------  Component   -----------------------------------------------///
+    declarations: [
+        ///-----------------------------------------------  Component   -----------------------------------------------///
 
-    AuroraModalComponent
+        AuroraModalComponent
 
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    SharedModule,
+    ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        SharedModule,
 
-    ButtonModule, InputModule, TextareaModule,
-    DatePickerModule,
-    SelectModule,
-    UploadModule, CarouselModule,
-    RadioModule, SwitchModule, CheckboxModule
+        ButtonModule, InputModule, TextareaModule,
+        DatePickerModule,
+        SelectModule,
+        UploadModule, CarouselModule,
+        RadioModule, SwitchModule, CheckboxModule
 
-  ],
-  exports: [
-    ///-----------------------------------------------  Component   -----------------------------------------------///
+    ],
+    exports: [
+        ///-----------------------------------------------  Component   -----------------------------------------------///
 
-    AuroraModalComponent,
+        AuroraModalComponent,
 
-    ///-----------------------------------------------  Module   -----------------------------------------------///
+        ///-----------------------------------------------  Module   -----------------------------------------------///
 
-    ButtonModule, InputModule, TextareaModule,
-    DatePickerModule,
-    SelectModule,
-    UploadModule, CarouselModule,
-    RadioModule, SwitchModule, CheckboxModule,
+        ButtonModule, InputModule, TextareaModule,
+        DatePickerModule,
+        SelectModule,
+        UploadModule, CarouselModule,
+        RadioModule, SwitchModule, CheckboxModule,
 
-    SharedModule
-  ]
+        SharedModule
+    ],
+
+    providers: [
+        {provide: COMPILER_OPTIONS, useValue: {}, multi: true},
+        {provide: CompilerFactory, useClass: JitCompilerFactory, deps: [COMPILER_OPTIONS]},
+        {provide: Compiler, useFactory: createJitCompiler, deps: [CompilerFactory]}
+    ]
 })
 export class AuroraUiModule {
 }

@@ -68,7 +68,8 @@ export class DynamicDirective implements OnInit, OnDestroy, OnChanges {
 
     createTemplate = () => {
         const tmpCmp = this.createTemplateComponent(this.template);
-        const tmpModule = this.createTemplateModule(tmpCmp);
+        const tmpModule = NgModule({declarations: [tmpCmp]})(class DynamicModule {
+        });
 
         this._compiler.compileModuleAndAllComponentsAsync(tmpModule)
             .then((moduleWithFactories: ModuleWithComponentFactories<any>) => {
@@ -86,12 +87,11 @@ export class DynamicDirective implements OnInit, OnDestroy, OnChanges {
     };
 
     private createTemplateComponent = (template: string) => {
-        const metadata = new Component({
+
+        return Component({
             selector: 'dynamic-template',
             template: template
-        });
-
-        return Component(metadata)((class DynamicComponent implements OnInit, OnChanges {
+        })(class DynamicComponent implements OnInit, OnChanges {
             constructor(private cd: ChangeDetectorRef) {
             }
 
@@ -101,15 +101,7 @@ export class DynamicDirective implements OnInit, OnDestroy, OnChanges {
 
             ngOnChanges(changes: SimpleChanges): void {
             }
-        }));
-    };
-
-    private createTemplateModule = (componentType: Type<any>) => {
-        const moduleMeta: NgModule = {
-            declarations: [componentType]
-        };
-        return NgModule(moduleMeta)((): any => class DynamicModule {
-        });
+        })
     };
 
 

@@ -8,7 +8,7 @@ import {Component, OnInit} from '@angular/core';
 export class InvoiceComponent implements OnInit {
 
     invoice =   {
-        // project_name: 'Demo Project 101',
+        project_name: 'Demo Project 101',
         // project_id: 'XXX',
         total: 16908.81,
         room_list: [

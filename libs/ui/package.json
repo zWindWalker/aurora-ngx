@@ -1,6 +1,6 @@
 {
   "name": "@aurora-ngx/ui",
-  "version": "1.0.19",
+  "version": "1.0.23",
   "peerDependencies": {
     "moment": "^2.22.2",
     "@aurora-ngx/animations": "^1.0.2",

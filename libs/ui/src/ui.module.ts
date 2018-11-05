@@ -15,12 +15,6 @@ import {SwitchModule} from './components/switch/switch.module';
 import {CheckboxModule} from './components/checkbox/checkbox.module';
 import {TextareaModule} from './components/textarea/textarea.module';
 
-import {JitCompilerFactory} from "@angular/platform-browser-dynamic";
-
-const createJitCompiler = (compilerFactory: CompilerFactory) => {
-    return compilerFactory.createCompiler();
-}
-
 @NgModule({
     declarations: [
         ///-----------------------------------------------  Component   -----------------------------------------------///
@@ -54,12 +48,6 @@ const createJitCompiler = (compilerFactory: CompilerFactory) => {
         RadioModule, SwitchModule, CheckboxModule,
 
         SharedModule
-    ],
-
-    providers: [
-        {provide: COMPILER_OPTIONS, useValue: {}, multi: true},
-        {provide: CompilerFactory, useClass: JitCompilerFactory, deps: [COMPILER_OPTIONS]},
-        {provide: Compiler, useFactory: createJitCompiler, deps: [CompilerFactory]}
     ]
 })
 export class AuroraUiModule {

@@ -7,5 +7,5 @@ import {Component, ViewEncapsulation} from '@angular/core';
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-    template = `<h1>SDKLJFASDKLDJFK</h1>`
+
 }

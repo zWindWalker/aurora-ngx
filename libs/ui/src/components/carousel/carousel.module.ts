@@ -4,7 +4,7 @@ import {CommonModule} from '@angular/common';
 import {AuroraCarouselComponent} from './carousel.component';
 
 import {CarouselItemDirective} from './directives/carousel-item.directive';
-import {CarouselItemComponent} from './carousel-item.component';
+import {SlideComponent} from './component/slide.component';
 
 
 @NgModule({
@@ -13,7 +13,7 @@ import {CarouselItemComponent} from './carousel-item.component';
         CommonModule
     ],
     declarations: [
-        AuroraCarouselComponent, CarouselItemDirective, CarouselItemComponent
+        AuroraCarouselComponent, CarouselItemDirective, SlideComponent
     ],
     exports: [
         AuroraCarouselComponent, CarouselItemDirective

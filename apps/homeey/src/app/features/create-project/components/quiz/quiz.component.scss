@@ -7,10 +7,10 @@
 
         ::ng-deep form-group.question {
             grid-template-areas: "label" "field" "feedback";
-            grid-template-rows: 40% 40% 20%;
+            grid-template-rows: 1fr 8fr 1fr;
             grid-template-columns: 1fr;
             form-field {
-                margin: 5rem;
+
             }
             form-feedback {
                 font-size: 2rem;
@@ -20,7 +20,7 @@
                 .radio_container {
                     img {
                         margin: 0 5rem;
-                        height: 30%;
+                        height: 80%;
                         width: 30%;
                     }
                 }
@@ -42,7 +42,7 @@
     }
 
     aurora-carousel {
-        height: 55rem;
+        //height: 55rem;
     }
 
     aurora-button {

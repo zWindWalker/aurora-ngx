@@ -1,13 +1,17 @@
-<!--<div class="arrow-left" (click)="previousSlide()">-->
-<!--<i class="fas fa-chevron-left"></i>-->
-<!--</div>-->
+<div class="arrow-left" (click)="previousSlide()">
+    <i class="fas fa-chevron-left"></i>
+</div>
 
-<ng-container *ngFor="let item of item_dir_list;let i = index">
-    <carousel-item
-            [tplRef]="item.tplRef"
-    ></carousel-item>
+
+<ng-container *ngFor="let item of item_dir_list; let i = index">
+    <slide
+            [template]="item.tplRef"
+            [show]="i === index"
+            [index]="i"
+    >
+    </slide>
 </ng-container>
 
-<!--<div class="arrow-right" (click)="nextSlide()">-->
-<!--<i class="fas fa-chevron-right"></i>-->
-<!--</div>-->
+<div class="arrow-right" (click)="nextSlide()">
+    <i class="fas fa-chevron-right"></i>
+</div>

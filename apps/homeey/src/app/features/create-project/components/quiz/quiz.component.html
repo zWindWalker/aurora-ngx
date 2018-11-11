@@ -2,25 +2,22 @@
         [config]="form_config"
         (submit)="onSubmit($event)"
 >
-    <aurora-carousel>
-        <ng-container *ngFor="let slide of carousel_config  | keyvalue">
-            <ng-container *carousel_item>
-                <ng-container *ngFor="let form_group of slide.value">
-                    <form-group
-                            [class]="slide.key !== 'slide_0' && 'question'"
-                            [name]="form_group.name"
-                            (change)="onSelectAnswer($event)"
-                    >
-                    </form-group>
-                </ng-container>
+    <ng-container *ngFor="let slide of carousel_config  | keyvalue; let i = index">
+        <ng-container *ngIf="i === index">
+            <ng-container *ngFor="let form_group of slide.value">
+                <form-group
+                        [class]="slide.key !== 'slide_0' && 'question'"
+                        [name]="form_group.name"
+                        (change)="onSelectAnswer($event)"
+                >
+                </form-group>
             </ng-container>
         </ng-container>
-
-    </aurora-carousel>
+    </ng-container>
 
 
     <div class="navigate_button">
-        <aurora-button (click)="carousel.previousSlide()">
+        <aurora-button (click)="prevSlide()">
             Previous
         </aurora-button>
 

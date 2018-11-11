@@ -118,7 +118,12 @@ export class DynamicDirective implements OnInit, OnDestroy, OnChanges {
 
         @CustomComponent({
             selector: 'dynamic-component',
-            template: template
+            template: template,
+            styles: [`
+                    :host {
+                        display: inline-flex
+                    }
+            `]
         })
         class DynamicComponent implements OnInit, OnChanges {
             constructor(private cd: ChangeDetectorRef) {

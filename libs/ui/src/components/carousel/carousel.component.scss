@@ -2,8 +2,8 @@
     background-color: transparent;
     display: flex;
     position: relative;
-    height: 300px;
-    width: 700px;
+    min-height: 300px;
+    min-width: 700px;
 }
 
 .arrow-left, .arrow-right {

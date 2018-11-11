@@ -1,4 +1,11 @@
-.radio_container {
+:host {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+::ng-deep.radio_container {
     cursor: pointer;
     display: flex;
     align-items: center;

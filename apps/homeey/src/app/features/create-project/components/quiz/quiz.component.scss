@@ -7,10 +7,10 @@
 
         ::ng-deep form-group.question {
             grid-template-areas: "label" "field" "feedback";
-            grid-template-rows: 1fr 8fr 1fr;
+            grid-template-rows: .1fr 4fr .1fr;
             grid-template-columns: 1fr;
             form-field {
-
+                margin: 2rem 0 0 2rem;
             }
             form-feedback {
                 font-size: 2rem;
@@ -46,6 +46,7 @@
     }
 
     aurora-button {
+        margin: 3rem auto;
         width: 30rem;
     }
 }

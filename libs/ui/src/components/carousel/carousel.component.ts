@@ -2,13 +2,16 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  ComponentFactoryResolver,
+  ComponentRef,
   ContentChildren,
+  OnDestroy,
   OnInit,
   QueryList,
-  ViewChildren,
+  ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import { CarouselItemDirective } from './directives/carousel-item.directive';
+import { SlideDirective } from './slide.directive';
 import {
   AnimationBuilder,
   AnimationFactory,
@@ -17,7 +20,7 @@ import {
   useAnimation
 } from '@angular/animations';
 import { slide_in_left, slide_in_right, slide_out_left, slide_out_right } from '@aurora-ngx/animations';
-import { SlideComponent } from './component/slide.component';
+import { SlideComponent } from './slide.component';
 
 
 @Component({
@@ -25,21 +28,23 @@ import { SlideComponent } from './component/slide.component';
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss']
 })
-export class AuroraCarouselComponent implements OnInit, AfterViewInit {
+export class AuroraCarouselComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  @ContentChildren(CarouselItemDirective) item_dir_list: QueryList<CarouselItemDirective>;
-  @ViewChildren(SlideComponent) slide_list: QueryList<SlideComponent>;
+  @ContentChildren(SlideDirective) item_dir_list: QueryList<SlideDirective>;
+  @ViewChild('carousel', { read: ViewContainerRef }) carousel: ViewContainerRef;
 
   ///-----------------------------------------------  Variables   -----------------------------------------------///
   index = 0;
   private ani_player: AnimationPlayer;
+  private slideCompRef: ComponentRef<SlideComponent>;
 
   ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
 
   constructor(
     private cd: ChangeDetectorRef,
     private vcRef: ViewContainerRef,
-    private aniBuilder: AnimationBuilder
+    private aniBuilder: AnimationBuilder,
+    private resolver: ComponentFactoryResolver
   ) {
   }
 
@@ -49,71 +54,63 @@ export class AuroraCarouselComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit(): void {
-    console.log(this.item_dir_list.toArray());
+    this.slideCompRef = this.createSlideComponent(this.index);
   }
 
+  ngOnDestroy() {
+    this.slideCompRef.destroy();
+  }
 
-  ///-----------------------------------------------  General Functions   -----------------------------------------------///
+  ///-----------------------------------------------  Main Functions   -----------------------------------------------///
 
   previousSlide = () => {
-    const cur_index = this.index;
-    let prev_index = null;
-
     if (this.index !== 0) {
       this.index -= 1;
-      prev_index = this.index;
       this.cd.markForCheck();
-      const prev_slide = this.item_dir_list.toArray()[prev_index];
-
-
-      // prev_slide.createAni('entrance', 'prev');
-
-
-      const cur_slide = this.item_dir_list.toArray()[cur_index];
-      // cur_slide.createAni('exit', 'prev');
+      const current_slide = this.slideCompRef;
+      const prev_slide = this.slideCompRef = this.createSlideComponent(this.index);
+      this.createAni(prev_slide, 'entrance', 'prev');
+      this.createAni(current_slide, 'exit', 'prev');
     }
 
   };
 
   nextSlide = () => {
-    const cur_index = this.index;
-    let next_index = null;
     if (this.index !== this.item_dir_list.toArray().length - 1) {
 
       this.index += 1;
 
-
-      next_index = this.index;
       this.cd.markForCheck();
-
-      const next_slide = this.item_dir_list.toArray()[next_index];
-
-      console.log(this.slide_list);
-
-      this.createAni(this.slide_list.toArray()[next_index - 1].el, 'entrance', 'next');
+      const current_slide = this.slideCompRef;
+      const next_slide = this.slideCompRef = this.createSlideComponent(this.index);
 
 
-      const cur_slide = this.item_dir_list.toArray()[cur_index];
-      // cur_slide.createAni('exit', 'next');
+      this.createAni(current_slide, 'exit', 'next');
+      this.createAni(next_slide, 'entrance', 'next');
     }
+  };
 
 
-  }
-  ;
+  createSlideComponent = i => {
+    const factory = this.resolver.resolveComponentFactory<any>(SlideComponent);
+    const compRef = this.carousel.createComponent(factory);
+
+    compRef.instance.template = this.item_dir_list.toArray()[i].tplRef;
+    compRef.instance.ngOnInit();
+    return compRef;
+  };
 
 
-  getCurrentIndex = () => this.item_dir_list.toArray();
-
-  createAni = (slide, entrance = 'entrance', direction = 'next') => {
+  createAni = (compRef, entrance = 'entrance', direction = 'next') => {
     const ani_factory: AnimationFactory = this.aniBuilder.build(this.getAniType(entrance, direction));
 
-    this.ani_player = ani_factory.create(slide.nativeElement);
+    this.ani_player = ani_factory.create(compRef.instance.el.nativeElement);
     this.ani_player.play();
 
     if (entrance === 'exit') {
 
       this.ani_player.onDone(() => {
-        this.vcRef.clear();
+        compRef.destroy();
       });
     }
 

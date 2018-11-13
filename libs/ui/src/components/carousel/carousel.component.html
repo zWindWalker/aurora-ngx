@@ -2,16 +2,13 @@
     <i class="fas fa-chevron-left"></i>
 </div>
 
+<ng-container  #carousel>
 
-<ng-container *ngFor="let item of item_dir_list; let i = index">
-    <slide
-            [template]="item.tplRef"
-            [show]="i === index"
-            [index]="i"
-    >
-    </slide>
 </ng-container>
+
+
 
 <div class="arrow-right" (click)="nextSlide()">
     <i class="fas fa-chevron-right"></i>
 </div>
+

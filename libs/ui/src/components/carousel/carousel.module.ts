@@ -1,23 +1,24 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {AuroraCarouselComponent} from './carousel.component';
+import { AuroraCarouselComponent } from './carousel.component';
 
-import {CarouselItemDirective} from './directives/carousel-item.directive';
-import {SlideComponent} from './component/slide.component';
+import { SlideDirective } from './slide.directive';
+import { SlideComponent } from './slide.component';
 
 
 @NgModule({
-    imports: [
+  imports: [
 
-        CommonModule
-    ],
-    declarations: [
-        AuroraCarouselComponent, CarouselItemDirective, SlideComponent
-    ],
-    exports: [
-        AuroraCarouselComponent, CarouselItemDirective
-    ]
+    CommonModule
+  ],
+  declarations: [
+    AuroraCarouselComponent, SlideDirective, SlideComponent
+  ],
+  exports: [
+    AuroraCarouselComponent, SlideDirective
+  ],
+  entryComponents: [SlideComponent]
 })
 export class CarouselModule {
 }

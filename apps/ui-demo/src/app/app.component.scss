@@ -1,22 +1,27 @@
-aurora-carousel {
-    span {
-        background-color: red;
-        display: flex;
-        flex: 1;
-        &.red_orange {
-            background-color: #F44336;
-        }
-        &.medium_sea_green {
-            background-color: #2ecc71;
-        }
-        &.summer_sky {
-            background-color: #3498db;
-        }
-        &.moon_yellow {
-            background-color: #f1c40f;
-        }
-        &.mountain_meadow {
-            background-color: #16a085;
+:host {
+    display: flex;
+    justify-content: center;
+    aurora-carousel {
+        max-width: 80%;
+        span {
+            background-color: red;
+            display: flex;
+            flex: 1;
+            &.red_orange {
+                background-color: #F44336;
+            }
+            &.medium_sea_green {
+                background-color: #2ecc71;
+            }
+            &.summer_sky {
+                background-color: #3498db;
+            }
+            &.moon_yellow {
+                background-color: #f1c40f;
+            }
+            &.mountain_meadow {
+                background-color: #16a085;
+            }
         }
     }
 }

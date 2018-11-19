@@ -1,31 +1,22 @@
-<aurora-carousel>
+<aurora-radio
+        [options]="[{label: 1, value: 1},{label: 2, value: 2}]"
 
-    <ng-container *slide>
-        <span class="red_orange">
+></aurora-radio>
 
-        </span>
-    </ng-container>
-    <ng-container *slide>
-        <span class="medium_sea_green">
+<ng-template
+        let-context="context"
+        #radio_template
+>
+    <div
+            class="radio_container"
+            (click)="!context.is_selected && context.change(context.option?.value)"
+    >
+        <div
+                class="radio_button"
 
-        </span>
-    </ng-container>
-    <ng-container *slide>
-        <span class="summer_sky">
-
-        </span>
-    </ng-container>
-    <ng-container *slide>
-        <span class="moon_yellow">
-
-        </span>
-    </ng-container>
-    <ng-container *slide>
-        <span class="mountain_meadow">
-
-        </span>
-    </ng-container>
-
-</aurora-carousel>
-
-
+                [class.active]="context.is_selected"
+        ></div>
+        <!--<label>{{context.option?.label}}</label>-->
+        <h2>sddfsd</h2>
+    </div>
+</ng-template>

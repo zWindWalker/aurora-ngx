@@ -37,6 +37,7 @@
     "@angular/platform-browser-dynamic": "^7.0.2",
     "@angular/router": "^7.0.2",
     "@aurora-ngx/animations": "^1.0.3",
+    "@aurora-ngx/forms": "^1.0.14",
     "@aurora-ngx/ui": "^1.0.19",
     "@datorama/akita": "^1.17.0",
     "@datorama/akita-ngdevtools": "^1.0.2",

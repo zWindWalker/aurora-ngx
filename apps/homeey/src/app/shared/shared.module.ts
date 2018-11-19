@@ -13,6 +13,8 @@ import {AuroraFormsModule} from '@aurora-ngx/forms';
         CommonModule,
         AuroraUiModule,
         AuroraFormsModule
+
+
     ]
 })
 export class SharedModule {

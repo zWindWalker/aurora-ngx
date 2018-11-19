@@ -1,13 +1,30 @@
 <ng-container *ngFor="let option of options">
     <ng-container
-            dynamic
-            [template]="template"
-            [properties]="{
-                    option: option,
-                    is_selected: option.value === value
-                }"
-            [events]="{
+            *ngTemplateOutlet="template;
+            context: {
+                context: {
+                option: option,
+                is_selected: option.value === value,
                 change: onChange
+                }
             }"
     ></ng-container>
 </ng-container>
+
+
+<ng-template
+        let-context="context"
+        #default_template
+>
+    <div
+            class="radio_container"
+            (click)="!context.is_selected && context.change(context.option?.value)"
+    >
+        <div
+                class="radio_button"
+
+                [class.active]="context.is_selected"
+        ></div>
+        <label>{{context.option?.label}}</label>
+    </div>
+</ng-template>

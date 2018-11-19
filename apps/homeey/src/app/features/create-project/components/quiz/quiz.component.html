@@ -33,3 +33,22 @@
         Create New Project
     </aurora-button>
 </aurora-form>
+
+
+<ng-template
+        let-context="context"
+        #select_image
+>
+    <div
+            class="radio_container"
+            (click)="!context.is_selected && context.change(context.option?.value)"
+    >
+        <div
+                class="radio_button"
+
+                [class.active]="context.is_selected"
+        ></div>
+        <img class="img-responsive" [src]="context.option?.image" alt="">
+        <label>{{context.option?.label}}</label>
+    </div>
+</ng-template>

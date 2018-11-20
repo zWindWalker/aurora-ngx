@@ -1,6 +1,6 @@
 {
   "name": "@aurora-ngx/forms",
-  "version": "1.0.15",
+  "version": "1.0.19",
   "peerDependencies": {
     "@angular-devkit/core": "0.7.2",
     "@angular-devkit/schematics": "0.7.2",

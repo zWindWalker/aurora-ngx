@@ -1,5 +1,5 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-import {AuroraForm, AuroraFormTemplate} from '@aurora-ngx/forms';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {AuroraForm, IonarFormControl, IonarFormGroup, IonarFormService} from '@aurora-ngx/forms';
 
 
 @Component({
@@ -8,7 +8,9 @@ import {AuroraForm, AuroraFormTemplate} from '@aurora-ngx/forms';
     styleUrls: ['./app.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+    protected formGroup: IonarFormGroup
+
     config: AuroraForm[] = [
         {
             type: 'input',
@@ -118,12 +120,25 @@ export class AppComponent {
         }
     ];
 
-    template_config: AuroraFormTemplate = {
-        area_1: ['username', 'password', 'confirm_password'],
-        area_2: ['email']
-    };
     onSubmit = e => {
         console.log(e);
     };
+
+
+    constructor(private _formSvs: IonarFormService) {
+    }
+
+    ngOnInit(): void {
+        this.formGroup = this._formSvs.group({
+            username: new IonarFormControl(
+                {
+                    type: 'input',
+                    label: 'Username',
+                    value: 'saldkfjskla'
+                },
+                ['required']
+            )
+        })
+    }
 
 }

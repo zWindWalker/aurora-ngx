@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {AuroraFormComponent} from './form.component';
+import {IonarFormComponent} from './form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 
 
@@ -13,11 +13,12 @@ import {FormLabelComponent} from './components/form-label.component';
 import {FormFeedbackComponent} from './components/form-feedback.component';
 import {SubmitDirective} from './directives/submit.directive';
 
-import {FormService} from './form.service';
+import {IonarFormService} from './providers/form.service';
+
 
 @NgModule({
     declarations: [
-        AuroraFormComponent,
+        IonarFormComponent,
         FormGroupComponent,
         FormLabelComponent,
         FormFeedbackComponent,
@@ -25,7 +26,7 @@ import {FormService} from './form.service';
 
         DynamicFieldDirective, SubmitDirective
     ],
-    providers: [FormService],
+    providers: [IonarFormService],
     imports: [
 
         CommonModule,
@@ -33,7 +34,7 @@ import {FormService} from './form.service';
         AuroraUiModule
     ],
     exports: [
-        AuroraFormComponent,
+        IonarFormComponent,
         FormGroupComponent,
         FormFieldComponent,
         FormLabelComponent,
@@ -41,5 +42,5 @@ import {FormService} from './form.service';
         SubmitDirective
     ]
 })
-export class AuroraFormsModule {
+export class IonarFormsModule {
 }

@@ -1,18 +1,25 @@
-<div class="container">
+<!--</aurora-form>-->
+
+<!--<aurora-button (click)="navToForgotPassPage()">-->
+<!--forgot password!-->
+<!--</aurora-button>-->
+
+<!--<aurora-button submit_form>-->
+<!--Login-->
+<!--</aurora-button>-->
+
+
+<div class="left_panel">
+    <img src="assets/images/dining-room2.png" alt="" class="img-responsive">
+</div>
+<div class="right_panel">
+    <h1>Welcome back</h1>
+    <h2>Sign in to your Homeey account.</h2>
     <aurora-form
             media_type="json"
             [config]="configs"
             [default_template]="true"
             (submit)="onLogin($event)"
     >
-
     </aurora-form>
-
-    <aurora-button (click)="navToForgotPassPage()">
-        forgot password!
-    </aurora-button>
-
-    <aurora-button submit_form>
-        Login
-    </aurora-button>
 </div>

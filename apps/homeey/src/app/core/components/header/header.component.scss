@@ -1,0 +1,40 @@
+@import "variables";
+
+:host {
+    background-color: white;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    padding: 0 2.7rem;
+    height: 8rem;
+    width: 100%;
+    max-height: 8rem;
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .site-nav {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        width: 100%;
+        a {
+            color: black;
+            font-size: 2rem;
+            &:hover {
+                color:  cornflowerblue;
+            }
+        }
+    }
+
+    .user_avatar {
+        margin: 0 40px 0 auto;
+
+        width: 40px;
+        height: 40px;
+    }
+    .cart_icon {
+        width: 30px;
+        height: 30px;
+    }
+}

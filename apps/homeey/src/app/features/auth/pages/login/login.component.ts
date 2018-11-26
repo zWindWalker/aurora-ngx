@@ -26,13 +26,7 @@ export class LoginComponent implements OnInit {
             name: 'password',
             label: 'Password',
             validators: ['required']
-        },
-        {
-            type: 'input',
-            name: 'slug',
-            value: 'client',
-            hidden: true
-        },
+        }
     ];
 
     constructor(

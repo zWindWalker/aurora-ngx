@@ -4,7 +4,7 @@ import { AuthGuard } from './features/auth/providers/auth.guard';
 import { environment } from '../environments/environment';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
   { path: 'home', loadChildren: './features/home/home.module#HomeModule' },
   { path: 'about', loadChildren: './features/about/about.module#AboutModule' },
   { path: 'create-project', loadChildren: './features/create-project/create-project.module#CreateProjectModule' },

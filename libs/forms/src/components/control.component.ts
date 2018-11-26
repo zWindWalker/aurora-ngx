@@ -7,8 +7,9 @@ import {
   OnDestroy,
   OnInit
 } from '@angular/core';
-import { IonarControlState } from '../models/AbstractControl';
-import { IonarFormGroup, IonarFormService } from '@aurora-ngx/forms';
+import { IonarFormService } from '../providers/form.service';
+// import { IonarControlState } from '../models/AbstractControl';
+
 
 
 @Component({
@@ -17,10 +18,10 @@ import { IonarFormGroup, IonarFormService } from '@aurora-ngx/forms';
 
       <!--<form-label [control]="control"></form-label>-->
 
-      <field
-              [state]="state"
-              [name]="name"
-      ></field>
+      <!--<field-->
+              <!--[state]="state"-->
+              <!--[name]="name"-->
+      <!--&gt;</field>-->
 
       <!--<form-feedback [control]="control"></form-feedback>-->
   `,
@@ -48,7 +49,7 @@ export class ControlComponent implements OnInit, OnDestroy {
 ///-----------------------------------------------  Variables   -----------------------------------------------///
   @Input() name = '';
   // @Output() change = new EventEmitter();
-  state: IonarControlState;
+  // state: IonarControlState;
 
   @HostBinding('class.hidden') hidden: Boolean = true;
 

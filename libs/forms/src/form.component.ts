@@ -65,6 +65,7 @@ export class IonarFormComponent implements OnInit, AfterViewInit, AfterViewCheck
 
   ngOnInit() {
     this.control_name_list = _.keys(this._formSvs.getFormGroup().controls);
+    console.log(this.control_name_list)
 
     //
     // this.formGrDir.ngSubmit.pipe(untilDestroyed(this)).subscribe(data => {

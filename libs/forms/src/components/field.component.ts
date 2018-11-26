@@ -3,14 +3,11 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  Input,
   OnChanges,
   OnDestroy,
   OnInit,
   SimpleChanges
 } from '@angular/core';
-import { Subject } from 'rxjs';
-import { AuroraForm } from '../form.model';
 import {
   AuroraCheckboxComponent,
   AuroraDatePickerComponent,
@@ -18,40 +15,40 @@ import {
   AuroraRadioComponent,
   AuroraSelectComponent,
   AuroraTextareaComponent,
-  AuroraUploadComponent,
-  untilDestroyed
+  AuroraUploadComponent
 } from '@aurora-ngx/ui';
-import { IonarAbstractControl, IonarFormService } from '@aurora-ngx/forms';
-import { IonarControlState } from '../models/AbstractControl';
+import { IonarFormService } from '../providers/form.service';
+// import { IonarAbstractControl, IonarFormService } from '@aurora-ngx/forms';
+// import { IonarControlState } from '../models/AbstractControl';
 
 
 @Component({
   selector: 'field',
   template: `
-      <ng-container *ngIf="control">
-          <ng-container
-                  dynamic
-                  [components]="dynamic_components"
-                  [selector]="state.type"
-                  [properties]="{
-                        // invalid: control?.invalid && (control?.dirty || control?.touched || submitted),
-                        type: state.properties.type,
-                        placeholder: state.properties.placeholder,
-                        name: name,
-                        options: state.options,
-                        value: state.value,
-                        label: state.properties.checkbox_label,
-                        properties: config.properties,
-                        template: config.template
-                  }"
-                  [events]="{
-                          change: onChanged,
-                          blur: onTouched,
-                          enter: onEntered
-                   }"
-          >
-          </ng-container>
-      </ng-container>
+      <!--<ng-container *ngIf="control">-->
+      <!--<ng-container-->
+      <!--dynamic-->
+      <!--[components]="dynamic_components"-->
+      <!--[selector]="state.type"-->
+      <!--[properties]="{-->
+      <!--// invalid: control?.invalid && (control?.dirty || control?.touched || submitted),-->
+      <!--type: state.properties.type,-->
+      <!--placeholder: state.properties.placeholder,-->
+      <!--name: name,-->
+      <!--options: state.options,-->
+      <!--value: state.value,-->
+      <!--label: state.properties.checkbox_label,-->
+      <!--properties: config.properties,-->
+      <!--template: config.template-->
+      <!--}"-->
+      <!--[events]="{-->
+      <!--change: onChanged,-->
+      <!--blur: onTouched,-->
+      <!--enter: onEntered-->
+      <!--}"-->
+      <!--&gt;-->
+      <!--</ng-container>-->
+      <!--</ng-container>-->
   `,
   styles: [`
       :host {
@@ -64,13 +61,13 @@ import { IonarControlState } from '../models/AbstractControl';
 })
 export class FieldComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
   ///-----------------------------------------------  Variables   -----------------------------------------------///
-  @Input() state: IonarControlState;
-  @Input() name
-
-
-  submitted: Boolean = false;
-  config: AuroraForm;
-  viewInit = new Subject();
+  // @Input() state: IonarControlState;
+  // @Input() name
+  //
+  //
+  // submitted: Boolean = false;
+  // config: AuroraForm;
+  // viewInit = new Subject();
 
   dynamic_components = {
     input: AuroraInputComponent,
@@ -128,7 +125,7 @@ export class FieldComponent implements OnInit, AfterViewInit, OnChanges, OnDestr
   };
 
   onTouched = () => {
-    this.formSvs._onTouched(this.name);
+    // this.formSvs._onTouched(this.name);
   };
 
   onEntered = () => {

@@ -26,7 +26,7 @@ export type FormHooks = 'change' | 'blur' | 'submit';
  * @publicApi
  */
 
-export abstract class IonarAbstractControl {
+export abstract class AbstractControl {
   /**
    * The current value of the control.
    *

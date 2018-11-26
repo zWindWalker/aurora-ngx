@@ -1,12 +1,13 @@
 import { AfterViewInit, Injectable, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { IonarFormGroup } from '../models/FormGroup';
+import { FormGroup } from '../models/FormGroup';
+import { ControlConfig } from '../models/ControlConfig';
 
 
 @Injectable()
 
 export class IonarFormService implements OnInit, AfterViewInit, OnChanges, OnDestroy {
 
-  private formGroup: IonarFormGroup;
+  private formGroup: FormGroup;
 
   ngAfterViewInit(): void {
   }
@@ -37,12 +38,13 @@ export class IonarFormService implements OnInit, AfterViewInit, OnChanges, OnDes
    * submit')
    *
    */
-  group = (controlsConfig: { [key: string]: any }): IonarFormGroup => {
+  group = (controlsConfig: { [key: string]: ControlConfig }): FormGroup => {
 
-    this.formGroup = new IonarFormGroup(controlsConfig);
+
+    this.formGroup = new FormGroup(controlsConfig);
     return this.formGroup;
   };
 
-  getFormGroup = (): IonarFormGroup => this.formGroup;
+  getFormGroup = (): FormGroup => this.formGroup;
 
 }

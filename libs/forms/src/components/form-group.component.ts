@@ -25,7 +25,7 @@ import _ from 'lodash'
 
         <form-label></form-label>
 
-        <form-field></form-field>
+        <!--<form-field></form-field>-->
 
         <form-feedback></form-feedback>
     `,

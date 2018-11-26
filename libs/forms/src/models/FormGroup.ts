@@ -1,5 +1,7 @@
 import _ from 'lodash';
-import { IonarAbstractControl } from './AbstractControl';
+import { AbstractControl } from './AbstractControl';
+import { ControlConfig } from './ControlConfig';
+import { FormControl } from './FormControl';
 
 /**
  * Tracks the value and validity state of a group of `FormControl` instances.
@@ -73,18 +75,22 @@ import { IonarAbstractControl } from './AbstractControl';
  *
  * @publicApi
  */
-export class IonarFormGroup extends IonarAbstractControl {
+export class FormGroup extends AbstractControl {
+
+  public controls: { [key: string]: AbstractControl } = {};
+
   /**
    * Creates a new `FormGroup` instance.
    *
-   * @param controls A collection of child controls. The key for each child is the name
+   * @param controlsConfig A collection of child controls. The key for each child is the name
    * under which it is registered.
    *
    */
   constructor(
-    public controls: { [key: string]: IonarAbstractControl }
+    public controlsConfig: { [key: string]: ControlConfig }
   ) {
     super();
+    this._setUpControls();
     this._initObservables();
 
     this.updateValueAndValidity({ onlySelf: true, emitEvent: false });
@@ -261,10 +267,20 @@ export class IonarFormGroup extends IonarAbstractControl {
    *
    * * `this.form.get(['person', 'name']);`
    */
-  get(name: string = null): IonarAbstractControl | null {
+  get(name: string = null): AbstractControl | null {
     if (name == null) return null;
 
     return this.controls.hasOwnProperty(name as string) ? this.controls[name] : null;
+  }
+
+  /** @internal */
+  _setUpControls(): void {
+
+    _.forOwn(this.controlsConfig, (value: ControlConfig, key: string) => {
+      console.log(key);
+      console.log(value);
+      this.controls[key] = new FormControl(value);
+    });
   }
 
   /** @internal */
@@ -274,7 +290,7 @@ export class IonarFormGroup extends IonarAbstractControl {
 
   /** @internal */
   _reduceValue() {
-    const form_value: { [k: string]: IonarAbstractControl } = {};
+    const form_value: { [k: string]: AbstractControl } = {};
     _.each(_.keys(this.controls), k => {
       form_value[k] = this.controls[k].value;
     });

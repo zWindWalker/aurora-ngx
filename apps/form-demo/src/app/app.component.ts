@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { AuroraForm, IonarFormControl, IonarFormGroup, IonarFormService } from '@aurora-ngx/forms';
+import { AuroraForm, IonarFormGroup, IonarFormService } from '@aurora-ngx/forms';
 
 
 @Component({
@@ -130,15 +130,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = this._formSvs.group({
-      username: new IonarFormControl({
+      username: {
         state: {
           type: 'input',
           label: 'Username',
           value: 'saldkfjskla'
         },
         properties: {},
-        validators: ['required'],
-      })
+        validators: ['required']
+      }
     });
   }
 

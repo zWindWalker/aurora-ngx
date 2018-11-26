@@ -5,7 +5,7 @@ import { TemplateRef } from '@angular/core';
  *
  * @publicApi
  */
-export interface IonarControlConfig {
+export interface ControlConfig {
   state: {
     type: string,
     label?: string,

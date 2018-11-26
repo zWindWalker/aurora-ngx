@@ -97,10 +97,10 @@
  */
 
 
-import { IonarAbstractControl } from './AbstractControl';
-import { IonarControlConfig } from './ControlConfig';
+import { AbstractControl } from './AbstractControl';
+import { ControlConfig } from './ControlConfig';
 
-export class IonarFormControl extends IonarAbstractControl {
+export class FormControl extends AbstractControl {
 
   /** @internal */
   _pendingValue: any;
@@ -111,7 +111,7 @@ export class IonarFormControl extends IonarAbstractControl {
    * @param controlConfig Initializes the control with an object that defines the initial config.
    *
    */
-  constructor(controlConfig: IonarControlConfig) {
+  constructor(controlConfig: ControlConfig) {
     super();
     this._initObservables();
     this._applyControlState(controlConfig.state);

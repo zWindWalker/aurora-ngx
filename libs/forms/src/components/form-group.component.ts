@@ -12,7 +12,7 @@ import {
     Output,
     ViewChild
 } from '@angular/core';
-import {FormFieldComponent} from './form-field.component';
+import {FieldComponent} from './field.component';
 import {FormLabelComponent} from './form-label.component';
 import {FormFeedbackComponent} from './form-feedback.component';
 import {FormService} from "../form.service";
@@ -54,11 +54,11 @@ export class FormGroupComponent implements OnInit, AfterViewInit, OnDestroy {
     @Input() name = '';
     @Output() change = new EventEmitter()
 
-    @ContentChild(FormFieldComponent) formFieldContent: FormFieldComponent;
+    @ContentChild(FieldComponent) formFieldContent: FieldComponent;
     @ContentChild(FormLabelComponent) formLabelContent: FormLabelComponent;
     @ContentChild(FormFeedbackComponent) formFeedbackContent: FormFeedbackComponent;
 
-    @ViewChild(FormFieldComponent) formFieldChild: FormFieldComponent;
+    @ViewChild(FieldComponent) formFieldChild: FieldComponent;
     @ViewChild(FormLabelComponent) formLabelChild: FormLabelComponent;
     @ViewChild(FormFeedbackComponent) formFeedbackChild: FormFeedbackComponent;
 

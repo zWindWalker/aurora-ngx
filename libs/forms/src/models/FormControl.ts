@@ -2,11 +2,11 @@
  * Tracks the value and validation status of an individual form control.
  *
  * This is one of the three fundamental building blocks of Angular forms, along with
- * `FormGroup.ts` and `FormArray`. It extends the `AbstractControl` class that
+ * `FormGroup.ts` and `FormArray`. It extends the `IonarAbstractControl` class that
  * implements most of the base functionality for accessing the value, validation status,
  * user interactions and events.
  *
- * @see `AbstractControl`
+ * @see `IonarAbstractControl`
  * @see [Reactive Forms Guide](guide/reactive-forms)
  * @see [Usage Notes](#usage-notes)
  *
@@ -97,120 +97,110 @@
  */
 
 
-import {AbstractControl} from "./AbstractControl";
+import { IonarAbstractControl } from './AbstractControl';
+import { IonarControlConfig } from './ControlConfig';
 
-export class IonarFormControl extends AbstractControl {
+export class IonarFormControl extends IonarAbstractControl {
 
-    /** @internal */
-    _pendingValue: any;
+  /** @internal */
+  _pendingValue: any;
 
-    /**
-     * Creates a new `FormControl` instance.
-     *
-     * @param state Initializes the control with an initial value,
-     * or an object that defines the initial state.
-     *
-     * @param validatorOrOpts A synchronous validator function, or an array of
-     * such functions, or an `AbstractControlOptions` object that contains validation functions
-     * and a validation trigger.
-     *
-     * @param asyncValidator A single async validator or array of async validator functions
-     *
-     */
-    constructor(
-        state: any = null,
-        validatorOrOpts?: any
-    ) {
-        super()
-        this._initObservables();
-        this._applyControlState(state);
-    }
+  /**
+   * Creates a new `FormControl` instance.
+   *
+   * @param controlConfig Initializes the control with an object that defines the initial config.
+   *
+   */
+  constructor(controlConfig: IonarControlConfig) {
+    super();
+    this._initObservables();
+    this._applyControlState(controlConfig.state);
+  }
 
-    /**
-     * Sets a new value for the form control.
-     *
-     * @param value The new value for the control.
-     * @param options Configuration options that determine how the control proopagates changes
-     * and emits events when the value changes.
-     * The configuration options are passed to the {@link AbstractControl#updateValueAndValidity
+  /**
+   * Sets a new value for the form control.
+   *
+   * @param value The new value for the control.
+   * @param options Configuration options that determine how the control proopagates changes
+   * and emits events when the value changes.
+   * The configuration options are passed to the {@link IonarAbstractControl#updateValueAndValidity
    * updateValueAndValidity} method.
-     *
-     * * `onlySelf`: When true, each change only affects this control, and not its parent. Default is
-     * false.
-     * * `emitEvent`: When true or not supplied (the default), both the `statusChanges` and
-     * `valueChanges`
-     * observables emit events with the latest status and value when the control value is updated.
-     * When false, no events are emitted.
-     * * `emitModelToViewChange`: When true or not supplied  (the default), each change triggers an
-     * `onChange` event to
-     * update the view.
-     * * `emitViewToModelChange`: When true or not supplied (the default), each change triggers an
-     * `ngModelChange`
-     * event to update the model.
-     *
-     */
-    setValue(value: any, options: {
-        onlySelf?: boolean,
-        emitEvent?: boolean,
-        emitModelToViewChange?: boolean,
-        emitViewToModelChange?: boolean
-    } = {}): void {
-        (this as{ value: any }).value = this._pendingValue = value;
+   *
+   * * `onlySelf`: When true, each change only affects this control, and not its parent. Default is
+   * false.
+   * * `emitEvent`: When true or not supplied (the default), both the `statusChanges` and
+   * `valueChanges`
+   * observables emit events with the latest status and value when the control value is updated.
+   * When false, no events are emitted.
+   * * `emitModelToViewChange`: When true or not supplied  (the default), each change triggers an
+   * `onChange` event to
+   * update the view.
+   * * `emitViewToModelChange`: When true or not supplied (the default), each change triggers an
+   * `ngModelChange`
+   * event to update the model.
+   *
+   */
+  setValue(value: any, options: {
+    onlySelf?: boolean,
+    emitEvent?: boolean,
+    emitModelToViewChange?: boolean,
+    emitViewToModelChange?: boolean
+  } = {}): void {
+    (this as { value: any }).value = this._pendingValue = value;
 
-        this.updateValueAndValidity(options);
-    }
+    this.updateValueAndValidity(options);
+  }
 
-    /**
-     * Patches the value of a control.
-     *
-     * This function is functionally the same as {@link FormControl#setValue setValue} at this level.
-     * It exists for symmetry with {@link FormGroup#patchValue patchValue} on `FormGroups` and
-     * `FormArrays`, where it does behave differently.
-     *
-     * @see `setValue` for options
-     */
-    patchValue(value: any, options: {
-        onlySelf?: boolean,
-        emitEvent?: boolean,
-        emitModelToViewChange?: boolean,
-        emitViewToModelChange?: boolean
-    } = {}): void {
-        this.setValue(value, options);
-    }
+  /**
+   * Patches the value of a control.
+   *
+   * This function is functionally the same as {@link FormControl#setValue setValue} at this level.
+   * It exists for symmetry with {@link FormGroup#patchValue patchValue} on `FormGroups` and
+   * `FormArrays`, where it does behave differently.
+   *
+   * @see `setValue` for options
+   */
+  patchValue(value: any, options: {
+    onlySelf?: boolean,
+    emitEvent?: boolean,
+    emitModelToViewChange?: boolean,
+    emitViewToModelChange?: boolean
+  } = {}): void {
+    this.setValue(value, options);
+  }
 
-    /**
-     * Resets the form control, marking it `pristine` and `untouched`, and setting
-     * the value to null.
-     *
-     * @param formState Resets the control with an initial value,
-     * or an object that defines the initial value and disabled state.
-     *
-     * @param options Configuration options that determine how the control propagates changes
-     * and emits events after the value changes.
-     *
-     * * `onlySelf`: When true, each change only affects this control, and not its parent. Default is
-     * false.
-     * * `emitEvent`: When true or not supplied (the default), both the `statusChanges` and
-     * `valueChanges`
-     * observables emit events with the latest status and value when the control is reset.
-     * When false, no events are emitted.
-     *
-     */
-    reset(formState: any = null, options: { onlySelf?: boolean, emitEvent?: boolean } = {}): void {
-        // this._applyFormState(formState);
-        // this.markAsPristine(options);
-        // this.markAsUntouched(options);
-        // this.setValue(this.value, options);
-        // this._pendingChange = false;
-    }
+  /**
+   * Resets the form control, marking it `pristine` and `untouched`, and setting
+   * the value to null.
+   *
+   * @param formState Resets the control with an initial value,
+   * or an object that defines the initial value and disabled state.
+   *
+   * @param options Configuration options that determine how the control propagates changes
+   * and emits events after the value changes.
+   *
+   * * `onlySelf`: When true, each change only affects this control, and not its parent. Default is
+   * false.
+   * * `emitEvent`: When true or not supplied (the default), both the `statusChanges` and
+   * `valueChanges`
+   * observables emit events with the latest status and value when the control is reset.
+   * When false, no events are emitted.
+   *
+   */
+  reset(formState: any = null, options: { onlySelf?: boolean, emitEvent?: boolean } = {}): void {
+    // this._applyFormState(formState);
+    // this.markAsPristine(options);
+    // this.markAsUntouched(options);
+    // this.setValue(this.value, options);
+    // this._pendingChange = false;
+  }
 
 
+  private _applyControlState(state: any) {
 
-    private _applyControlState(state: any) {
-
-        (this as{ value: any }).value = this._pendingValue = state.value;
-        // state.disabled ? this.disable({onlySelf: true, emitEvent: false}) :
-        //         this.enable({onlySelf: true, emitEvent: false});
-    }
+    (this as { value: any }).value = this._pendingValue = state.value;
+    // state.disabled ? this.disable({onlySelf: true, emitEvent: false}) :
+    //         this.enable({onlySelf: true, emitEvent: false});
+  }
 
 }

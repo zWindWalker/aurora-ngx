@@ -10,7 +10,7 @@
 
 
 <div class="left_panel">
-    <img src="assets/images/dining-room2.png" alt="" class="img-responsive">
+    <img src="assets/images/auth/dining-room2.png" alt="" class="img-responsive">
 </div>
 <div class="right_panel">
     <h1>Welcome back</h1>
@@ -22,4 +22,8 @@
             (submit)="onLogin($event)"
     >
     </aurora-form>
+    <section class="section_3">
+        <aurora-checkbox label="Remember Me"></aurora-checkbox>
+        <aurora-button class="forgot_pass" [routerLink]="['../../forgot-password']">Forgot Password</aurora-button>
+    </section>
 </div>

@@ -64,5 +64,24 @@
                 }
             }
         }
+
+        .section_3 {
+            display: flex;
+            justify-content: space-between;
+
+            ::ng-deep aurora-checkbox {
+                .checkbox.active {
+                    background-color: #0D1D32;
+                }
+            }
+
+            .forgot_pass {
+                border: none;
+                margin: 0;
+                text-decoration: underline;
+                width: 11.4rem;
+            }
+        }
+
     }
 }

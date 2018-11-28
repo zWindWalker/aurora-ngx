@@ -1,91 +1,68 @@
 import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  HostBinding,
-  Input,
-  OnDestroy,
-  OnInit
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    HostBinding,
+    Input,
+    OnDestroy,
+    OnInit
 } from '@angular/core';
-import { IonarFormService } from '../providers/form.service';
-// import { IonarControlState } from '../models/AbstractControl';
-
+import {IonarFormService} from '../providers/form.service';
+import {ControlConfig} from "../models/ControlConfig";
 
 
 @Component({
-  selector: 'control',
-  template: `
+    selector: 'control',
+    template: `
 
-      <!--<form-label [control]="control"></form-label>-->
+        <label [control]="_control"></label>
 
-      <!--<field-->
-              <!--[state]="state"-->
-              <!--[name]="name"-->
-      <!--&gt;</field>-->
+        <field [control]="_control"></field>
 
-      <!--<form-feedback [control]="control"></form-feedback>-->
-  `,
+        <!--<form-feedback [control]="control"></form-feedback>-->
+    `,
 
-  styles: [`
-      :host-context(.hidden) {
-          display: none;
-      }
+    styles: [`
+        :host-context(.hidden) {
+            display: none;
+        }
 
-      form-label {
-          grid-area: label;
-      }
+        label {
+            grid-area: label;
+        }
 
-      form-field {
-          grid-area: field;
-      }
+        field {
+            grid-area: field;
+        }
 
-      form-feedback {
-          grid-area: feedback;
-      }
-  `],
-  changeDetection: ChangeDetectionStrategy.OnPush
+        feedback {
+            grid-area: feedback;
+        }
+    `],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ControlComponent implements OnInit, OnDestroy {
-///-----------------------------------------------  Variables   -----------------------------------------------///
-  @Input() name = '';
-  // @Output() change = new EventEmitter();
-  // state: IonarControlState;
+    ///-----------------------------------------------  Variables   -----------------------------------------------///
+    @Input() name = '';
+    protected _control: ControlConfig
 
-  @HostBinding('class.hidden') hidden: Boolean = true;
+    ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
+    constructor(
+        private cd: ChangeDetectorRef,
+        private _formSvs: IonarFormService
+    ) {
+    }
 
-  ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
-  constructor(
-    private cd: ChangeDetectorRef,
-    private _formSvs: IonarFormService
-  ) {
-  }
+    ngOnInit() {
 
-  ngOnInit() {
-    const formGroup: IonarFormGroup = this._formSvs.getFormGroup();
 
-    this.state = formGroup.get(this.name);
-    // this.hidden = this.formSvs._getControlConfig(this.name).hidden;
-    //
-    // const control = this.formSvs._getControl(this.name);
-    // const config = this.formSvs._getControlConfig(this.name);
-    //
-    // control.valueChanges.subscribe(value => {
-    //   const change_data = {
-    //     selected_value: value,
-    //     config: config
-    //   };
-    //
-    //   if (config.options) {
-    //     _.assign(change_data, {}, {
-    //       selected_option: _.find(config.options, ['value', value])
-    //     });
-    //   }
-    //
-    //   this.change.emit(change_data);
-    // });
-  }
+        this._control = this._formSvs.getFormGroup().get(this.name)._controlConfig
 
-  ngOnDestroy(): void {
-  }
+        console.log(this._control)
+
+    }
+
+    ngOnDestroy(): void {
+    }
 
 }

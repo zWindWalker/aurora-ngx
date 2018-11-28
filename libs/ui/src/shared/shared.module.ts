@@ -4,14 +4,12 @@ import {DynamicDirective} from './directives/dynamic.directive';
 
 @NgModule({
     declarations: [
-        DynamicDirective
     ],
     imports: [
         CommonModule
     ],
     exports: [
-        CommonModule,
-        DynamicDirective
+        CommonModule
     ]
 
 })

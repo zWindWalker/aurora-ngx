@@ -1,7 +1,5 @@
 import _ from 'lodash';
-import {AbstractControl} from './AbstractControl';
-import {ControlConfig} from './ControlConfig';
-import {FormControl} from './FormControl';
+import { AbstractControl } from './AbstractControl';
 
 /**
  * Tracks the value and validity state of a group of `FormControl` instances.
@@ -77,222 +75,222 @@ import {FormControl} from './FormControl';
  */
 export class FormGroup extends AbstractControl {
 
-    /**
-     * Creates a new `FormGroup` instance.
-     *
-     * @param controls A collection of child controls. The key for each child is the name
-     * under which it is registered.
-     *
-     */
-    constructor(
-        public controls: { [key: string]: AbstractControl }
-    ) {
-        super();
-        // this._setUpControls();
-        this._initObservables();
+  /**
+   * Creates a new `FormGroup` instance.
+   *
+   * @param controls A collection of child controls. The key for each child is the name
+   * under which it is registered.
+   *
+   */
+  constructor(
+    public controls: { [key: string]: AbstractControl }
+  ) {
+    super();
+    // this._setUpControls();
+    this._initObservables();
 
-        this.updateValueAndValidity({onlySelf: true, emitEvent: false});
-    }
+    this.updateValueAndValidity({ onlySelf: true, emitEvent: false });
+  }
 
-    /**
-     * Sets the value of the `FormGroup`. It accepts an object that matches
-     * the structure of the group, with control names as keys.
-     *
-     * @usageNotes
-     * ### Set the complete value for the form group
-     *
-     * ```
-     * const form = new FormGroup({
-     *   first: new FormControl(),
-     *   last: new FormControl()
-     * });
-     *
-     * console.log(form.value);   // {first: null, last: null}
-     *
-     * form.setValue({first: 'Nancy', last: 'Drew'});
-     * console.log(form.value);   // {first: 'Nancy', last: 'Drew'}
-     * ```
-     *
-     * @throws When strict checks fail, such as setting the value of a control
-     * that doesn't exist or if you excluding the value of a control.
-     *
-     * @param value The new value for the control that matches the structure of the group.
-     * @param options Configuration options that determine how the control propagates changes
-     * and emits events after the value changes.
-     * The configuration options are passed to the {@link IonarAbstractControl#updateValueAndValidity
+  /**
+   * Sets the value of the `FormGroup`. It accepts an object that matches
+   * the structure of the group, with control names as keys.
+   *
+   * @usageNotes
+   * ### Set the complete value for the form group
+   *
+   * ```
+   * const form = new FormGroup({
+   *   first: new FormControl(),
+   *   last: new FormControl()
+   * });
+   *
+   * console.log(form.value);   // {first: null, last: null}
+   *
+   * form.setValue({first: 'Nancy', last: 'Drew'});
+   * console.log(form.value);   // {first: 'Nancy', last: 'Drew'}
+   * ```
+   *
+   * @throws When strict checks fail, such as setting the value of a control
+   * that doesn't exist or if you excluding the value of a control.
+   *
+   * @param value The new value for the control that matches the structure of the group.
+   * @param options Configuration options that determine how the control propagates changes
+   * and emits events after the value changes.
+   * The configuration options are passed to the {@link IonarAbstractControl#updateValueAndValidity
    * updateValueAndValidity} method.
-     *
-     * * `onlySelf`: When true, each change only affects this control, and not its parent. Default is
-     * false.
-     * * `emitEvent`: When true or not supplied (the default), both the `statusChanges` and
-     * `valueChanges`
-     * observables emit events with the latest status and value when the control value is updated.
-     * When false, no events are emitted.
-     */
-    setValue(value: { [key: string]: any }, options: { onlySelf?: boolean, emitEvent?: boolean } = {}):
-        void {
-        // this._checkAllValuesPresent(value);
-        // Object.keys(value).forEach(name => {
-        //     this._throwIfControlMissing(name);
-        //     this.controls[name].setValue(value[name], {onlySelf: true, emitEvent: options.emitEvent});
-        // });
-        // this.updateValueAndValidity(options);
-    }
+   *
+   * * `onlySelf`: When true, each change only affects this control, and not its parent. Default is
+   * false.
+   * * `emitEvent`: When true or not supplied (the default), both the `statusChanges` and
+   * `valueChanges`
+   * observables emit events with the latest status and value when the control value is updated.
+   * When false, no events are emitted.
+   */
+  setValue(value: { [key: string]: any }, options: { onlySelf?: boolean, emitEvent?: boolean } = {}):
+    void {
+    // this._checkAllValuesPresent(value);
+    // Object.keys(value).forEach(name => {
+    //     this._throwIfControlMissing(name);
+    //     this.controls[name].setValue(value[name], {onlySelf: true, emitEvent: options.emitEvent});
+    // });
+    // this.updateValueAndValidity(options);
+  }
 
-    /**
-     * Patches the value of the `FormGroup`. It accepts an object with control
-     * names as keys, and does its best to match the values to the correct controls
-     * in the group.
-     *
-     * It accepts both super-sets and sub-sets of the group without throwing an error.
-     *
-     * @usageNotes
-     * ### Patch the value for a form group
-     *
-     * ```
-     * const form = new FormGroup({
-     *    first: new FormControl(),
-     *    last: new FormControl()
-     * });
-     * console.log(form.value);   // {first: null, last: null}
-     *
-     * form.patchValue({first: 'Nancy'});
-     * console.log(form.value);   // {first: 'Nancy', last: null}
-     * ```
-     *
-     * @param value The object that matches the structure of the group.
-     * @param options Configuration options that determine how the control propagates changes and
-     * emits events after the value is patched.
-     * * `onlySelf`: When true, each change only affects this control and not its parent. Default is
-     * true.
-     * * `emitEvent`: When true or not supplied (the default), both the `statusChanges` and
-     * `valueChanges`
-     * observables emit events with the latest status and value when the control value is updated.
-     * When false, no events are emitted.
-     * The configuration options are passed to the {@link IonarAbstractControl#updateValueAndValidity
+  /**
+   * Patches the value of the `FormGroup`. It accepts an object with control
+   * names as keys, and does its best to match the values to the correct controls
+   * in the group.
+   *
+   * It accepts both super-sets and sub-sets of the group without throwing an error.
+   *
+   * @usageNotes
+   * ### Patch the value for a form group
+   *
+   * ```
+   * const form = new FormGroup({
+   *    first: new FormControl(),
+   *    last: new FormControl()
+   * });
+   * console.log(form.value);   // {first: null, last: null}
+   *
+   * form.patchValue({first: 'Nancy'});
+   * console.log(form.value);   // {first: 'Nancy', last: null}
+   * ```
+   *
+   * @param value The object that matches the structure of the group.
+   * @param options Configuration options that determine how the control propagates changes and
+   * emits events after the value is patched.
+   * * `onlySelf`: When true, each change only affects this control and not its parent. Default is
+   * true.
+   * * `emitEvent`: When true or not supplied (the default), both the `statusChanges` and
+   * `valueChanges`
+   * observables emit events with the latest status and value when the control value is updated.
+   * When false, no events are emitted.
+   * The configuration options are passed to the {@link IonarAbstractControl#updateValueAndValidity
    * updateValueAndValidity} method.
-     */
-    patchValue(value: { [key: string]: any }, options: { onlySelf?: boolean, emitEvent?: boolean } = {}):
-        void {
-        // Object.keys(value).forEach(name => {
-        //     if (this.controls[name]) {
-        //         this.controls[name].patchValue(value[name], {onlySelf: true, emitEvent: options.emitEvent});
-        //     }
-        // });
-        // this.updateValueAndValidity(options);
-    }
+   */
+  patchValue(value: { [key: string]: any }, options: { onlySelf?: boolean, emitEvent?: boolean } = {}):
+    void {
+    // Object.keys(value).forEach(name => {
+    //     if (this.controls[name]) {
+    //         this.controls[name].patchValue(value[name], {onlySelf: true, emitEvent: options.emitEvent});
+    //     }
+    // });
+    // this.updateValueAndValidity(options);
+  }
 
-    /**
-     * Resets the `FormGroup`, marks all descendants are marked `pristine` and `untouched`, and
-     * the value of all descendants to null.
-     *
-     * You reset to a specific form state by passing in a map of states
-     * that matches the structure of your form, with control names as keys. The state
-     * is a standalone value or a form state object with both a value and a disabled
-     * status.
-     *
-     * @param formState Resets the control with an initial value,
-     * or an object that defines the initial value and disabled state.
-     *
-     * @param options Configuration options that determine how the control propagates changes
-     * and emits events when the group is reset.
-     * * `onlySelf`: When true, each change only affects this control, and not its parent. Default is
-     * false.
-     * * `emitEvent`: When true or not supplied (the default), both the `statusChanges` and
-     * `valueChanges`
-     * observables emit events with the latest status and value when the control is reset.
-     * When false, no events are emitted.
-     * The configuration options are passed to the {@link IonarAbstractControl#updateValueAndValidity
+  /**
+   * Resets the `FormGroup`, marks all descendants are marked `pristine` and `untouched`, and
+   * the value of all descendants to null.
+   *
+   * You reset to a specific form state by passing in a map of states
+   * that matches the structure of your form, with control names as keys. The state
+   * is a standalone value or a form state object with both a value and a disabled
+   * status.
+   *
+   * @param formState Resets the control with an initial value,
+   * or an object that defines the initial value and disabled state.
+   *
+   * @param options Configuration options that determine how the control propagates changes
+   * and emits events when the group is reset.
+   * * `onlySelf`: When true, each change only affects this control, and not its parent. Default is
+   * false.
+   * * `emitEvent`: When true or not supplied (the default), both the `statusChanges` and
+   * `valueChanges`
+   * observables emit events with the latest status and value when the control is reset.
+   * When false, no events are emitted.
+   * The configuration options are passed to the {@link IonarAbstractControl#updateValueAndValidity
    * updateValueAndValidity} method.
-     *
-     * @usageNotes
-     *
-     * ### Reset the form group values
-     *
-     * ```ts
-     * const form = new FormGroup({
-     *   first: new FormControl('first name'),
-     *   last: new FormControl('last name')
-     * });
-     *
-     * console.log(form.value);  // {first: 'first name', last: 'last name'}
-     *
-     * form.reset({ first: 'name', last: 'last name' });
-     *
-     * console.log(form.value);  // {first: 'name', last: 'last name'}
-     * ```
-     *
-     * ### Reset the form group values and disabled status
-     *
-     * ```
-     * const form = new FormGroup({
-     *   first: new FormControl('first name'),
-     *   last: new FormControl('last name')
-     * });
-     *
-     * form.reset({
-     *   first: {value: 'name', disabled: true},
-     *   last: 'last'
-     * });
-     *
-     * console.log(this.form.value);  // {first: 'name', last: 'last name'}
-     * console.log(this.form.get('first').status);  // 'DISABLED'
-     * ```
-     */
-    reset(value: any = {}, options: { onlySelf?: boolean, emitEvent?: boolean } = {}): void {
-        // this._forEachChild((control: IonarAbstractControl, name: string) => {
-        //     control.reset(value[name], {onlySelf: true, emitEvent: options.emitEvent});
-        // });
-        // this.updateValueAndValidity(options);
-        // this._updatePristine(options);
-        // this._updateTouched(options);
-    }
+   *
+   * @usageNotes
+   *
+   * ### Reset the form group values
+   *
+   * ```ts
+   * const form = new FormGroup({
+   *   first: new FormControl('first name'),
+   *   last: new FormControl('last name')
+   * });
+   *
+   * console.log(form.value);  // {first: 'first name', last: 'last name'}
+   *
+   * form.reset({ first: 'name', last: 'last name' });
+   *
+   * console.log(form.value);  // {first: 'name', last: 'last name'}
+   * ```
+   *
+   * ### Reset the form group values and disabled status
+   *
+   * ```
+   * const form = new FormGroup({
+   *   first: new FormControl('first name'),
+   *   last: new FormControl('last name')
+   * });
+   *
+   * form.reset({
+   *   first: {value: 'name', disabled: true},
+   *   last: 'last'
+   * });
+   *
+   * console.log(this.form.value);  // {first: 'name', last: 'last name'}
+   * console.log(this.form.get('first').status);  // 'DISABLED'
+   * ```
+   */
+  reset(value: any = {}, options: { onlySelf?: boolean, emitEvent?: boolean } = {}): void {
+    // this._forEachChild((control: IonarAbstractControl, name: string) => {
+    //     control.reset(value[name], {onlySelf: true, emitEvent: options.emitEvent});
+    // });
+    // this.updateValueAndValidity(options);
+    // this._updatePristine(options);
+    // this._updateTouched(options);
+  }
 
-    /**
-     * Retrieves a child control given the control's name or path.
-     *
-     * @param name A dot-delimited string or array of string/number values that define the path to the
-     * control.
-     *
-     * @usageNotes
-     * ### Retrieve a nested control
-     *
-     * For example, to get a `name` control nested within a `person` sub-group:
-     *
-     * * `this.form.get('person.name');`
-     *
-     * -OR-
-     *
-     * * `this.form.get(['person', 'name']);`
-     */
-    get(name: string = null): AbstractControl | null {
-        if (name == null) return null;
+  /**
+   * Retrieves a child control given the control's name or path.
+   *
+   * @param name A dot-delimited string or array of string/number values that define the path to the
+   * control.
+   *
+   * @usageNotes
+   * ### Retrieve a nested control
+   *
+   * For example, to get a `name` control nested within a `person` sub-group:
+   *
+   * * `this.form.get('person.name');`
+   *
+   * -OR-
+   *
+   * * `this.form.get(['person', 'name']);`
+   */
+  get(name: string = null): AbstractControl | null {
+    if (name == null) return null;
 
-        return this.controls.hasOwnProperty(name as string) ? this.controls[name] : null;
-    }
+    return this.controls.hasOwnProperty(name as string) ? this.controls[name] : null;
+  }
 
-    /** @internal */
-    _setUpControls(): void {
+  /** @internal */
+  _setUpControls(): void {
 
-        // _.forOwn(this.controlsConfig, (value: ControlConfig, key: string) => {
-        //     console.log(key);
-        //     console.log(value);
-        //     this.controls[key] = new FormControl(value);
-        // });
-    }
+    // _.forOwn(this.controlsConfig, (value: ControlConfig, key: string) => {
+    //     console.log(key);
+    //     console.log(value);
+    //     this.controls[key] = new FormControl(value);
+    // });
+  }
 
-    /** @internal */
-    _updateValue(): void {
-        (this as { value: any }).value = this._reduceValue();
-    }
+  /** @internal */
+  _updateValue(): void {
+    (this as { value: any }).value = this._reduceValue();
+  }
 
-    /** @internal */
-    _reduceValue() {
-        const form_value: { [k: string]: AbstractControl } = {};
-        _.each(_.keys(this.controls), k => {
-            form_value[k] = this.controls[k].value;
-        });
-        return form_value;
-    }
+  /** @internal */
+  _reduceValue() {
+    const form_value: { [k: string]: AbstractControl } = {};
+    _.each(_.keys(this.controls), k => {
+      form_value[k] = this.controls[k].value;
+    });
+    return form_value;
+  }
 
 }

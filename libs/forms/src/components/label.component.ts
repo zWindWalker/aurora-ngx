@@ -8,7 +8,7 @@ import {ControlConfig} from "../models/ControlConfig";
 @Component({
     selector: 'label',
     template: `
-        {{_control?.state.label || ''}}
+        {{_controlConfig?.state.label || ''}}
     `,
     styles: [`
         :host {
@@ -22,7 +22,7 @@ import {ControlConfig} from "../models/ControlConfig";
     `]
 })
 export class LabelComponent implements OnInit, OnDestroy {
-    @Input('control') protected _control: ControlConfig;
+    @Input('controlConfig') protected _controlConfig: ControlConfig;
 
     constructor() {
     }

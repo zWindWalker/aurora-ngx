@@ -11,4 +11,4 @@ export {FormControl} from './models/FormControl';
 export {FormGroup} from './models/FormGroup';
 
 
-export {Validators} from "./utils/validators";
+export {Validators} from "./models/Validator";

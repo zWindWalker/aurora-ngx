@@ -2,31 +2,33 @@ import {
     AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
-    Component, Input,
+    Component, EventEmitter, Input,
     OnChanges,
     OnDestroy,
-    OnInit,
+    OnInit, Output,
     SimpleChanges
 } from '@angular/core';
 
 import {IonarFormService} from '../providers/form.service';
 
 import {ControlConfig} from "../models/ControlConfig";
+import {AbstractControl} from "../models/AbstractControl";
 
 
 @Component({
     selector: 'field',
     template: `
-        <ng-container *ngIf="_control">
+        <ng-container *ngIf="_controlConfig">
             <ng-container
                     dynamic_field
-                    [control]="_control"
-
+                    [control]="_controlConfig"
                     [events]="{
                             change: onChanged,
                             blur: onTouched,
                             enter: onEntered
                     }"
+
+                    [invalid]="_control?.invalid && (_control?.dirty || _control?.touched)"
             >
             </ng-container>
         </ng-container>
@@ -42,8 +44,10 @@ import {ControlConfig} from "../models/ControlConfig";
 })
 export class FieldComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
     ///-----------------------------------------------  Variables   -----------------------------------------------///
-    @Input('control') protected _control: ControlConfig;
+    @Input('controlConfig') protected _controlConfig: ControlConfig;
+    @Input() name: string
 
+    protected _control: AbstractControl
 
     // @Input() name
     //
@@ -61,7 +65,7 @@ export class FieldComponent implements OnInit, AfterViewInit, OnChanges, OnDestr
     }
 
     ngOnInit() {
-        console.log(this._control)
+        this._control = this._formSvs.getControl(this.name)
     }
 
     ngAfterViewInit(): void {
@@ -80,11 +84,13 @@ export class FieldComponent implements OnInit, AfterViewInit, OnChanges, OnDestr
     ///-----------------------------------------------  Main Functions   -----------------------------------------------///
 
     onChanged = e => {
-        // this._formSvs._setValue(this.name, e);
+        this._formSvs.getControl(this.name).setValue(e);
+
+        console.log(this._formSvs.getControl(this.name))
     };
 
     onTouched = () => {
-        // this.formSvs._onTouched(this.name);
+        this._formSvs.getControl(this.name).markAsTouched();
     };
 
     onEntered = () => {

@@ -28,5 +28,5 @@ export interface ControlProperties {
     hidden?: Boolean,
     template?: TemplateRef<any>,
 
-    [name: string]: any
+    [key: string]: any
 }

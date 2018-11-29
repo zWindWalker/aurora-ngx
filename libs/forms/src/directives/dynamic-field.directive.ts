@@ -30,6 +30,9 @@ import {ControlConfig} from "../models/ControlConfig";
 export class DynamicFieldDirective implements OnInit, OnDestroy, OnChanges {
     @Input('control') private _control: ControlConfig;
     @Input('events') private _events: { [key: string]: Function }
+
+    @Input('invalid') private _invalid: Boolean
+
     // invalid: control?.invalid && (control?.dirty || control?.touched || submitted),
     // type: state.properties.type,
     // placeholder: state.properties.placeholder,

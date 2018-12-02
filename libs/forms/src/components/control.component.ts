@@ -1,58 +1,61 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {IonarFormService} from '../providers/form.service';
-import {ControlConfig} from '../models/ControlConfig';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { IonarFormService } from '../providers/form.service';
+import { ControlConfig } from '../models/ControlConfig';
 
 
 @Component({
-    selector: 'control',
-    template: `
+  selector: 'control',
+  template: `
 
-        <label [controlConfig]="_controlConfig"></label>
+      <label [name]="name"></label>
 
-        <field
-                [controlConfig]="_controlConfig"
-                [name]="name"
-        ></field>
+      <field
+              [name]="name"
+      ></field>
 
-        <!--<form-feedback [control]="control"></form-feedback>-->
-    `,
+      <feedback
+              [name]="name"
+      >
 
-    styles: [`
-        :host-context(.hidden) {
-            display: none;
-        }
+      </feedback>
+  `,
 
-        label {
-            grid-area: label;
-        }
+  styles: [`
+      :host-context(.hidden) {
+          display: none;
+      }
 
-        field {
-            grid-area: field;
-        }
+      label {
+          grid-area: label;
+      }
 
-        feedback {
-            grid-area: feedback;
-        }
-    `],
-    changeDetection: ChangeDetectionStrategy.OnPush
+      field {
+          grid-area: field;
+      }
+
+      feedback {
+          grid-area: feedback;
+      }
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ControlComponent implements OnInit, OnDestroy {
-    ///-----------------------------------------------  Variables   -----------------------------------------------///
-    @Input() name = '';
-    protected _controlConfig: ControlConfig;
+  ///-----------------------------------------------  Variables   -----------------------------------------------///
+  @Input() name = '';
+  protected _controlConfig: ControlConfig;
 
-    ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
-    constructor(
-        private cd: ChangeDetectorRef,
-        private _formSvs: IonarFormService
-    ) {
-    }
+  ///-----------------------------------------------  Life Cycle Hook   -----------------------------------------------///
+  constructor(
+    private cd: ChangeDetectorRef,
+    private _formSvs: IonarFormService
+  ) {
+  }
 
-    ngOnInit() {
-        this._controlConfig = this._formSvs.getFormGroup().get(this.name)._controlConfig;
-    }
+  ngOnInit() {
+    this._controlConfig = this._formSvs.getFormGroup().get(this.name)._controlConfig;
+  }
 
-    ngOnDestroy(): void {
-    }
+  ngOnDestroy(): void {
+  }
 
 }

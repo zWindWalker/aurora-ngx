@@ -1,6 +1,6 @@
-import { TemplateRef } from '@angular/core';
+import {TemplateRef} from '@angular/core';
 
-import { ValidatorType } from './Validator';
+import {ValidationConfigs} from './Validator';
 
 /**
  * Interface for configs provided to an `AbstractControl`.
@@ -8,26 +8,24 @@ import { ValidatorType } from './Validator';
  * @publicApi
  */
 export interface ControlConfig {
-  state: ControlState,
-  properties?: ControlProperties,
-  validators: ValidatorType,
-  async_validator?: ValidatorType,
-  validate_options?: { [key: string]: any }
+    state: ControlState,
+    properties?: ControlProperties,
+    validate?: ValidationConfigs
 }
 
 export interface ControlState {
-  type: string,
-  label?: string,
-  value?: any,
-  options?: Array<{ value: any, label: any, [property: string]: any }>,
+    type: string,
+    label?: string,
+    value?: any,
+    options?: Array<{ value: any, label: any, [property: string]: any }>,
 }
 
 export interface ControlProperties {
-  type?: string,
-  placeholder?: string,
-  checkbox_label?: string,
-  hidden?: Boolean,
-  template?: TemplateRef<any>,
+    type?: string,
+    placeholder?: string,
+    checkbox_label?: string,
+    hidden?: Boolean,
+    template?: TemplateRef<any>,
 
-  [key: string]: any
+    [key: string]: any
 }

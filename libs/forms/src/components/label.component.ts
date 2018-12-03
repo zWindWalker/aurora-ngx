@@ -1,9 +1,9 @@
 import {ChangeDetectorRef, Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {FormService} from '../form.service';
-import {Subject} from 'rxjs';
-import {AuroraForm} from '../form.model';
-import {untilDestroyed} from "@aurora-ngx/ui";
-import {ControlConfig} from "../models/ControlConfig";
+import {IonarFormService} from '../providers/form.service';
+
+import {ControlConfig} from '../models/ControlConfig';
+import {AbstractControl} from '../models/AbstractControl';
+
 
 @Component({
     selector: 'label',
@@ -22,12 +22,19 @@ import {ControlConfig} from "../models/ControlConfig";
     `]
 })
 export class LabelComponent implements OnInit, OnDestroy {
-    @Input('controlConfig') protected _controlConfig: ControlConfig;
+    @Input() name: string;
+    protected _controlConfig: ControlConfig;
+    protected _control: AbstractControl;
 
-    constructor() {
+    constructor(
+        private _formSvs: IonarFormService,
+        private cd: ChangeDetectorRef
+    ) {
     }
 
     ngOnInit() {
+        this._controlConfig = this._formSvs.getFormGroup().get(this.name)._controlConfig;
+
     }
 
     ngOnDestroy(): void {

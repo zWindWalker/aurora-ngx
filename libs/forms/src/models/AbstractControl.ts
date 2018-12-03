@@ -1,7 +1,7 @@
 import {Observable} from 'rxjs';
 import {EventEmitter} from '@angular/core';
 import {ControlConfig} from './ControlConfig';
-import {ValidationErrors, ValidatorFn} from './Validator';
+import {ValidationErrors, ValidationOptions, ValidatorFn} from './Validator';
 import {FormGroup} from '@aurora-ngx/forms';
 import {Validators} from '../models/Validator';
 
@@ -20,7 +20,7 @@ import {Validators} from '../models/Validator';
 export abstract class AbstractControl {
 
     /** @internal */
-    public pendingValue: any;
+    public readonly pendingValue: any;
 
     /**
      * The current value of the control.
@@ -68,6 +68,8 @@ export abstract class AbstractControl {
     private _asyncValidationSubscription: any;
 
     public _controlConfig: ControlConfig;
+
+    public validateOptions: ValidationOptions | null
 
     /**
      * A multicasting observable that emits an event every time the value of the control changes, in
@@ -141,6 +143,14 @@ export abstract class AbstractControl {
      */
     get pending(): boolean {
         return this.status === PENDING;
+    }
+
+
+    /**
+     * The parent control.
+     */
+    get parent(): FormGroup {
+        return this._parent;
     }
 
     /**
@@ -230,6 +240,12 @@ export abstract class AbstractControl {
     /** @internal */
     abstract _calculateStatus(): string
 
+    /**
+     * @param parent Sets the parent of the control
+     */
+    setParent(parent: FormGroup): void {
+        this._parent = parent;
+    }
 
     /**
      * Sets the value of the control. Abstract method (implemented in sub-classes).
@@ -240,6 +256,7 @@ export abstract class AbstractControl {
      * Resets the control. Abstract method (implemented in sub-classes).
      */
     abstract reset(value?: any, options?: Object): void;
+
 
     /** @internal */
     abstract _allControlsDisabled(): boolean;

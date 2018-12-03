@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import {AbstractControl, DISABLED, INVALID, PENDING, VALID} from './AbstractControl';
-import {ValidatorFn, Validators} from "./Validator";
+import {ValidationConfigs, ValidationOptions} from "./Validator";
 
 /**
  * Tracks the value and validity state of a group of `FormControl` instances.
@@ -76,6 +76,7 @@ import {ValidatorFn, Validators} from "./Validator";
  */
 export class FormGroup extends AbstractControl {
 
+
     /**
      * Creates a new `FormGroup` instance.
      *
@@ -87,7 +88,7 @@ export class FormGroup extends AbstractControl {
         public controls: { [key: string]: AbstractControl }
     ) {
         super();
-        // this._setUpControls();
+        this._setUpControls();
         this._initObservables();
 
         this.updateValueAndValidity({onlySelf: true, emitEvent: false});
@@ -138,48 +139,6 @@ export class FormGroup extends AbstractControl {
         // this.updateValueAndValidity(options);
     }
 
-    /**
-     * Patches the value of the `FormGroup`. It accepts an object with control
-     * names as keys, and does its best to match the values to the correct controls
-     * in the group.
-     *
-     * It accepts both super-sets and sub-sets of the group without throwing an error.
-     *
-     * @usageNotes
-     * ### Patch the value for a form group
-     *
-     * ```
-     * const form = new FormGroup({
-     *    first: new FormControl(),
-     *    last: new FormControl()
-     * });
-     * console.log(form.value);   // {first: null, last: null}
-     *
-     * form.patchValue({first: 'Nancy'});
-     * console.log(form.value);   // {first: 'Nancy', last: null}
-     * ```
-     *
-     * @param value The object that matches the structure of the group.
-     * @param options Configuration options that determine how the control propagates changes and
-     * emits events after the value is patched.
-     * * `onlySelf`: When true, each change only affects this control and not its parent. Default is
-     * true.
-     * * `emitEvent`: When true or not supplied (the default), both the `statusChanges` and
-     * `valueChanges`
-     * observables emit events with the latest status and value when the control value is updated.
-     * When false, no events are emitted.
-     * The configuration options are passed to the {@link IonarAbstractControl#updateValueAndValidity
-   * updateValueAndValidity} method.
-     */
-    patchValue(value: { [key: string]: any }, options: { onlySelf?: boolean, emitEvent?: boolean } = {}):
-        void {
-        // Object.keys(value).forEach(name => {
-        //     if (this.controls[name]) {
-        //         this.controls[name].patchValue(value[name], {onlySelf: true, emitEvent: options.emitEvent});
-        //     }
-        // });
-        // this.updateValueAndValidity(options);
-    }
 
     /**
      * Resets the `FormGroup`, marks all descendants are marked `pristine` and `untouched`, and
@@ -281,12 +240,23 @@ export class FormGroup extends AbstractControl {
 
     /** @internal */
     _setUpControls(): void {
+        _.forOwn(this.controls, (value: AbstractControl, key: string) => {
+            this.controls[key].setParent(this);
+        });
+    }
 
-        // _.forOwn(this.controlsConfig, (value: ControlConfig, key: string) => {
-        //     console.log(key);
-        //     console.log(value);
-        //     this.controls[key] = new FormControl(value);
-        // });
+
+    _setUpValidationOptions(options: ValidationOptions | null): void {
+
+        this.validateOptions = options
+
+        _.forOwn(this.controls, (value: AbstractControl, key: string) => {
+
+            console.log(
+                coerceToValidationConfig(value.validateOptions, options)
+            )
+
+        });
     }
 
     /** @internal */
@@ -319,13 +289,19 @@ export class FormGroup extends AbstractControl {
 
 }
 
-function coerceToValidator(validators: ValidatorFn | ValidatorFn[] | null): ValidatorFn | null {
 
-    return Array.isArray(validators) ? composeValidators(validators) : validators || null;
+function coerceToValidationConfig(control: ValidationOptions | null, parent: ValidationOptions | null) {
+    if (!control || !parent) return control || parent || null
+    return {
+        icons: {
+            ...parent.icons,
+            ...control.icons
+        },
+        feedback: {
+            ...parent.feedback,
+            ...control.feedback
+        }
+    }
 
 };
 
-function composeValidators(validators: ValidatorFn[]): ValidatorFn | null {
-
-    return validators != null ? Validators.compose(validators) : null;
-};

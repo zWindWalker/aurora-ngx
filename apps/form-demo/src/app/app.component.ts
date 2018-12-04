@@ -137,9 +137,14 @@ export class AppComponent implements OnInit {
                     value: 'sdfs'
                 },
                 validate: {
+                    validators: {
+                        required: true,
+                        email: true
+                    },
                     options: {
                         icons: {
-                           error: '23489573948789'
+                            error: `<i class="fas fa-times"></i>`,
+                            success: null
                         },
                         feedback: {
                             error: '32453534'

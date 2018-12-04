@@ -75,7 +75,13 @@ export abstract class AbstractControl {
      * A multicasting observable that emits an event every time the value of the control changes, in
      * the UI or programmatically.
      */
-    public readonly value_changes: Observable<any>;
+    public readonly valueChanges: Observable<any>;
+
+    /**
+     * A multicasting observable that emits an event every time the validation `status` of the control
+     * recalculates.
+     */
+    public readonly statusChanges: Observable<any>;
 
     get errors(): ValidationErrors | null {
         return this.validator ? this.validator(this) : null;
@@ -215,7 +221,8 @@ export abstract class AbstractControl {
         }
 
         if (opts.emitEvent !== false) {
-            (this.value_changes as EventEmitter<any>).emit(this.value);
+            (this.valueChanges as EventEmitter<any>).emit(this.value);
+            (this.statusChanges as EventEmitter<any>).emit(this.status);
         }
 
     }
@@ -228,7 +235,8 @@ export abstract class AbstractControl {
 
     /** @internal */
     _initObservables() {
-        (this as { value_changes: Observable<any> }).value_changes = new EventEmitter();
+        (this as { valueChanges: Observable<any> }).valueChanges = new EventEmitter();
+        (this as { statusChanges: Observable<any> }).statusChanges = new EventEmitter();
     }
 
     /** @internal */

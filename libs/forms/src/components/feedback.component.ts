@@ -4,6 +4,7 @@ import {IonarFormService} from '../providers/form.service';
 import {ControlConfig} from '../models/ControlConfig';
 import {AbstractControl} from '../models/AbstractControl';
 import _ from 'lodash';
+import {untilDestroyed} from "@aurora-ngx/ui";
 
 @Component({
     selector: 'feedback',
@@ -53,9 +54,13 @@ export class FeedbackComponent implements OnInit, OnChanges, OnDestroy {
     ngOnInit() {
         this._control = this._formSvs.getControl(this.name);
 
-        this.invalid = this._control.invalid && (this._control.dirty || this._control.touched)
+        this._control.statusChanges.pipe(untilDestroyed(this)).subscribe(status => {
+            this.invalid = this._control.invalid && (this._control.dirty || this._control.touched)
 
-        this.error_list = _.map(this._control.errors, (value, key) => this.generate_feedback(key));
+            this.error_list = _.map(this._control.errors, (value, key) => this.generate_feedback(key));
+
+            console.log(this.error_list)
+        })
         // this.viewInit.pipe(untilDestroyed(this)).subscribe(() => {
         //     this.control = this.formSvs._getControl(this.name);
         //     this.config = this.formSvs._getControlConfig(this.name);
@@ -81,28 +86,28 @@ export class FeedbackComponent implements OnInit, OnChanges, OnDestroy {
 
     generate_feedback = validator => {
 
-        // const validate_config = this._control.
+        const feedback = this._control.validateOptions.feedback
 
         if (!validator) return null
         // const feedback = {
         //   ...this.config.feedback
         // };
         //
-        // switch (validator) {
-        //   case 'required':
-        //     if (this.name === 'confirm_password') {
-        //       return feedback['required'] || `You need to confirm password`;
-        //     }
-        //     return feedback['required'] || `${_.startCase(this.name)}  is required`;
-        //   case 'confirm_password':
-        //     return feedback['confirm_password'] || `Password not match`;
-        //   case 'agreement':
-        //     return feedback['agreement'] || `You must agree to the terms and conditions before continuing!`;
-        //   case 'email' :
-        //     return feedback['email'] || `Invalid email address. Valid e-mail can contain only latin letters, numbers, '@' and '.'`;
-        //   case 'email_existed':
-        //     return feedback['email_existed'] || `${_.startCase(this.name)} is existed! Please use another one`;
-        // }
+        switch (validator) {
+            case 'required':
+                if (this.name === 'confirm_password') {
+                    return feedback['required'] || `You need to confirm password`;
+                }
+                return feedback['required'] || `${_.startCase(this.name)}  is required`;
+            case 'confirm_password':
+                return feedback['confirm_password'] || `Password not match`;
+            case 'agreement':
+                return feedback['agreement'] || `You must agree to the terms and conditions before continuing!`;
+            case 'email' :
+                return feedback['email'] || `Invalid email address. Valid e-mail can contain only latin letters, numbers, '@' and '.'`;
+            case 'email_existed':
+                return feedback['email_existed'] || `${_.startCase(this.name)} is existed! Please use another one`;
+        }
 
 
     };
